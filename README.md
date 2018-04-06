@@ -13,7 +13,7 @@ Screenshots:
 ![travel-planner-trip-planner-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-trip-planner-page.png)
 ![travel-planner-day-view-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-day-view-page.png)
 ![travel-planner-packing-list-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-packing-list-page.png)
-![travel-planner-footer-view-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-footer-view-page.png)
+![travel-planner-footer-view](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-footer-view.png)
 
 
 
