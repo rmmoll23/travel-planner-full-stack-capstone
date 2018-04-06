@@ -5,6 +5,16 @@ Travel-planner-full-stack-capstone is an interactive full-stack web app that all
 
 Screenshots:
 ![travel-planner-landing-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-landing-page.png)
+![travel-planner-sign-up-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-sign-up-page.png)
+![travel-planner-log-in-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-log-in-page.png)
+![travel-planner-profile-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-profile-page.png)
+![travel-planner-new-trip-form](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-new-trip-form.png)
+![travel-planner-activity-selection-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-activity-selection-page.png)
+![travel-planner-trip-planner-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-trip-planner-page.png)
+![travel-planner-day-view-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-day-view-page.png)
+![travel-planner-packing-list-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-packing-list-page.png)
+![travel-planner-footer-view-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-footer-view-page.png)
+
 
 
 Summary: 
