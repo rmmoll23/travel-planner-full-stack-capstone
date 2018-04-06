@@ -4,9 +4,8 @@ Travel-planner-full-stack-capstone is an interactive full-stack web app that all
 
 
 Screenshots:
-<!-- <img width="1440" alt="screen shot 2018-03-01 at 8 26 25 pm" src="https://user-images.githubusercontent.com/33381445/36882105-288b97d2-1d8f-11e8-9f20-f9fb2ac04ab2.png">
-<img width="1440" alt="screen shot 2018-03-01 at 8 26 36 pm" src="https://user-images.githubusercontent.com/33381445/36882106-2b3c0322-1d8f-11e8-9a47-eae284e6c508.png">
-<img width="1440" alt="screen shot 2018-03-01 at 8 26 57 pm" src="https://user-images.githubusercontent.com/33381445/36882108-2ccdf970-1d8f-11e8-8f70-88183cc463a5.png"> -->
+![travel-planner-landing-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-landing-page.png)
+
 
 Summary: 
 landingPage-
