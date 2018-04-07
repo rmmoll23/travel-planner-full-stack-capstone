@@ -4,525 +4,61 @@ body {
   font-family: 'Neucha', cursive;
 }
 
-button {
-  font-family: 'Neucha', cursive;
-}
-
-#homePage {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-#photoSelectionPage {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.hidden {
-  display: none;
-}
-
-h1 {
-  width: 90%;
-  background-color: white;
-  margin-left: auto;   
-  margin-right: auto;
-  padding: 10px;
-  border: solid deepskyblue 7px;
-}
-
-#create {
-  background-color: white;
-  cursor: pointer;
-  border: solid 5px deepskyblue;
-  font-size: larger;
-  font-weight: bold;
-  padding: 5px 10px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  border-radius: 5px;
-}
-
-.mySlides {
-  width: 100%;
-  height: 350px;
-}
-
-.photoBanner {
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.memeBanner {
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
+.container {
   position: relative;
-}
-
-.parent {
-  position: relative;
-  width: 100%;
-}
-
-#memeFilter {
-  cursor: pointer;
-  margin-left: 10px;
-  background-color: lightgray;
-  border: solid;
-  padding: 3px 10px;
-  font-size: medium;
+  margin: 10px auto 10px auto;
+  text-align: center;
+  width: 40%;
+  background-color: white;
   border-radius: 5px;
-}
-
-#photoFilter {
-  cursor: pointer;
-  margin-left: 10px;
-  background-color: lightgray;
-  border: solid;
-  padding: 3px 10px;
-  font-size: medium;
-  border-radius: 5px;
-}
-
-.selectedFilter {
-  font-weight: bold;
-}
-
-.navButtons {
-  top: 50%;
-  cursor: pointer;
-  position: absolute;
-  background-color: black;
-  color: white;
-  border-color: black;
-  padding: 8px 16px;
-  transform: translate(0%, -50%);
-  border-radius: 5px;
-  opacity: 0.3;
-}
-
-#displayLeft {
-  left: 0px;
-}
-
-#displayRight {
-  right: 0px;
-}
-
-.fa-star {
-  bottom: 15px;
-  right: 15px;
-  cursor: pointer;
-  font-size:30px;
-}
-
-.clickableIcon {
-  position: absolute;
-  bottom: 15px;
-  right: 20px;
-  font-weight: bold;
-  font-size: 30px;
-  color: black;
   padding: 5px;
-  background-color: white;
-  border: deepskyblue 4px solid;
-  border-radius: 5px;
 }
 
-.clickableMemeIcon {
-  position: absolute;
-  bottom: 15px;
-  right: 20px;
-  font-weight: bold;
-  font-size: 30px;
-  color: black;
-  padding: 5px;
-  background-color: white;
-  border: deepskyblue 4px solid;
-  border-radius: 5px;
-}
-
-#photoUpload {
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-.submit {
-  cursor: pointer;
-  margin-left: 10px;
-  background-color: white;
-  border: solid deepskyblue 4px;
-  padding: 3px;
-  font-size: medium;
-  border-radius: 5px;
-}
-
-#newPhoto {
-  margin-top: 20px;
-  background-color: lightgray
-}
-
-.photo {
-  position: relative;
-}
-
-.selectPhotoButton {
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border: deepskyblue 4px solid;
-  border-radius: 5px;
-  font-size: x-large;
-  padding: 7px;
-  margin-top: 20px;
-  width: fit-content;
-  font-weight: bold;
-}
-
-.homeLink {
-  border-top: black solid 1px;
-  padding-top: 10px;
-  width: 90%;
-  margin: 30px auto 5px auto;
-}
-
-#navBarPhotoPage {
-  cursor: pointer;
-}
-
-#navBarMemePageToHome {
-  cursor: pointer;
-}
-
-#navBarMemePageToPhoto {
-  cursor: pointer;
-}
-
-ul {
-  text-align: center;
-  border: none;
-  list-style-type: none;
-  padding: 10px;
-  margin: 0 auto;
-  bottom: 0px;
-}
-
-li {
+.container input {
   display: inline-block;
+  position: absolute;
+  right: 20px;
 }
 
-.navItems {
-  display: block;
+.button-right {
+ margin-left: 30px;
 }
 
-#copyright {
-  margin: auto;
-}
-
-/* memeCreationPage */
-
-#memeCreationPage {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-#textBox {
-  font-family: initial;
-}
-
-.imgChoice {
-  width: 70%;
-  height: 350px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.memeContainer {
-  background-size: 100% 100%;
-  width: 75%;
-  margin-left: auto;
-  height: 350px;
-  margin-right: auto;
-}
-
-#textBox {
-  color: white;
-  font-size: 40px;
-  font-weight: 900;
-  padding-top: 20px;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.submitMemeButton {
-  background-color: white;
-  cursor: pointer;
-  border: solid 4px deepskyblue;
-  font-size: larger;
-  font-weight: bold;
-  padding: 5px 10px;
-  margin-top: 20px;
-  border-radius: 5px;
-}
-
-#memeSubmit {
-  margin-top: 20px;
-  font-weight: bold;
+.button-left {
+margin-right: 30px;
 }
 
 label {
-  font-size: x-large;
+  display: inline-block;
+  font-weight: bold;
+  position: absolute;
+  left: 20px;
+}
+
+footer {
+  text-align: center;
+  border-top: black solid 2px;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+nav {
+  border-bottom: black solid 2px;
+}
+
+li {
+  list-style-type: none;
+  display: inline;
 }
 
 
-@media only screen and (max-width: 480px) {
-
-  select,
-  textarea,
-  input {
-    font-size: 16px;
-  }
-
-  #create {
-    background-color: white;
-    cursor: pointer;
-    border: solid 5px deepskyblue;
-    font-size: medium;
-    font-weight: bold;
-    padding: 5px 10px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    border-radius: 5px;
-  }
-
-  .memeContainer {
-    background-size: 100% 100%;
-    width: 90%;
-    margin-left: auto;
-    height: 300px;
-    margin-right: auto;
-  }
-
-  .imgChoice {
-    width: 100%;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .memeBanner {
-    width: 80%;
-    margin-right: auto;
-    margin-left: auto;
-    position: relative;
-  }
-
-  .photoBanner {
-    width: 80%;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  h1 {
-    width: auto;
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    border: solid deepskyblue 7px;
-    font-size: large;
-  }
-
-  .mySlides {
-    width: 100%;
-    height: 300px;
-  }
-
-  #textBox {
-    color: white;
-    font-size: 30px;
-    font-weight: 900;
-    padding-top: 20px;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
-
-  .fa-star {
-    bottom: 15px;
-    right: 15px;
-    cursor: pointer;
-    font-size:20px;
-  }
-
-  .clickableIcon {
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-    font-weight: bold;
-    font-size: 20px;
-    color: black;
-    padding: 5px;
-    background-color: white;
-    border: deepskyblue 4px solid;
-    border-radius: 5px;
-  }
-
-  .clickableMemeIcon {
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-    font-weight: bold;
-    font-size: 20px;
-    color: black;
-    padding: 5px;
-    background-color: white;
-    border: deepskyblue 4px solid;
-    border-radius: 5px;
-  }
-
-  .selectPhotoButton {
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    border: deepskyblue 4px solid;
-    border-radius: 5px;
-    font-size: medium;
-    padding: 7px;
-    margin-top: 10px;
-    width: fit-content;
-    font-weight: bold;
-  }
-
-  .submitMemeButton {
-    background-color: white;
-    cursor: pointer;
-    border: solid 4px deepskyblue;
-    font-size: medium;
-    font-weight: bold;
-    padding: 5px 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
-
-  label {
-    font-size: large;
-  }
-
-  .homeLink {
-    border-top: black solid 1px;
-    padding-top: 10px;
-    width: 90%;
-    margin: 10px auto 5px auto;
-  }
-
-}
 
 @media only screen and (max-width: 320px) {
 
-  h1 {
-    width: auto;
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    border: solid deepskyblue 7px;
-    font-size: medium;
-  }
-
-  .mySlides {
-    width: 100%;
-    height: 200px;
-  }
-
-  #create {
-    background-color: white;
-    cursor: pointer;
-    border: solid 5px deepskyblue;
-    font-size: medium;
-    font-weight: bold;
-    padding: 5px 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-  }
-
-  ul {
-    text-align: center;
-    border: none;
-    list-style-type: none;
-    padding: 5px;
-    margin: 0 auto;
-    bottom: 0px;
-  }
-
-  .selectPhotoButton {
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    border: deepskyblue 4px solid;
-    border-radius: 5px;
-    font-size: medium;
-    padding: 7px;
-    margin-top: 5px;
-    width: fit-content;
-    font-weight: bold;
-  }
-
-  .memeContainer {
-    background-size: 100% 100%;
-    width: 90%;
-    margin-left: auto;
-    height: 200px;
-    margin-right: auto;
-  }
-
-  .imgChoice {
-    width: 100%;
-    height: 200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .memeHeader {
-    padding: 5px;
-  }
-
-  .submitMemeButton {
-    background-color: white;
-    cursor: pointer;
-    border: solid 4px deepskyblue;
-    font-size: small;
-    font-weight: bold;
-    padding: 3px 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-  }
-
-  .homeLink {
-    border-top: black solid 1px;
-    padding-top: 5px;
-    width: 90%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-  }
-
-  #memeSubmit {
-    margin-top: 5px;
-    font-weight: bold;
-  }
-
-  #textBox {
-    color: white;
-    font-size: 20px;
-    font-weight: 900;
-    padding-top: 10px;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
-
-}
+} 
