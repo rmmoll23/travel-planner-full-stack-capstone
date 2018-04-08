@@ -1,23 +1,119 @@
-body {
-  background-image: url(https://c2.staticflickr.com/2/1330/876118224_f6bb6ff2eb_o.jpg);
-  background: cover;
-  font-family: 'Neucha', cursive;
+html {
+  height: 100%;
 }
+
+body {
+  /* background-image: url(../images/moraineLake2.jpeg); */
+  background-size: cover;
+  font-family: 'Noto Sans', sans-serif;
+  margin: 0;
+  height: 100%;
+  color: black;
+}
+
+button {
+  border: black solid 1px;
+  background-color: aquamarine;
+  border-radius: 3px;
+  font-size: 15px;
+
+}
+
+a {
+  padding-left: 5px;
+  color: aquamarine;
+}
+
+/* landingPage */
+
+.landing {
+  text-align: center;
+  height: 100%;
+}
+
+.landingTop {
+  height: 50%;
+  background-image: url(../images/moraineLake2.jpeg);
+  background-size: cover;
+  color: aquamarine;
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+}
+
+.landingBottom {
+  background-color: white;
+}
+
+.landingBottom button {
+  margin: 15px 15px 25px 15px;
+}
+
+nav {
+  border-bottom: black solid;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 15px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0 15px 0 0;
+}
+
+nav h1 {
+  padding: 0;
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+}
+
+.landingList li {
+  margin: 15px;
+  border: aquamarine solid;
+  padding: 10px;
+}
+
+.landingList {
+  padding: 50px;
+}
+
+.landingBottom h2 {
+  border-bottom: aquamarine solid;
+  width: max-content;
+  margin: 0 auto;
+}
+
+/* formPages */
 
 .container {
   position: relative;
   margin: 10px auto 10px auto;
   text-align: center;
-  width: 40%;
+  width: 350px;
   background-color: white;
   border-radius: 5px;
-  padding: 5px;
+  border: black solid;
+  padding: 15px;
+  color: black;
+}
+
+.container h1 {
+  border-bottom: aquamarine solid;
+  width: max-content;
+  margin: 0 auto;
+  padding-bottom: 5px;
 }
 
 .container input {
   display: inline-block;
   position: absolute;
   right: 20px;
+  border: black solid 1px;
+  padding: 5px;
 }
 
 .button-right {
@@ -35,30 +131,72 @@ label {
   left: 20px;
 }
 
-footer {
-  text-align: center;
-  border-top: black solid 2px;
-}
-
-.left {
-  text-align: left;
-}
-
-.right {
-  text-align: right;
-}
-
-nav {
-  border-bottom: black solid 2px;
-}
-
 li {
   list-style-type: none;
   display: inline;
 }
 
+h1, h2 {
+  margin: 0; 
+  padding: 15px;
+}
+
+/* profile */
+
+.profile {
+  text-align: center;
+}
+
+.profile ul {
+  border: black solid;
+  width: max-content;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.profile li {
+  display: block;
+}
+
+.profile button {
+  margin: 30px 0 30px 0;
+}
+
+/* newTrip */
+
+.newTrip h1{
+  margin-bottom: 30px;
+}
+
+/* footer */
+
+footer {
+  text-align: center;
+  border-top: black solid 2px;
+  background-color: white;
+}
+
+footer ul {
+  margin: 0 auto;
+  padding: 15px;
+}
 
 
-@media only screen and (max-width: 320px) {
+
+@media only screen and (max-width: 600px) {
+
+  .landingBottom li {
+    list-style-type: none;
+    display: block;
+  }
+
+} 
+
+@media only screen and (max-width: 400px) {
+
+  nav li {
+    list-style-type: none;
+    display: block;
+  }
 
 } 

@@ -4,30 +4,43 @@
 <head>
     <title>Travel-Planner</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Neucha" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700" rel="stylesheet">
     <link href="../stylesheets/jquery.loader.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
 </head>
 
 <body>
  <nav role="navigation">
+        <h1><img class="logo" src="../images/globe icon.png"/>&nbsp; &nbsp;Travel Planner</h1>
         <ul>
-            <li class="left">Travel Planner</li>
-            <!-- <li class="right"><a href="default.asp">Home</a></li>
-            <li class="right"><a href="news.asp">News</a></li>
-            <li class="right"><a href="contact.asp">Contact</a></li>
-            <li class="right"><a href="about.asp">About</a></li> -->
-         </ul>
+            <li><a href="#">Profile Page</a></li>
+            <li><a href="#">Packing List</a></li>
+            <li><a href="#">Trip Planner</a></li>
+            <li><a href="#">Activity Selection Page</a></li>
+         </ul> 
  </nav>
  <main role="main" class="landing">
+        <div class="landingTop">
+                <h2>All of your traveling needs in one place</h1>
+                <!-- <h4>Prepare for your upcoming trip</h2> -->
+        </div>
+        <div class="landingBottom">
+                <h2>Features</h2>
+                <ul class="landingList">
+                        <li>Search for things to do</li>
+                        <li>Add them to your planner</li>
+                        <li>Make a packing list</li>
+                </ul>
+                <button class="button-left" type="button">Sign Up</button>
+                <button class="button-right" type="button">Log In</button>
+        </div>
    
  </main>
  <main role="main" class="signUp">
         <form>
                 <div class="container">
                   <h1>Sign Up</h1>
-                  <p>Please fill in this form to create an account.</p>
+                  <p>Please fill in this form to create an account</p>
 
                   <label for="name">First Name</label>
                   <input type="text" placeholder="Enter First Name" name="name" required><br><br>
@@ -53,7 +66,7 @@
         <form>
                 <div class="container">
                   <h1>Log in</h1>
-                  <p>Please fill in this form to create an account.</p>
+                  <p>Please enter your email and password</p>
               
                   <label for="email">Email</label>
                   <input type="text" placeholder="Enter Email" name="email" required><br><br>
@@ -69,10 +82,36 @@
    
 </main>
 <main role="main" class="profile">
-   
+        <h1>Welcome, John!</h1>
+        <h2>Current Saved Trips</h2>
+        <ul>
+                <li><a href="#">Australian Outback</a></li>
+                <li><a href="#">African Safari</a></li>
+                <li><a href="#">Rocky Mountains</a></li>
+        </ul>
+        <button type="button">Create new trip</button>       
 </main>
 <main role="main" class="newTrip">
-   
+        <form>
+                <div class="container">
+                  <h1>Create new trip</h1>
+
+                  <label for="tripName">Name of trip</label>
+                  <input type="text" placeholder="Enter name of trip" name="tripName" required><br><br>
+
+                  <label for="city">Location</label>
+                  <input type="text" placeholder="Enter city" name="city" required><br><br>
+              
+                  <label for="startDate">Trip start date</label>
+                  <input type="date" placeholder="Enter trip start date" name="startDate" required><br><br>
+              
+                  <label for="endDate">Trip end date</label>
+                  <input type="date" placeholder="Enter trip end date" name="endDate" required><br><br>
+                  <button class="button-left" type="button">Cancel</button>
+                  <button class="button-right" type="submit">Submit</button>
+                  
+                </div>
+        </form>
 </main>
 <main role="main" class="activitySelection">
    
