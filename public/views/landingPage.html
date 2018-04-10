@@ -5,7 +5,7 @@
     <title>Travel-Planner</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700" rel="stylesheet">
-    <link href="../stylesheets/jquery.loader.css" rel="stylesheet" />
+    <!-- <link href="../stylesheets/jquery.loader.css" rel="stylesheet" /> -->
     <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
 </head>
 
@@ -13,16 +13,15 @@
  <nav role="navigation">
         <h1><img class="logo" src="../images/globe icon.png"/>&nbsp; &nbsp;Travel Planner</h1>
         <ul>
-            <li><a href="#">Profile Page</a></li>
-            <li><a href="#">Packing List</a></li>
-            <li><a href="#">Trip Planner</a></li>
-            <li><a href="#">Activity Selection Page</a></li>
+            <li><a id="profilePageNav" href="#">Profile Page</a></li>
+            <li><a id="packingListNav" href="#">Packing List</a></li>
+            <li><a id="tripPlannerNav" href="#">Trip Planner</a></li>
+            <li><a id="activityNav" href="#">Activity Selection Page</a></li>
          </ul> 
  </nav>
  <main role="main" class="landing">
         <div class="landingTop">
-                <h2>All of your traveling needs in one place</h1>
-                <!-- <h4>Prepare for your upcoming trip</h2> -->
+                <h2 class="fadeOutHeader">All of your traveling needs in one place</h1>
         </div>
         <div class="landingBottom">
                 <h2>Features</h2>
@@ -31,12 +30,12 @@
                         <li>Add them to your planner</li>
                         <li>Make a packing list</li>
                 </ul>
-                <button class="button-left" type="button">Sign Up</button>
-                <button class="button-right" type="button">Log In</button>
+                <button id="signUp-button" class="button-left" type="button">Sign Up</button>
+                <button id="logIn-button" class="button-right" type="button">Log In</button>
         </div>
    
  </main>
- <main role="main" class="signUp">
+ <main role="main" class="signUp hidden">
         <form>
                 <div class="container">
                   <h1>Sign Up</h1>
@@ -53,8 +52,8 @@
               
                   <label for="password-confirm">Confirm Password</label>
                   <input type="password" placeholder="Confirm Password" name="password-confirm" required><br><br>
-                  <button class="button-left" type="button">Cancel</button>
-                  <button class="button-right" type="submit">Submit</button>
+                  <button id="createAccount" class="button-left" type="button">Cancel</button>
+                  <button id="cancel" class="button-right" type="submit">Submit</button>
                   
 
                   <p>Already have an account? <a href="#">Log in</a></p>
@@ -62,7 +61,7 @@
         </form>
    
 </main>
-<main role="main" class="logIn">
+<main role="main" class="logIn hidden">
         <form>
                 <div class="container">
                   <h1>Log in</h1>
@@ -73,15 +72,15 @@
               
                   <label for="password">Password</label>
                   <input type="password" placeholder="Enter Password" name="password" required><br><br>
-                  <button class="button-left" type="button">Cancel</button>
-                  <button class="button-right" type="submit">Submit</button>
+                  <button id="enterApp" class="button-left" type="button">Cancel</button>
+                  <button id="cancelLogIn" class="button-right" type="submit">Submit</button>
               
                   <p>Don't have an account? <a href="#">Sign up</a></p>
                 </div>
         </form>
    
 </main>
-<main role="main" class="profile">
+<main role="main" class="profile hidden">
         <h1>Welcome, John!</h1>
         <h2>Current Saved Trips</h2>
         <ul>
@@ -91,7 +90,7 @@
         </ul>
         <button type="button">Create new trip</button>       
 </main>
-<main role="main" class="newTrip">
+<main role="main" class="newTrip hidden">
         <form>
                 <div class="container">
                   <h1>Create new trip</h1>
@@ -107,23 +106,177 @@
               
                   <label for="endDate">Trip end date</label>
                   <input type="date" placeholder="Enter trip end date" name="endDate" required><br><br>
-                  <button class="button-left" type="button">Cancel</button>
-                  <button class="button-right" type="submit">Submit</button>
+                  <button id="createTrip" class="button-left" type="button">Cancel</button>
+                  <button id="cancelTrip" class="button-right" type="submit">Submit</button>
                   
                 </div>
         </form>
 </main>
-<main role="main" class="activitySelection">
+<main role="main" class="activitySelection hidden">
    
 </main>
-<main role="main" class="tripPlanner">
-   
-</main>
-<main role="main" class="dayView">
-   
-</main>
-<main role="main" class="packingList">
+<main role="main" class="tripPlanner hidden">
+        <h1>Paris Getaway (8 days)</h1>
+        <p>Select a day to view more details</p><br>
+        <div class="dayContainer">
+                <h3>Day 1</h3>
+                <p>5 activities saved</p>
+        </div>
+        <div class="dayContainer">
+                <h3>Day 2</h3>
+                <p>5 activities saved</p>
+        </div>
+        <div class="dayContainer">
+                <h3>Day 3</h3>
+                <p>5 activities saved</p>
+        </div>
+        <div class="dayContainer">
+                <h3>Day 4</h3>
+                <p>5 activities saved</p>
+        </div>
+        <div class="dayContainer">
+                <h3>Day 5</h3>
+                <p>5 activities saved</p>
+        </div>
+        <div class="dayContainer">
+                <h3>Day 6</h3>
+                <p>5 activities saved</p>
+        </div>
+        <div class="dayContainer">
+                <h3>Day 7</h3>
+                <p>5 activities saved</p>
+        </div>
+        <div class="dayContainer">
+                <h3>Day 8</h3>
+                <p>5 activities saved</p>
+        </div>
 
+</main>
+<main role="main" class="dayView hidden">
+        <h1 class="dayHeader">Paris Getaway (Day 1)</h1><p class="dayHeader">High: 75<br>Low: 43</p>
+        <div class="activities">
+                <div class="dayActivity">
+                        <h2><a href="#">Eiffel Tower</a></h2>
+                        <p>Address</p><br>
+                        <button class="button-delete" type="button">Delete</button>
+                        <textarea rows="4" cols="50" class="notesInput">Notes... 
+                        </textarea>
+                        <button class="button-notes" type="button">Edit Notes</button>
+                </div>
+                <div class="dayActivity">
+                        <h2><a href="#">Louve</a></h2>
+                        <p>Address</p><br>
+                        <button class="button-delete" type="button">Delete</button>
+                        <textarea rows="4" cols="50" class="notesInput">Notes... 
+                        </textarea>
+                        <button class="button-notes" type="button">Edit Notes</button>
+                </div>
+                <div class="dayActivity">
+                        <h2><a href="#">French Winery</a></h2>
+                        <p>Address</p><br>
+                        <button class="button-delete" type="button">Delete</button>
+                        <textarea rows="4" cols="50" class="notesInput">Notes... 
+                        </textarea>
+                        <button class="button-notes" type="button">Edit Notes</button>
+                </div>
+        </div>
+
+</main>
+<main role="main" class="packingList hidden">
+        <h1 class="packListHeaders">Paris Getaway (8 days)</h1>
+        <div>
+                <div class="packListContainer">
+                        <h2 class="packListHeaders">Clothing</h2>
+                        <div class="listBox">
+                        
+                                <label><input type="checkbox">Shoes</label><br>
+                                <label><input type="checkbox">Socks</label><br>
+                                <label><input type="checkbox">Underwear</label><br>
+                                <label><input type="checkbox">Shirts</label><br>
+                                <label><input type="checkbox">Pants/Shorts</label><br>
+                                <label><input type="checkbox">Jackets/Coats</label><br>
+                                <label><input type="checkbox">Hat</label><br>
+                                <label><input type="checkbox">Belt</label><br>
+                                <label><input type="checkbox">Swim Suit</label><br>
+                                <label><input type="checkbox">Pajamas</label><br>
+                                <label><input type="checkbox">Gloves</label><br>
+                                <label><input type="checkbox">Sunglasses</label><br>
+                                <label><input type="checkbox">Formal Attire</label><br>
+                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                                
+                        </div>
+                </div>
+                <div class="packListContainer">
+                        <h2 class="packListHeaders">Pets</h2>
+                        <div class="listBox">
+                                <label><input type="checkbox">Leashes</label><br>
+                                <label><input type="checkbox">Food/Water</label><br>
+                                <label><input type="checkbox">Collar/Harness</label><br>
+                                <label><input type="checkbox">Bowls</label><br>
+                                <label><input type="checkbox">Medication</label><br>
+                                <label><input type="checkbox">Poop Bags</label><br>
+                                <label><input type="checkbox">Blankets</label><br>
+                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                        </div>
+                </div>
+                <div class="packListContainer">
+                        <h2 class="packListHeaders">Media</h2>
+                        <div class="listBox">
+                                <label><input type="checkbox">Phone</label><br>
+                                <label><input type="checkbox">Laptop</label><br>
+                                <label><input type="checkbox">Tablet</label><br>
+                                <label><input type="checkbox">Camera</label><br>
+                                <label><input type="checkbox">Chargers</label><br>
+                                <label><input type="checkbox">Headphones</label><br>
+                                <label><input type="checkbox">Batteries</label><br>
+                                <label><input type="checkbox">Book</label><br>
+                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                        </div>
+                </div>
+                <div class="packListContainer">
+                        <h2 class="packListHeaders">Toiletries</h2>
+                        <div class="listBox">
+                                <label><input type="checkbox">Shampoo</label><br>
+                                <label><input type="checkbox">Conditioner</label><br>
+                                <label><input type="checkbox">Body Wash</label><br>
+                                <label><input type="checkbox">Toothbrush</label><br>
+                                <label><input type="checkbox">Toothpaste</label><br>
+                                <label><input type="checkbox">Deodorant</label><br>
+                                <label><input type="checkbox">Cologne</label><br>
+                                <label><input type="checkbox">Perfume</label><br>
+                                <label><input type="checkbox">Razor</label><br>
+                                <label><input type="checkbox">Shaving Cream</label><br>
+                                <label><input type="checkbox">Makeup</label><br>
+                                <label><input type="checkbox">Lotion</label><br>
+                                <label><input type="checkbox">Medication</label><br>
+                                <label><input type="checkbox">Bandaids</label><br>
+                                <label><input type="checkbox">Hand Sanitizer</label><br>
+                                <label><input type="checkbox">Sunscreen</label><br>
+                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                        </div>
+                </div>
+                <div class="packListContainer">
+                        <h2 class="packListHeaders">Travel Needs</h2>
+                        <div class="listBox">
+                                <label><input type="checkbox">Passport</label><br>
+                                <label><input type="checkbox">Cash/Money Order</label><br>
+                                <label><input type="checkbox">Wallet/Purse</label><br>
+                                <label><input type="checkbox">Keys</label><br>
+                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                        </div>
+                </div>
+                <div class="packListContainer">
+                        <h2 class="packListHeaders">Miscellaneous</h2>
+                        <div class="listBox">
+                                <label><input type="checkbox">Event tickets</label><br>
+                                <label><input type="checkbox">Travel Tickets</label><br>
+                                <label><input type="checkbox">Wallet/Purse</label><br>
+                                <label><input type="checkbox">Keys</label><br>
+                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                        </div>
+                </div>
+                                        
+        </div>
 </main>
 
  <footer role="contentinfo">

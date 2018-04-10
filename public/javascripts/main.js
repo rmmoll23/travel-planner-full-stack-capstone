@@ -7,7 +7,7 @@
   
   
   function getAndDisplayMemeFeed_top() {
-    $('body').loader('show');
+    // $('body').loader('show');
     console.log('Retrieving top memes')
     const memeTop_URL = memeCreation_URL + '/top';
     $.getJSON(memeTop_URL, function(memes) {
@@ -25,12 +25,12 @@
       $('.memeBanner').append(memeFeedTop);
       slideIndex = 1;
       showDivs(1);
-      $('body').loader('hide');
+      // $('body').loader('hide');
     });
   }
 
   function getAndDisplayMemeFeed_recent() {
-    $('body').loader('show');
+    // $('body').loader('show');
     const memeRecent_URL = memeCreation_URL + '/recent';
     $.getJSON(memeRecent_URL, function(memes) {
       console.log('Rendering recent memes');
@@ -48,12 +48,12 @@
       $('.memeBanner').append(memeFeedRecent);
       slideIndex = 1;
       showDivs(1);
-      $('body').loader('hide');
+      // $('body').loader('hide');
     });
   }
 
   function getAndDisplayPhotoFeed_top() {
-    $('body').loader('show');
+    // $('body').loader('show');
     const photoTop_URL = photoSelection_URL + '/top';
     $.getJSON(photoTop_URL, function(photos) {
       console.log('Rendering top photos');
@@ -75,12 +75,12 @@
       $('.photoBanner').append(photoFeedTop);
       slideIndex = 1;
       showDivs(1);
-      $('body').loader('hide');
+      // $('body').loader('hide');
     });
   }
 
   function getAndDisplayPhotoFeed_recent() {
-    $('body').loader('show');
+    // $('body').loader('show');
     const photoRecent_URL = photoSelection_URL + '/recent';
     $.getJSON(photoRecent_URL, function(photos) {
       console.log('Rendering recent photos');
@@ -102,7 +102,7 @@
       $('.photoBanner').append(photoFeedRecent);
       slideIndex = 1;
       showDivs(1);
-      $('body').loader('hide');
+      // $('body').loader('hide');
     });
   }
 
@@ -210,147 +210,8 @@
       $('#photoSelectionPage').removeClass('hidden');
       getAndDisplayPhotoFeed_top();
     });
-  
-    // $('#photoUpload').submit(function(event) {
-    //   event.preventDefault();
-    //   const photo = $(event.currentTarget).find('#newPhoto').val();
-    //   addPhoto({photoURL: photo,
-    //   liked: 0});
-    //   const createMemeTemplate = `<div id='dynamicMeme'><h1>Create your Meme</h1>
-    //   <div class='imgChoice'>
-    //   <div class='memeContainer' style='background-image: url(${photo})'>
-    //   <div id='textBox'></div></div></div>
-    //   <form id='memeSubmit'>
-    //   <label for='phrase'>Input text for meme:</label>
-    //   <input type='text' id='phrase' onkeyup='memeText()'/><br>
-    //   <button class='submitMemeButton' type='submit'>Submit Meme</button>
-    //   </form></div>`;
-    //   $('#memeCreationPage').empty();
-    //   $('#memeCreationPage').prepend(createMemeTemplate);
-    //   $('#photoSelectionPage').addClass('hidden');
-    //   $('#memeCreationPage').removeClass('hidden');
-    // });
-
-    $('.photoBanner').on('click', '.clickableIcon', function(){
-      console.log('liked');
-      let icon = $(event.target);
-      if (!icon.hasClass('clickableIcon')) {
-        icon = icon.closest('.clickableIcon');
-      }
-      const starId = icon.attr('id');
-      console.log(starId);
-
-      let likeCount = $(this).parent().find('.likeCount').text();
-      likeCount++;
-      console.log(likeCount);
-      $(this).parent().find('.likeCount').empty();
-      $(this).parent().find('.likeCount').append(likeCount); 
-
-      updatePhoto(starId);
-    });
-
-    $('.memeBanner').on('click', '.clickableMemeIcon', function(){
-      console.log('liked');
-      let memeIcon = $(event.target);
-      console.log(memeIcon);
-      if (!memeIcon.hasClass('clickableMemeIcon')) {
-        memeIcon = memeIcon.closest('.clickableMemeIcon');
-      }
-      const memeId = memeIcon.attr('id');
-      let likeCount = $(this).parent().find('.likeCount').text();
-      likeCount++;
-      console.log(likeCount);
-      $(this).parent().find('.likeCount').empty();
-      $(this).parent().find('.likeCount').append(likeCount); 
-      
-      console.log(memeId);
-      updateMeme(memeId);
-    });
-
-    $('.photoBanner').on('click', '.selectPhotoButton', function(){
-      const buttonId = $(event.target).attr('id');
-      console.log(buttonId);
-      getAndDisplayPhotoById(buttonId);
-    });
-
-    $('#memeFilter').click(function() {
-      $('#memeFilter').toggleClass('checked');
-      let classState = $('#memeFilter').attr('class');
-      console.log(classState);
-      if (classState === 'checked') {
-        console.log('true');
-        $('#recent').addClass('selectedFilter');
-        $('#top').removeClass('selectedFilter');
-        getAndDisplayMemeFeed_recent();
-      }
-      
-      else {
-        console.log('false');
-        $('#top').addClass('selectedFilter');
-        $('#recent').removeClass('selectedFilter');
-        getAndDisplayMemeFeed_top();
-        
-      }
-    })
-
-    $('#photoFilter').click(function() {
-      $('#photoFilter').toggleClass('checked');
-      let classState = $('#photoFilter').attr('class');
-      console.log(classState);
-      if (classState === 'checked') {
-        console.log('true');
-        $('#recentPhoto').addClass('selectedFilter');
-        $('#topPhoto').removeClass('selectedFilter');
-        getAndDisplayPhotoFeed_recent();
-      }
-      
-      else {
-        console.log('false');
-        $('#topPhoto').addClass('selectedFilter');
-        $('#recentPhoto').removeClass('selectedFilter');
-        getAndDisplayPhotoFeed_top();
-        
-      }
-    })
-
-    $('#memeCreationPage').on('click', '.submitMemeButton', function(){
-      event.preventDefault();
-      console.log('snapshot');
-      html2canvas(document.querySelector('.memeContainer')).then(canvas => {
-        const memeDataURL = canvas.toDataURL();
-        addMeme(memeDataURL);
-      });
-    });
-
-    $('#navBarMemePageToHome').click(function() {
-      console.log('first');
-      $('#memeCreationPage').addClass('hidden');
-      $('#homePage').removeClass('hidden');
-      $('.photoBanner').empty();
-      getAndDisplayMemeFeed_top();
-    });
-
-    $('#navBarMemePageToPhoto').click(function() {
-      $('#memeCreationPage').addClass('hidden');
-      $('#photoSelectionPage').removeClass('hidden');
-      $('#dynamicMeme').empty();
-    });
-
-    $('#navBarPhotoPage').click(function() {
-      console.log('second');
-      $('#photoSelectionPage').addClass('hidden');
-      $('#homePage').removeClass('hidden');
-      $('.photoBanner').empty();
-      getAndDisplayMemeFeed_top();
-    });
 
     $('.memeBanner').on('keyup', '.clickableIcon', function(event) {
-      if (event.keyCode === 13) {
-        $(this).click();
-      }
-    });
-
-    $('.photoBanner').on('keyup', '.clickableIcon', function(event) {
       if (event.keyCode === 13) {
         $(this).click();
       }
@@ -361,5 +222,5 @@
   
   $(function() {
     handleEventListeners();
-    getAndDisplayMemeFeed_top();
+    $(".fadeOutHeader").fadeOut(6000);
   });

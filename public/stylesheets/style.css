@@ -11,17 +11,22 @@ body {
   color: black;
 }
 
+.hidden {
+  display: none;
+}
+
 button {
   border: black solid 1px;
-  background-color: aquamarine;
+  background-color: lightblue;
   border-radius: 3px;
   font-size: 15px;
+  padding: 5px 7px 5px 7px
 
 }
 
 a {
   padding-left: 5px;
-  color: aquamarine;
+  color: lightseagreen;
 }
 
 /* landingPage */
@@ -31,11 +36,16 @@ a {
   height: 100%;
 }
 
+.fadeOutHeader {
+  color: lightblue;
+}
+
 .landingTop {
-  height: 50%;
+  height: 60%;
   background-image: url(../images/moraineLake2.jpeg);
   background-size: cover;
-  color: aquamarine;
+  color: lightseagreen;
+  margin-top: 90px;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
 }
 
@@ -73,7 +83,7 @@ nav h1 {
 
 .landingList li {
   margin: 15px;
-  border: aquamarine solid;
+  border: lightseagreen solid;
   padding: 10px;
 }
 
@@ -82,7 +92,7 @@ nav h1 {
 }
 
 .landingBottom h2 {
-  border-bottom: aquamarine solid;
+  border-bottom: lightseagreen solid;
   width: max-content;
   margin: 0 auto;
 }
@@ -102,7 +112,7 @@ nav h1 {
 }
 
 .container h1 {
-  border-bottom: aquamarine solid;
+  border-bottom: lightseagreen solid;
   width: max-content;
   margin: 0 auto;
   padding-bottom: 5px;
@@ -168,6 +178,120 @@ h1, h2 {
   margin-bottom: 30px;
 }
 
+.newTrip .container {
+  margin-bottom: 50px;
+  padding-bottom: 25px;
+}
+
+/* tripPlanner */
+
+.tripPlanner {
+  text-align: center;
+  padding: 20px;
+}
+
+.tripPlanner h1,h3 {
+  border-bottom: solid lightseagreen;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.dayContainer {
+  border: lightseagreen solid;
+  display: inline-block;
+  height: 250px;
+  width: 20%;
+  margin-top: 10px;
+  padding: 15px;
+}
+
+/* dayView */
+
+.dayView {
+  text-align: center;
+}
+
+.dayHeader {
+  display: inline-block;
+}
+
+.dayView p {
+  margin: 0 auto 0 auto;
+  padding: 0 0 10px 0;
+}
+
+.dayView h2 {
+  border: none; 
+  margin: 0;
+  padding: 0 0 10px 0;
+}
+
+.dayView h1 {
+  border-bottom: solid lightseagreen;
+  margin-bottom: 30px;
+}
+
+.dayActivity {
+  border: solid black;
+  text-align: left;
+  margin: 25px;
+  padding: 20px;
+  position: relative;
+}
+
+.button-notes {
+  position: absolute;
+  right: 20px;
+}
+
+.notesInput {
+  position: absolute;
+  right: 150px;
+  height: 100px;
+  width: 300px;
+  top: 25%;
+}
+
+/* packingList */
+
+.packingList {
+  text-align: center;
+}
+
+.packListHeaders {
+  border-bottom: solid lightseagreen;
+  width: max-content;
+  margin: 0 auto 15px auto;
+  padding-bottom: 10px;
+}
+
+.packingList ul {
+  text-align: left;
+}
+
+.packingList li {
+  display: block;
+}
+
+.packListContainer {
+  border: lightseagreen solid;
+  display: inline-block;
+  width: 25%;
+  margin: 10px auto 10px auto;
+  padding: 15px;
+  height: 300px;
+}
+
+.listBox {
+  overflow: scroll;
+  height: 225px;
+  position: relative;
+}
+
+.packingList button {
+  margin-left: 10px;
+}
+
 /* footer */
 
 footer {
@@ -182,6 +306,22 @@ footer ul {
 }
 
 
+@media only screen and (max-width: 800px) {
+  .landingBottom li {
+    margin: 0;
+  }
+
+  .landingTop {
+    background-image: url(../images/river.jpg);
+    background-size: cover;
+  }
+
+  input {
+    border: solid lightgrey;
+  }
+
+}
+
 
 @media only screen and (max-width: 600px) {
 
@@ -190,13 +330,64 @@ footer ul {
     display: block;
   }
 
+  .packListContainer {
+    width: 70%;
+    display: block;
+  }
+
+  .notesInput {
+    display: block;
+    margin: 10px 0 10px 0;
+    position: static;
+  }
+
+  .button-notes {
+    position: static;
+  }
+
+  .button-delete {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
 } 
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
 
   nav li {
     list-style-type: none;
     display: block;
   }
+
+  .landingTop h2 {
+    padding: 70px;
+  }
+
+  .landingBottom h2 {
+    padding: 10px;
+  }
+
+  .landingList {
+    padding: 10px;
+  }
+
+  .dayContainer {
+    height: 150px;
+    font-size: smaller;
+  }
+
+  .container {
+    width: 300px;
+  }
+
+  .tripPlanner h1 {
+    font-size: x-large;
+  }
+
+  .notesInput {
+    width: 200px;
+  }
+
+
 
 } 
