@@ -12,7 +12,7 @@
 <body>
  <nav role="navigation">
         <h1><img class="logo" src="../images/globe icon.png"/>&nbsp; &nbsp;Travel Planner</h1>
-        <ul>
+        <ul class="hidden">
             <li><a id="profilePageNav" href="#">Profile Page</a></li>
             <li><a id="packingListNav" href="#">Packing List</a></li>
             <li><a id="tripPlannerNav" href="#">Trip Planner</a></li>
@@ -52,11 +52,11 @@
               
                   <label for="password-confirm">Confirm Password</label>
                   <input type="password" placeholder="Confirm Password" name="password-confirm" required><br><br>
-                  <button id="createAccount" class="button-left" type="button">Cancel</button>
-                  <button id="cancel" class="button-right" type="submit">Submit</button>
+                  <button id="cancel" class="button-left" type="button">Cancel</button>
+                  <button id="createAccount" class="button-right" type="submit">Submit</button>
                   
 
-                  <p>Already have an account? <a href="#">Log in</a></p>
+                  <p>Already have an account? <a id="toLogIn" href="#">Log in</a></p>
                 </div>
         </form>
    
@@ -72,10 +72,10 @@
               
                   <label for="password">Password</label>
                   <input type="password" placeholder="Enter Password" name="password" required><br><br>
-                  <button id="enterApp" class="button-left" type="button">Cancel</button>
-                  <button id="cancelLogIn" class="button-right" type="submit">Submit</button>
+                  <button id="cancelLogIn" class="button-left" type="button">Cancel</button>
+                  <button id="enterApp" class="button-right" type="submit">Submit</button>
               
-                  <p>Don't have an account? <a href="#">Sign up</a></p>
+                  <p>Don't have an account? <a id="toSignUp" href="#">Sign up</a></p>
                 </div>
         </form>
    
@@ -88,7 +88,7 @@
                 <li><a href="#">African Safari</a></li>
                 <li><a href="#">Rocky Mountains</a></li>
         </ul>
-        <button type="button">Create new trip</button>       
+        <button id="newTrip" type="button">Create new trip</button>       
 </main>
 <main role="main" class="newTrip hidden">
         <form>
@@ -106,14 +106,239 @@
               
                   <label for="endDate">Trip end date</label>
                   <input type="date" placeholder="Enter trip end date" name="endDate" required><br><br>
-                  <button id="createTrip" class="button-left" type="button">Cancel</button>
-                  <button id="cancelTrip" class="button-right" type="submit">Submit</button>
+                  <button id="cancelTrip" class="button-left" type="button">Cancel</button>
+                  <button id="createTrip" class="button-right" type="submit">Submit</button>
                   
                 </div>
         </form>
 </main>
-<main role="main" class="activitySelection hidden">
-   
+<main role="main" class="activitySelection">
+        <h1>Paris Getaway (8 days)</h1>
+        <h2>Weather</h2>
+        <div class="weatherContainer">
+                <h3>Day 1</h3>
+                <p>Conditions: <span>Sunny</span></p>
+                <p>High: <span>75</span></p>
+                <p>Low: <span>43</span></p>
+        </div>
+        <div class="weatherContainer">
+                <h3>Day 2</h3>
+                <p>Conditions: <span>Sunny</span></p>
+                <p>High: <span>75</span></p>
+                <p>Low: <span>43</span></p>
+        </div>
+        <div class="weatherContainer">
+                <h3>Day 3</h3>
+                <p>Conditions: <span>Sunny</span></p>
+                <p>High: <span>75</span></p>
+                <p>Low: <span>43</span></p>
+        </div>
+        <div class="weatherContainer">
+                <h3>Day 4</h3>
+                <p>Conditions: <span>Sunny</span></p>
+                <p>High: <span>75</span></p>
+                <p>Low: <span>43</span></p>
+        </div>
+        <div class="weatherContainer">
+                <h3>Day 5</h3>
+                <p>Conditions: <span>Sunny</span></p>
+                <p>High: <span>75</span></p>
+                <p>Low: <span>43</span></p>
+        </div>
+        <div class="weatherContainer">
+                <h3>Day 6</h3>
+                <p>Conditions: <span>Sunny</span></p>
+                <p>High: <span>75</span></p>
+                <p>Low: <span>43</span></p>
+        </div>
+        <div class="weatherContainer">
+                <h3>Day 7</h3>
+                <p>Conditions: <span>Sunny</span></p>
+                <p>High: <span>75</span></p>
+                <p>Low: <span>43</span></p>
+        </div>
+        <div class="weatherContainer">
+                <h3>Day 8</h3>
+                <p>Conditions: <span>Sunny</span></p>
+                <p>High: <span>75</span></p>
+                <p>Low: <span>43</span></p>
+        </div>
+        <div class="searchContainers">
+                <div class="restaurantSearch">
+                        <h2>Restaurants</h2>
+                        <div class="restaurantContainer">
+                                <div class="restaurantResults">
+                                        <p>Name: <span>Pizza Hut</span></p>
+                                        <p>Rating: <span>4.5</span></p>
+                                        <p>Type: <span>Pizza</span></p>
+                                        <p>Address: <span>43 Almond St El Paso, TX</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div>
+                                <div class="restaurantResults">
+                                        <p>Name: <span>Pizza Hut</span></p>
+                                        <p>Rating: <span>4.5</span></p>
+                                        <p>Type: <span>Pizza</span></p>
+                                        <p>Address: <span>43 Almond St El Paso, TX</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div>
+                                <div class="restaurantResults">
+                                        <p>Name: <span>Pizza Hut</span></p>
+                                        <p>Rating: <span>4.5</span></p>
+                                        <p>Type: <span>Pizza</span></p>
+                                        <p>Address: <span>43 Almond St El Paso, TX</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div>
+                        </div>
+                </div>
+                <div class="activitySearch">
+                        <h2>Activities/Places to Stay</h2>
+                        <div class="activityContainer">
+                                <label for="search"></label>
+                                <input name="search" type="text" placeholder="search" required>
+                                <button type="submit">Search</button>
+                                <div class="activityResults">
+                                        <p>Name: <span>Eiffel Tower</span></p>
+                                        <p>Rank: <span>1</span></p>
+                                        <p>Photo: <span>Pizza</span></p>
+                                        <p>Address: <span>43 Almond St Paris, France</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div>
+                                <div class="activityResults">
+                                        <p>Name: <span>Eiffel Tower</span></p>
+                                        <p>Rank: <span>1</span></p>
+                                        <p>Photo: <span>Pizza</span></p>
+                                        <p>Address: <span>43 Almond St Paris, France</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div>
+                                <div class="activityResults">
+                                        <p>Name: <span>Eiffel Tower</span></p>
+                                        <p>Rank: <span>1</span></p>
+                                        <p>Photo: <span>Pizza</span></p>
+                                        <p>Address: <span>43 Almond St Paris, France</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div>
+                        </div>
+                </div>
+                <div class="hikeSearch">
+                        <h2>Hiking Trails</h2>
+                        <div class="hikeContainer">
+                                <div class="hikeResults">
+                                        <p>Name: <span>Pizza Hut</span></p>
+                                        <p>Length: <span>4.5</span></p>
+                                        <p>Difficulty: <span>Pizza</span></p>
+                                        <p>Photo: <span>view</span></p>
+                                        <p>Address: <span>43 Almond St El Paso, TX</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div>
+                                <div class="hikeResults">
+                                        <p>Name: <span>Pizza Hut</span></p>
+                                        <p>Length: <span>4.5</span></p>
+                                        <p>Difficulty: <span>Pizza</span></p>
+                                        <p>Photo: <span>view</span></p>
+                                        <p>Address: <span>43 Almond St El Paso, TX</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div>
+                                <div class="hikeResults">
+                                        <p>Name: <span>Pizza Hut</span></p>
+                                        <p>Length: <span>4.5</span></p>
+                                        <p>Difficulty: <span>Pizza</span></p>
+                                        <p>Photo: <span>view</span></p>
+                                        <p>Address: <span>43 Almond St El Paso, TX</span></p>
+                                        <select name="days">
+                                                <option value="day1">Day 1</option>
+                                                <option value="day2">Day 2</option>
+                                                <option value="day3">Day 3</option>
+                                                <option value="day4">Day 4</option>
+                                                <option value="day5">Day 5</option>
+                                                <option value="day6">Day 6</option>
+                                                <option value="day7">Day 7</option>
+                                                <option value="day8">Day 8</option>
+                                        </select>
+                                        <button type="button">Add to Planner</button>
+                                </div> 
+                        </div>
+                </div>
+        </div>
 </main>
 <main role="main" class="tripPlanner hidden">
         <h1>Paris Getaway (8 days)</h1>
@@ -161,7 +386,7 @@
                         <button class="button-delete" type="button">Delete</button>
                         <textarea rows="4" cols="50" class="notesInput">Notes... 
                         </textarea>
-                        <button class="button-notes" type="button">Edit Notes</button>
+                        <button class="button-notes" type="button">Save Notes</button>
                 </div>
                 <div class="dayActivity">
                         <h2><a href="#">Louve</a></h2>
@@ -169,7 +394,7 @@
                         <button class="button-delete" type="button">Delete</button>
                         <textarea rows="4" cols="50" class="notesInput">Notes... 
                         </textarea>
-                        <button class="button-notes" type="button">Edit Notes</button>
+                        <button class="button-notes" type="button">Save Notes</button>
                 </div>
                 <div class="dayActivity">
                         <h2><a href="#">French Winery</a></h2>
@@ -177,7 +402,7 @@
                         <button class="button-delete" type="button">Delete</button>
                         <textarea rows="4" cols="50" class="notesInput">Notes... 
                         </textarea>
-                        <button class="button-notes" type="button">Edit Notes</button>
+                        <button class="button-notes" type="button">Save Notes</button>
                 </div>
         </div>
 
