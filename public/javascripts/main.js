@@ -96,6 +96,52 @@
   //     success: getAndDisplayRecipes
   //   });
   // }
+
+// datepicker
+
+  function datePickerCalendar() {
+    var dateFormat = "mm/dd/yy",
+      from = $( "#from" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 1
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  };
+
+  function dateDifference() {
+    let date1 = $('#from').val();
+    date1 = '\"' + date1 + '\"';
+    date1 = new Date(date1);
+    let date2 = $('#to').val();
+    date2 = '\"' + date2 + '\"';
+    date2 = new Date(date2);
+    var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
+    console.log(diffDays);
+    return diffDays;
+  }
   
   function handleEventListeners() {
 
@@ -164,6 +210,7 @@
     // newTrip listeners 
 
     $('#createTrip').click(function() {
+      dateDifference();
       console.log('tripCreated');
       $('.newTrip').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
@@ -343,4 +390,5 @@
   $(function() {
     handleEventListeners();
     $(".fadeOutHeader").fadeOut(15000);
+    datePickerCalendar();
   });

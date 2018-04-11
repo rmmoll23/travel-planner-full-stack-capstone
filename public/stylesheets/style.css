@@ -11,7 +11,11 @@ body {
   display: none;
 }
 
-
+#ui-datepicker-div {
+  padding: 5px;
+  background: lightgrey;
+  border: black solid 2px;
+}
 
 form {
   margin: 100px 0 80px 0;

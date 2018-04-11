@@ -3,7 +3,9 @@
 
 <head>
         <title>Travel-Planner</title>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="../stylesheets/jquery-ui.css">        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- <link href="../stylesheets/jquery.loader.css" rel="stylesheet" /> -->
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700" rel="stylesheet">
@@ -117,11 +119,12 @@
                   <label for="city">Location</label>
                   <input type="text" placeholder="Enter city" name="city" required><br><br>
               
-                  <label for="startDate">Trip start date</label>
-                  <input type="date" placeholder="Enter trip start date" name="startDate" required><br><br>
-              
-                  <label for="endDate">Trip end date</label>
-                  <input type="date" placeholder="Enter trip end date" name="endDate" required><br><br>
+                  <label for="from">Start Date</label>
+                  <input type="text" id="from" name="from" placeholder="Enter trip start date"><br><br>
+
+                  <label for="to">End Date</label>
+                  <input type="text" id="to" name="to" placeholder="Enter trip end date"><br><br>
+
                   <button id="cancelTrip" class="button-left" type="button">Cancel</button>
                   <button id="createTrip" class="button-right" type="submit">Submit</button>
                   
@@ -536,6 +539,8 @@
  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
  crossorigin="anonymous">
 </script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- <script src="../javascripts/jquery.loader.js"></script> -->
 <script src="../javascripts/main.js"></script>
 
