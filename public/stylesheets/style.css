@@ -162,6 +162,7 @@ h1, h2 {
 
 .profile {
   text-align: center;
+  margin-top: 90px;
 }
 
 .profile ul {
@@ -218,6 +219,11 @@ span {
 
 .activitySelection {
   text-align: center;
+  margin-top: 90px;
+}
+
+.activitySelection button {
+  margin: 30px;
 }
 
 .restaurantSearch, .activitySearch, .hikeSearch {
@@ -256,6 +262,7 @@ span {
 .tripPlanner {
   text-align: center;
   padding: 20px;
+  margin-top: 90px;
 }
 
 .tripPlanner h1,h3 {
@@ -281,6 +288,7 @@ span {
 
 .dayView {
   text-align: center;
+  margin-top: 90px;
 }
 
 .dayHeader {
@@ -328,6 +336,7 @@ span {
 
 .packingList {
   text-align: center;
+  margin-top: 90px;
 }
 
 .packListHeaders {
@@ -425,6 +434,26 @@ footer ul {
 } 
 
 @media only screen and (max-width: 450px) {
+
+  .activitySelection button {
+    margin: 100px 0 50px 0;
+  }
+
+  .restaurantSearch, .activitySearch, .hikeSearch {
+    display: block;
+    height: 400px;
+    width: 80%;
+    margin: 120px auto 30px auto;
+    padding: 15px;
+  }
+
+  .activitySelection, .tripPlanner, .dayView, .packingList {
+    margin-top: 150px;
+  }
+
+  .weatherContainer {
+    width: 30%;
+  }
 
   nav li {
     list-style-type: none;

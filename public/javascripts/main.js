@@ -136,7 +136,7 @@
     // logIn listeners
 
     $('#enterApp').click(function() {
-      console.log('signUp');
+      console.log('logged in');
       $('.logIn').addClass('hidden');
       $('.profile').removeClass('hidden');
     });
@@ -156,7 +156,7 @@
     // profile listeners
 
     $('#newTrip').click(function() {
-      console.log('signUp');
+      console.log('newTripForm');
       $('.profile').addClass('hidden');
       $('.newTrip').removeClass('hidden');
     });
@@ -164,15 +164,44 @@
     // newTrip listeners 
 
     $('#createTrip').click(function() {
-      console.log('signUp');
+      console.log('tripCreated');
       $('.newTrip').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
+      $('.navList-activity').removeClass('hidden');
     });
 
     $('#cancelTrip').click(function() {
       console.log('signUp');
       $('.newTrip').addClass('hidden');
       $('.profile').removeClass('hidden');
+    });
+
+    // activitySelection listeners
+
+    $('#viewPlanner').click(function() {
+      console.log('viewTravelPlanner');
+      $('.activitySelection').addClass('hidden');
+      $('.tripPlanner').removeClass('hidden');
+      $('.navList-activity').addClass('hidden');
+      $('.navList-planner').removeClass('hidden');
+    });
+
+    $('#createPackList').click(function() {
+      console.log('createPackingList');
+      $('.activitySelection').addClass('hidden');
+      $('.packingList').removeClass('hidden');
+      $('.navList-activity').addClass('hidden');
+      $('.navList-packing').removeClass('hidden');
+    });
+
+    // tripPlanner listeners
+
+    $('.dayContainer').click(function() {
+      console.log('dayView');
+      $('.tripPlanner').addClass('hidden');
+      $('.dayView').removeClass('hidden');
+      $('.navList-planner').addClass('hidden');
+      $('.navList-day').removeClass('hidden');
     });
 
     // dayView listeners
@@ -191,9 +220,117 @@
       console.log('addItem');
     });
 
+    // nav listeners
+
+// activity Nav
+    $('#profileNav-activity').click(function() {
+      console.log('toProfile');
+      $('.activitySelection').addClass('hidden');
+      $('.navList-activity').addClass('hidden');
+      $('.profile').removeClass('hidden');
+    });
+
+    $('#plannerNav-activity').click(function() {
+      console.log('toPlanner');
+      $('.activitySelection').addClass('hidden');
+      $('.navList-activity').addClass('hidden');
+      $('.tripPlanner').removeClass('hidden');
+      $('.navList-planner').removeClass('hidden');
+    });
+
+    $('#packingNav-activity').click(function() {
+      console.log('toPacking');
+      $('.activitySelection').addClass('hidden');
+      $('.navList-activity').addClass('hidden');
+      $('.packingList').removeClass('hidden');
+      $('.navList-packing').removeClass('hidden');
+    });
+
+    // planner Nav
+
+    $('#profileNav-planner').click(function() {
+      console.log('toProfile');
+      $('.tripPlanner').addClass('hidden');
+      $('.navList-planner').addClass('hidden');
+      $('.profile').removeClass('hidden');
+    });
+
+    $('#activityNav-planner').click(function() {
+      console.log('toActivity');
+      $('.tripPlanner').addClass('hidden');
+      $('.navList-planner').addClass('hidden');
+      $('.activitySelection').removeClass('hidden');
+      $('.navList-activity').removeClass('hidden');
+    });
+
+    $('#packingNav-planner').click(function() {
+      console.log('toPacking');
+      $('.tripPlanner').addClass('hidden');
+      $('.navList-planner').addClass('hidden');
+      $('.packingList').removeClass('hidden');
+      $('.navList-packing').removeClass('hidden');
+    });
+
+    // day Nav
+
+    $('#profileNav-day').click(function() {
+      console.log('toProfile');
+      $('.dayView').addClass('hidden');
+      $('.navList-day').addClass('hidden');
+      $('.profile').removeClass('hidden');
+    });
+
+    $('#activityNav-day').click(function() {
+      console.log('toActivity');
+      $('.dayView').addClass('hidden');
+      $('.navList-day').addClass('hidden');
+      $('.activitySelection').removeClass('hidden');
+      $('.navList-activity').removeClass('hidden');
+    });
+
+    $('#packingNav-day').click(function() {
+      console.log('toPacking');
+      $('.dayView').addClass('hidden');
+      $('.navList-day').addClass('hidden');
+      $('.packingList').removeClass('hidden');
+      $('.navList-packing').removeClass('hidden');
+    });
+
+    $('#plannerNav-day').click(function() {
+      console.log('toPacking');
+      $('.dayView').addClass('hidden');
+      $('.navList-day').addClass('hidden');
+      $('.tripPlanner').removeClass('hidden');
+      $('.navList-planner').removeClass('hidden');
+    });
+
+    // packing Nav
+
+    $('#profileNav-packing').click(function() {
+      console.log('toProfile');
+      $('.packingList').addClass('hidden');
+      $('.navList-packing').addClass('hidden');
+      $('.profile').removeClass('hidden');
+    });
+
+    $('#activityNav-packing').click(function() {
+      console.log('toActivity');
+      $('.packingList').addClass('hidden');
+      $('.navList-packing').addClass('hidden');
+      $('.activitySelection').removeClass('hidden');
+      $('.navList-activity').removeClass('hidden');
+    });
+
+    $('#plannerNav-packing').click(function() {
+      console.log('toPacking');
+      $('.packingList').addClass('hidden');
+      $('.navList-packing').addClass('hidden');
+      $('.tripPlanner').removeClass('hidden');
+      $('.navList-planner').removeClass('hidden');
+    });
 
     // key listeners
-    
+
     $('.memeBanner').on('keyup', '.clickableIcon', function(event) {
       if (event.keyCode === 13) {
         $(this).click();

@@ -12,12 +12,27 @@
 <body>
  <nav role="navigation">
         <h1><img class="logo" src="../images/globe icon.png"/>&nbsp; &nbsp;Travel Planner</h1>
-        <ul class="hidden">
-            <li><a id="profilePageNav" href="#">Profile Page</a></li>
-            <li><a id="packingListNav" href="#">Packing List</a></li>
-            <li><a id="tripPlannerNav" href="#">Trip Planner</a></li>
-            <li><a id="activityNav" href="#">Activity Selection Page</a></li>
-         </ul> 
+        <ul class="navList-activity hidden">
+            <li><a id="profileNav-activity" href="#">Profile Page</a></li>
+            <li><a id="packingNav-activity" href="#">Packing List</a></li>
+            <li><a id="plannerNav-activity" href="#">Trip Planner</a></li>
+        </ul> 
+        <ul class="navList-planner hidden">
+            <li><a id="profileNav-planner" href="#">Profile Page</a></li>
+            <li><a id="packingNav-planner" href="#">Packing List</a></li>
+            <li><a id="activityNav-planner" href="#">Activity Selection Page</a></li>
+        </ul>
+        <ul class="navList-day hidden">
+            <li><a id="profileNav-day" href="#">Profile Page</a></li>
+            <li><a id="packingNav-day" href="#">Packing List</a></li>
+            <li><a id="plannerNav-day" href="#">Trip Planner</a></li>
+            <li><a id="activityNav-day" href="#">Activity Selection Page</a></li>
+        </ul>
+        <ul class="navList-packing hidden">
+            <li><a id="profileNav-packing" href="#">Profile Page</a></li>
+            <li><a id="plannerNav-packing" href="#">Trip Planner</a></li>
+            <li><a id="activityNav-packing" href="#">Activity Selection Page</a></li>
+        </ul>   
  </nav>
  <main role="main" class="landing">
         <div class="landingTop">
@@ -112,7 +127,7 @@
                 </div>
         </form>
 </main>
-<main role="main" class="activitySelection">
+<main role="main" class="activitySelection hidden">
         <h1>Paris Getaway (8 days)</h1>
         <h2>Weather</h2>
         <div class="weatherContainer">
@@ -339,6 +354,8 @@
                         </div>
                 </div>
         </div>
+        <button id="viewPlanner" class="button-left" type="button">View Trip Planner</button>
+        <button id="createPackList" class="button-right" type="button">Create Packing List</button>
 </main>
 <main role="main" class="tripPlanner hidden">
         <h1>Paris Getaway (8 days)</h1>
