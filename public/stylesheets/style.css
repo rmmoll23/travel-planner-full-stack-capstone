@@ -1,19 +1,17 @@
-html {
-  height: 100%;
-}
 
 body {
   /* background-image: url(../images/moraineLake2.jpeg); */
   background-size: cover;
   font-family: 'Noto Sans', sans-serif;
   margin: 0;
-  height: 100%;
   color: black;
 }
 
 .hidden {
   display: none;
 }
+
+
 
 form {
   margin: 100px 0 80px 0;
@@ -48,11 +46,11 @@ a {
 }
 
 .landingTop {
-  height: 60%;
+  height: 400px;
   background-image: url(../images/moraineLake2.jpeg);
   background-size: cover;
   color: lightseagreen;
-  margin-top: 90px;
+  margin-top: 70px;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
 }
 
@@ -72,6 +70,7 @@ nav {
   right: 0;
   left: 0;
   padding: 15px;
+  z-index: 1000;
 }
 
 nav ul {
@@ -196,10 +195,11 @@ h1, h2 {
 .weatherContainer {
   border: lightblue solid;
   display: inline-block;
-  height: 150px;
   width: 8%;
   margin-top: 10px;
   padding: 15px;
+  min-width: 100px;
+  max-width: 350px;
 }
 
 span {
@@ -274,10 +274,11 @@ span {
 .dayContainer {
   border: lightseagreen solid;
   display: inline-block;
-  height: 250px;
   width: 20%;
   margin-top: 10px;
   padding: 15px;
+  min-width: 100px;
+  max-width: 350px;
 }
 
 .dayContainer:hover {
@@ -296,7 +297,7 @@ span {
 }
 
 .dayView p {
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   padding: 0 0 10px 0;
 }
 
@@ -352,6 +353,17 @@ span {
 
 .packingList li {
   display: block;
+}
+
+.delete {
+  display: inline;
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+}
+
+.delete:hover {
+  color: red;
 }
 
 .packListContainer {
@@ -435,6 +447,18 @@ footer ul {
 
 @media only screen and (max-width: 450px) {
 
+  .packListHeaders {
+   font-size: 20px;
+  }
+
+  .dayHeader {
+    font-size: 20px;
+  }
+
+  .dayView p {
+    font-size: 12px;
+  }
+
   .activitySelection button {
     margin: 100px 0 50px 0;
   }
@@ -448,12 +472,14 @@ footer ul {
   }
 
   .activitySelection, .tripPlanner, .dayView, .packingList {
-    margin-top: 150px;
+    margin-top: 160px;
   }
 
   .weatherContainer {
     width: 30%;
   }
+
+
 
   nav li {
     list-style-type: none;
@@ -477,7 +503,6 @@ footer ul {
   }
 
   .dayContainer {
-    height: 150px;
     font-size: smaller;
   }
 

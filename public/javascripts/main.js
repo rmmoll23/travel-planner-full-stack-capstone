@@ -342,5 +342,5 @@
   
   $(function() {
     handleEventListeners();
-    $(".fadeOutHeader").fadeOut(6000);
+    $(".fadeOutHeader").fadeOut(15000);
   });
