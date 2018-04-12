@@ -1,7 +1,7 @@
 'use strict';
   
-  const serverBase = 'https://meme-generator-capstone.herokuapp.com/';
-  // const serverBase = '//localhost:8080/';
+  // const serverBase = 'https://travel-planner-capstone.herokuapp.com/';
+  const serverBase = '//localhost:8080/';
   const photoSelection_URL = serverBase + 'photos';
   const memeCreation_URL = serverBase + 'memes';
   
