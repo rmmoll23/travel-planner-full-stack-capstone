@@ -6,21 +6,21 @@ mongoose.Promise = global.Promise;
 
 const UserSchema = mongoose.Schema({
   firstName: {type: String, default: ''},
-  email: {
+  username: {
     type: String,
-    required: true,
-    unique: true
+    required: false,
+    unique: false
   },
   password: {
     type: String,
-    required: true
+    required: false
   }
 });
 
 UserSchema.methods.serialize = function() {
   return {
     firstName: this.firstName || '',
-    email: this.email || ''
+    username: this.username || ''
   };
 };
 

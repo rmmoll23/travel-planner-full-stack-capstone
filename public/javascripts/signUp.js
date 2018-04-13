@@ -2,7 +2,7 @@
 
 //Displays warning and informational messages to the user.
 function alertUser(msg) {
-	alert(msg);
+	console.log(msg);
 }
 
 //Clears most important fields on a rejected attempt.
@@ -16,12 +16,14 @@ function clearInputs() {
 //Watches signup form click, intercepts default post behavior, performs light validation, and sends data to create the user.
 function handleSignupClick() {
 	//TODO: Experiment with Google reCaptcha on this form
-	$('#signupForm').submit((e) => {
+	$('#signUpForm').submit((e) => {
+        console.log('submit');
 		e.preventDefault();
 		const username = $('#signUp-username').val();
 		const password = $('#signUp-password').val();
 		const passwordB = $('#signUp-passwordB').val();
-		const firstName = $('#signUp-firstName').val();
+        const firstName = $('#signUp-firstName').val();
+        console.log(username, password, passwordB, firstName);
 
 		//Make sure no empty strings will be submitted, then 
 		if (username != '' && password != '') {
@@ -29,47 +31,73 @@ function handleSignupClick() {
             if (username.length >= 5 && password.length >= 5) {
                 //Make sure passwords match.
                 if (password === passwordB) {
-                    let formData = new FormData;
-                    //Add form variables to form data with correct keys
-                    formData.append('username', username);
-                    formData.append('password', password);
-                    formData.append('firstName', firstName);
+                    const newSignUpObject = {
+                        username: username,
+                        password: password,
+                        firstName: firstName
+                    };
                     $.ajax({
-                        contentType: 'application/json',
-                        //contentType and processData must be set to false when using FormData
-                        contentType: false,
-                        processData: false,
-                        data: formData,
-                        success: function(result){
-                            if (result.username) {
-                                    console.log('account created');
-                                    $('.signUp').addClass('hidden');
-                                    $('.profile').removeClass('hidden');
-                            } else {
-                                clearInputs();
-                                const alertInvalid = 'Please enter a valid username and/or password.';
-                                alertUser(alertInvalid);
-                            }
-                        },
-                        error: function(err){
-                            clearInputs();
-                            const alertError = err.responseJSON.message;
-                            alertUser(alertError);
-                        },
                         type: 'POST',
-                        url: '/users'
+                        url: serverBase + '/api/users/',
+                        dataType: 'json',
+                        data: JSON.stringify(newSignUpObject),
+                        contentType: 'application/json'
+                    })
+                    .done(function (result) {
+                        if (result.username) {
+                            console.log('account created');
+                            $('.signUp').addClass('hidden');
+                            $('.logIn').removeClass('hidden');
+                    } else {
+                        clearInputs();
+                        const alertInvalid = 'Please enter a valid username and/or password.';
+                        alertUser(alertInvalid);
+                    }
+                    })
+                    .fail(function (jqXHR, error, errorThrown) {
+                        console.log(jqXHR);
+                        console.log(error);
+                        console.log(errorThrown);
+                        clearInputs();
+                        const alertError = err;
+                        alertUser(alertError);
                     });
+                    // $.ajax({
+                    //     contentType: 'application/json',
+                    //     //contentType and processData must be set to false when using FormData
+                    //     contentType: false,
+                    //     processData: false,
+                    //     data: JSON.stringify(newSignUpObject),
+                    //     success: function(result){
+                    //         if (result.username) {
+                    //                 console.log('account created');
+                    //                 $('.signUp').addClass('hidden');
+                    //                 $('.logIn').removeClass('hidden');
+                    //         } else {
+                    //             clearInputs();
+                    //             const alertInvalid = 'Please enter a valid username and/or password.';
+                    //             alertUser(alertInvalid);
+                    //         }
+                    //     },
+                    //     error: function(err){
+                    //         clearInputs();
+                    //         const alertError = err;
+                    //         alertUser(alertError);
+                    //     },
+                    //     type: 'POST',
+                    //     url: serverBase + '/api/users/'
+                    // });
                 } else {
-                    const alertBlank = `Passwords don't match.`;
-                    alertUser(alertBlank);
+                    const alertMessage = `Passwords don't match.`;
+                    alertUser(alertMessage);
                 }
             } else {
-                const alertBank = 'Username and Password must be at least 5 characters in length';
-                alertUser(alertBank);
+                const alertMessage = 'Username and Password must be at least 5 characters in length';
+                alertUser(alertMessage);
             }
 		} else {
-			const alertBlank = 'Please enter a first name, username, and password.';
-			alertUser(alertBlank);
+			const alertMessage = 'Please enter a first name, username, and password.';
+			alertUser(alertMessage);
 		}
 	});
 }
