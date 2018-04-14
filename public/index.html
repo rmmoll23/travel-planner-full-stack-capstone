@@ -114,10 +114,10 @@
                   <h1>Create new trip</h1>
 
                   <label for="tripName">Name of trip</label>
-                  <input type="text" placeholder="Enter name of trip" name="tripName" required><br><br>
+                  <input type="text" id="tripName" placeholder="Enter name of trip" name="tripName" required><br><br>
 
                   <label for="city">Location</label>
-                  <input type="text" placeholder="Enter city" name="city" required><br><br>
+                  <input type="text" id="tripLocation" placeholder="Enter city" name="city" required><br><br>
               
                   <label for="from">Start Date</label>
                   <input type="text" id="from" name="from" placeholder="Enter trip start date"><br><br>
@@ -132,55 +132,39 @@
         </form>
 </main>
 <main role="main" class="activitySelection hidden">
-        <h1>Paris Getaway (8 days)</h1>
+        <h1 class="viewHeader">Paris Getaway (8 days)</h1>
         <h2>Weather</h2>
-        <div class="weatherContainer">
-                <h3>Day 1</h3>
-                <p>Conditions: <span>Sunny</span></p>
-                <p>High: <span>75</span></p>
-                <p>Low: <span>43</span></p>
-        </div>
-        <div class="weatherContainer">
-                <h3>Day 2</h3>
-                <p>Conditions: <span>Sunny</span></p>
-                <p>High: <span>75</span></p>
-                <p>Low: <span>43</span></p>
-        </div>
-        <div class="weatherContainer">
-                <h3>Day 3</h3>
-                <p>Conditions: <span>Sunny</span></p>
-                <p>High: <span>75</span></p>
-                <p>Low: <span>43</span></p>
-        </div>
-        <div class="weatherContainer">
-                <h3>Day 4</h3>
-                <p>Conditions: <span>Sunny</span></p>
-                <p>High: <span>75</span></p>
-                <p>Low: <span>43</span></p>
-        </div>
-        <div class="weatherContainer">
-                <h3>Day 5</h3>
-                <p>Conditions: <span>Sunny</span></p>
-                <p>High: <span>75</span></p>
-                <p>Low: <span>43</span></p>
-        </div>
-        <div class="weatherContainer">
-                <h3>Day 6</h3>
-                <p>Conditions: <span>Sunny</span></p>
-                <p>High: <span>75</span></p>
-                <p>Low: <span>43</span></p>
-        </div>
-        <div class="weatherContainer">
-                <h3>Day 7</h3>
-                <p>Conditions: <span>Sunny</span></p>
-                <p>High: <span>75</span></p>
-                <p>Low: <span>43</span></p>
-        </div>
-        <div class="weatherContainer">
-                <h3>Day 8</h3>
-                <p>Conditions: <span>Sunny</span></p>
-                <p>High: <span>75</span></p>
-                <p>Low: <span>43</span></p>
+        <div class="weatherBar">
+                <div class="weatherContainer">
+                        <h3>Day 1</h3>
+                        <p>Conditions: <span>Sunny</span></p>
+                        <p>High: <span>75</span></p>
+                        <p>Low: <span>43</span></p>
+                </div>
+                <div class="weatherContainer">
+                        <h3>Day 2</h3>
+                        <p>Conditions: <span>Sunny</span></p>
+                        <p>High: <span>75</span></p>
+                        <p>Low: <span>43</span></p>
+                </div>
+                <div class="weatherContainer">
+                        <h3>Day 3</h3>
+                        <p>Conditions: <span>Sunny</span></p>
+                        <p>High: <span>75</span></p>
+                        <p>Low: <span>43</span></p>
+                </div>
+                <div class="weatherContainer">
+                        <h3>Day 4</h3>
+                        <p>Conditions: <span>Sunny</span></p>
+                        <p>High: <span>75</span></p>
+                        <p>Low: <span>43</span></p>
+                </div>
+                <div class="weatherContainer">
+                        <h3>Day 5</h3>
+                        <p>Conditions: <span>Sunny</span></p>
+                        <p>High: <span>75</span></p>
+                        <p>Low: <span>43</span></p>
+                </div>
         </div>
         <div class="searchContainers">
                 <div class="restaurantSearch">
@@ -191,7 +175,7 @@
                                         <p>Rating: <span>4.5</span></p>
                                         <p>Type: <span>Pizza</span></p>
                                         <p>Address: <span>43 Almond St El Paso, TX</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -208,7 +192,7 @@
                                         <p>Rating: <span>4.5</span></p>
                                         <p>Type: <span>Pizza</span></p>
                                         <p>Address: <span>43 Almond St El Paso, TX</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -225,7 +209,7 @@
                                         <p>Rating: <span>4.5</span></p>
                                         <p>Type: <span>Pizza</span></p>
                                         <p>Address: <span>43 Almond St El Paso, TX</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -250,7 +234,7 @@
                                         <p>Rank: <span>1</span></p>
                                         <p>Photo: <span>Pizza</span></p>
                                         <p>Address: <span>43 Almond St Paris, France</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -267,7 +251,7 @@
                                         <p>Rank: <span>1</span></p>
                                         <p>Photo: <span>Pizza</span></p>
                                         <p>Address: <span>43 Almond St Paris, France</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -284,7 +268,7 @@
                                         <p>Rank: <span>1</span></p>
                                         <p>Photo: <span>Pizza</span></p>
                                         <p>Address: <span>43 Almond St Paris, France</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -307,7 +291,7 @@
                                         <p>Difficulty: <span>Pizza</span></p>
                                         <p>Photo: <span>view</span></p>
                                         <p>Address: <span>43 Almond St El Paso, TX</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -325,7 +309,7 @@
                                         <p>Difficulty: <span>Pizza</span></p>
                                         <p>Photo: <span>view</span></p>
                                         <p>Address: <span>43 Almond St El Paso, TX</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -343,7 +327,7 @@
                                         <p>Difficulty: <span>Pizza</span></p>
                                         <p>Photo: <span>view</span></p>
                                         <p>Address: <span>43 Almond St El Paso, TX</span></p>
-                                        <select name="days">
+                                        <select class="dayDropDown" name="days">
                                                 <option value="day1">Day 1</option>
                                                 <option value="day2">Day 2</option>
                                                 <option value="day3">Day 3</option>
@@ -362,7 +346,7 @@
         <button id="createPackList" class="button-right" type="button">Create Packing List</button>
 </main>
 <main role="main" class="tripPlanner hidden">
-        <h1>Paris Getaway (8 days)</h1>
+        <h1 class="viewHeader">Paris Getaway (8 days)</h1>
         <p>Select a day to view more details</p><br>
         <div class="dayContainer">
                 <h3>Day 1</h3>
@@ -429,7 +413,7 @@
 
 </main>
 <main role="main" class="packingList hidden">
-        <h1 class="packListHeaders">Paris Getaway (8 days)</h1>
+        <h1 class="packListHeaders viewHeader">Paris Getaway (8 days)</h1>
         <div>
                 <div class="packListContainer">
                         <h2 class="packListHeaders">Clothing</h2>
@@ -543,6 +527,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- <script src="../javascripts/jquery.loader.js"></script> -->
 <script src="../javascripts/signUp.js"></script>
+<script src="../javascripts/logIn.js"></script>
 <script src="../javascripts/main.js"></script>
 
 
