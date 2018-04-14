@@ -2,50 +2,65 @@
   
   // const serverBase = 'https://travel-planner-capstone.herokuapp.com';
   const serverBase = '';
-
-  function setHeader(xhr) {
-    xhr.setRequestHeader('user-key', '3487285e21b6370abf8d29bfc2bb0a29');
-  }
+  
+  const username = {};
 
   
   // API Calls
-function getWeatherForecast(lat, lon, callback){
-    $.getJSON(`api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3e012f872736c45d1c4ad8ca39091bbf&units=imperial&callback=?`)
-    .done(callback)
+function getWeatherForecast(lat, lon){
+  console.log('hello');
+    $.getJSON(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3e012f872736c45d1c4ad8ca39091bbf&units=imperial&callback=?`)
+    // .done(callback)
+    .done(function(result) {
+      console.log(result);
+      displayWeatherResults(result);
+    })
     .fail(function(err){
         console.log(err)
     });
 }
 
-function getLatLon(city, callback){
+function getLatLon(city){
     $.ajax({
       url: `https://developers.zomato.com/api/v2.1/locations?query=${city}`,
       type: 'GET',
       dataType: 'json',
-      beforeSend: setHeader
+      headers: {
+        'user-key': '3487285e21b6370abf8d29bfc2bb0a29'
+    }
     })
-    .done(callback)
+    .done(function(result) {
+      renderLatLon(result);
+    })
     .fail(function(err){
         console.log(err)
     });
 }
 
-function getRestaurants(lat, lon, callback){
+function getRestaurants(lat, lon){
   $.ajax({
     url: `https://developers.zomato.com/api/v2.1/search?lat=${lat}&lon=${lon}&sort=rating&order=desc`,
     type: 'GET',
     dataType: 'json',
-    beforeSend: setHeader
+    headers: {
+      'user-key': '3487285e21b6370abf8d29bfc2bb0a29'
+  }
   })
-    .done(callback)
+    .done(function(result) {
+      console.log(result);
+      displayRestaurantResults(result);
+    })
     .fail(function(err){
         console.log(err)
     });
 }
 
-function getHikingTrails(lat, lon, callback){
+function getHikingTrails(lat, lon){
     $.getJSON(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=50&sort=quality&key=200240688-9f702ff0e042839c3e70ab4f893b733f&callback=?`)
-    .done(callback)
+    .done(function(result) {
+      console.log(result);
+      displayHikingTrailsResults(result);
+    })
     .fail(function(err){
         console.log(err)
     });
@@ -54,20 +69,22 @@ function getHikingTrails(lat, lon, callback){
 // Render and Display API results
 
 function renderLatLon(data) {
-  const lat = data.city.coord.lat;
-  const lon = data.city.coord.lon;
-  getWeatherForecast(lat, lon, displayWeatherResults());
-  getRestaurants(lat, lon, displayRestaurantResults());
-  getHikingTrails(lat, lon, displayHikingTrailsResults());
+  const lat = data.location_suggestions[0].latitude;
+  const lon = data.location_suggestions[0].longitude;
+  console.log(lat, lon);
+  getWeatherForecast(lat, lon);
+  getRestaurants(lat, lon);
+  getHikingTrails(lat, lon);
 
 }
 
 function displayRestaurantResults(data) {
-  const restaurantResults = data.restaurants.restaurant.map((restaurant, index) => renderRestaurantResults(restaurants,index));
+  const restaurantResults = data.items.map((restaurant, index) => renderRestaurantResults(restaurant,index));
   $(".restaurantContainer").html(restaurantResults);
 }
 
 function renderRestaurantResults(restaurant, index) {
+  console.log(restaurant);
   const restaurantName = restaurant.name;
   const restaurantAddress = restaurant.location.address;
   const restaurantURL = restaurant.url;
@@ -89,8 +106,7 @@ return restaurantResults;
 }
 
 function displayHikingTrailsResults(data) {
-  console.log(data);
-  const hikingTrailsResults = data.trails.map((trails, index) => renderHikingTrailsResults(trails,index));
+  const hikingTrailsResults = data.map((trails, index) => renderHikingTrailsResults(trails,index));
   $(".hikeContainer").html(hikingTrailsResults);
 }
 
@@ -138,23 +154,22 @@ return hikingTrailsResults;
 }
 
 function displayWeatherResults(data) {
-  console.log(data);
-  const weatherResults = data.list.map((list, index) => renderWeatherResults(list,index));
+  const weatherResults = data.list.map((item, index) => renderWeatherResults(item,index));
   $(".weatherBar").html(weatherResults);
 }
 
-function renderWeatherResults(list, index) {
-  const low = list.main.temp_min;
-  const high = list.main.temp_max;
-  const weatherIcon = list.weather.icon;
-  const timeConversion = new Date(list.dt * 1000);
-  const date = timeConversion.getDate();
-  console.log(date);
+function renderWeatherResults(item, index) {
+  const low = item.main.temp_min;
+  const high = item.main.temp_max;
+  const weatherIcon = item.weather[0].icon;
+  // const timeConversion = new Date(item.dt * 1000);
+  // const date = timeConversion.getDate();
+  // console.log(date);
 
   const weatherResults = 
   `<div class="weatherContainer">
   <h3>Day 1</h3>
-  <img src='http://openweathermap.org/img/w/${weatherIcon}.png/>
+  <img src='http://openweathermap.org/img/w/${weatherIcon}.png'/>
   <p>High: <span>${high}</span></p>
   <p>Low: <span>${low}</span></p>
   </div>`;
@@ -297,13 +312,17 @@ return weatherResults;
 
     // newTrip listeners 
 
-    $('#createTrip').click(function() {
+    $('#createTrip').click(function(e) {
+      e.preventDefault();
       const tripName = $('#tripName').val();
       const city = $('#tripLocation').val();
       console.log(city, tripName);
-      getLatLon(city, renderLatLon)
-      .done(displayTripHeaders(dateDifference(), tripName));
+      getLatLon(city);
+      // (displayTripHeaders(dateDifference(), tripName));
       console.log('tripCreated');
+      $('#tripName').val('');
+      $('#tripLocation').val('');
+
       $('.newTrip').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
       $('.navList-activity').removeClass('hidden');
@@ -478,7 +497,7 @@ return weatherResults;
     $('.button-addItem').click(function() {
       const itemAdded = $(this).parent('.listBox').find('.itemToAdd').val();
       console.log(itemAdded);
-      const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>`;
+      const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
       $(this).parent('.listBox').find('.itemList').append(newItem);
     });
 
