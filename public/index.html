@@ -86,10 +86,10 @@
                   <p>Please enter your username and password</p>
               
                   <label for="username">Username</label>
-                  <input id="logIn-username" type="text" placeholder="Enter Username" name="username" required><br><br>
+                  <input id="logIn-username" type="text" placeholder="Enter Username" value="rmmoll23" name="username" required><br><br>
               
                   <label for="password">Password</label>
-                  <input id="logIn-password" type="password" placeholder="Enter Password" name="password" required><br><br>
+                  <input id="logIn-password" type="password" placeholder="Enter Password" name="password" value="mollski1" required><br><br>
                   <button id="cancelLogIn" class="button-left" type="button">Cancel</button>
                   <button id="enterApp" class="button-right" type="submit">Submit</button>
               
@@ -418,91 +418,101 @@
                 <div class="packListContainer">
                         <h2 class="packListHeaders">Clothing</h2>
                         <div class="listBox">
-                        
-                                <label><input type="checkbox">Shoes</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Socks</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Underwear</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Shirts</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Pants/Shorts</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Jackets/Coats</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Hat</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Belt</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Swim Suit</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Pajamas</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Gloves</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Sunglasses</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Formal Attire</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
-                                
+                                <div class="itemList">
+                                        <div class="items"><label><input type="checkbox">Shoes</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Socks</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Underwear</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Shirts</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Pants/Shorts</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Jackets/Coats</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Hat</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Belt</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Swim Suit</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Pajamas</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Gloves</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Sunglasses</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Formal Attire</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                </div>
+                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
                         <h2 class="packListHeaders">Pets</h2>
                         <div class="listBox">
-                                <label><input type="checkbox">Leashes</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Food/Water</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Collar/Harness</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Bowls</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Medication</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Poop Bags</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Blankets</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                                <div class="itemList">
+                                        <div class="items"><label><input type="checkbox">Leashes</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Food/Water</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Collar/Harness</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Bowls</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Medication</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Poop Bags</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Blankets</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                </div>
+                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
                         <h2 class="packListHeaders">Media</h2>
                         <div class="listBox">
-                                <label><input type="checkbox">Phone</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Laptop</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Tablet</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Camera</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Chargers</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Headphones</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Batteries</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Book</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                                <div class="itemList">
+                                        <div class="items"><label><input type="checkbox">Phone</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Laptop</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Tablet</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Camera</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Chargers</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Headphones</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Batteries</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Book</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                </div>
+                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
                         <h2 class="packListHeaders">Toiletries</h2>
                         <div class="listBox">
-                                <label><input type="checkbox">Shampoo</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Conditioner</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Body Wash</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Toothbrush</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Toothpaste</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Deodorant</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Cologne</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Perfume</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Razor</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Shaving Cream</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Makeup</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Lotion</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Medication</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Bandaids</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Hand Sanitizer</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Sunscreen</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                                <div class="itemList">
+                                        <div class="items"><label><input type="checkbox">Shampoo</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Conditioner</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Body Wash</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Toothbrush</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Toothpaste</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Deodorant</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Cologne</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Perfume</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Razor</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Shaving Cream</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Makeup</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Lotion</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Medication</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Bandaids</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Hand Sanitizer</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Sunscreen</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                </div>
+                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
                         <h2 class="packListHeaders">Travel Needs</h2>
                         <div class="listBox">
-                                <label><input type="checkbox">Passport</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Cash/Money Order</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Wallet/Purse</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Keys</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                                <div class="itemList">
+                                        <div class="items"><label><input type="checkbox">Passport</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Cash/Money Order</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Wallet/Purse</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Keys</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                </div>
+                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
                         <h2 class="packListHeaders">Miscellaneous</h2>
                         <div class="listBox">
-                                <label><input type="checkbox">Event tickets</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Travel Tickets</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Wallet/Purse</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <label><input type="checkbox">Keys</label> <div class="delete"><i class="fa fa-close"></i></div><br>
-                                <input type="text" placeholder="Add Item" name="addItem" required><button class="button-addItem" type="submit">Add Item</button>
+                                <div class="itemList">
+                                        <div class="items"><label><input type="checkbox">Event tickets</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Travel Tickets</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Wallet/Purse</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                        <div class="items"><label><input type="checkbox">Keys</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>
+                                </div>
+                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                                         

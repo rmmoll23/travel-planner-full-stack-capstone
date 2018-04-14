@@ -6,7 +6,7 @@
   
   // API Calls
 function getWeatherForecast(city, countryCode, callback){
-    $.getJSON(`api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&appid=3e012f872736c45d1c4ad8ca39091bbf&callback=?`)
+    $.getJSON(`api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&appid=3e012f872736c45d1c4ad8ca39091bbf&units=imperial&callback=?`)
     .done(callback)
     .fail(function(err){
         console.log(err)
@@ -27,6 +27,7 @@ function getRestaurants(cityId, callback){
     .fail(function(err){
         console.log(err)
     });
+}
 
 function getHikingTrails(lat, lon, callback){
     $.getJSON(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=50&sort=quality&key=200240688-9f702ff0e042839c3e70ab4f893b733f&callback=?`)
@@ -57,14 +58,7 @@ function renderRestaurantResults(restaurants, index) {
     <p>Type: <span>${type}</span></p>
     <p>Address: <span>${restaurantAddress}</span></p>
     <select class="dayDropDown" name="days">
-            <option value="day1">Day 1</option>
-            <option value="day2">Day 2</option>
-            <option value="day3">Day 3</option>
-            <option value="day4">Day 4</option>
-            <option value="day5">Day 5</option>
-            <option value="day6">Day 6</option>
-            <option value="day7">Day 7</option>
-            <option value="day8">Day 8</option>
+            
     </select>
     <button type="button">Add to Planner</button>
 </div>`;
@@ -113,14 +107,7 @@ function renderHikingTrailsResults(trails, index) {
   <p>Difficulty: <span>${difficulty}</span></p>
   <p>Rating: <span>${trailRating}</span></p>
   <select class="dayDropDown" name="days">
-          <option value="day1">Day 1</option>
-          <option value="day2">Day 2</option>
-          <option value="day3">Day 3</option>
-          <option value="day4">Day 4</option>
-          <option value="day5">Day 5</option>
-          <option value="day6">Day 6</option>
-          <option value="day7">Day 7</option>
-          <option value="day8">Day 8</option>
+          
   </select>
   <button type="button">Add to Planner</button>
 </div>`;
@@ -137,12 +124,14 @@ function renderWeatherResults(list, index) {
   const low = list.main.temp_min;
   const high = list.main.temp_max;
   const weatherIcon = list.weather.icon;
-  const todaysDate = today.getDate();
+  const timeConversion = new Date(list.dt * 1000);
+  const date = timeConversion.getDate();
+  console.log(date);
 
   const weatherResults = 
   `<div class="weatherContainer">
   <h3>Day 1</h3>
-  <p>${weatherIcon}</p>
+  <img src='http://openweathermap.org/img/w/${weatherIcon}.png/>
   <p>High: <span>${high}</span></p>
   <p>Low: <span>${low}</span></p>
   </div>`;
@@ -213,12 +202,22 @@ return weatherResults;
     date2 = new Date(date2);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
     console.log(diffDays);
+    displayDayDropDown(diffDays);
     return diffDays;
   }
-  
-  function displayTripLength(tripLength, tripTitle) {
+
+  // Displays headers on each view
+  function displayTripHeaders(tripLength, tripTitle) {
     const headerText = `${tripTitle} (${tripLength} days)`;
     $('.viewHeader').html(headerText);
+  }
+
+  // Displays day drop down in search containers
+  function displayDayDropDown(days) {
+    for (let i = 1; i = days; i++) {
+      const dropDown = `<option value="day${i}">Day ${i}</option>`
+      $('.dayDropDown').append(dropDown);
+    }
   }
   
   function handleEventListeners() {
@@ -277,7 +276,7 @@ return weatherResults;
 
     $('#createTrip').click(function() {
       const tripName = $('#tripName').val();
-      displayTripLength(dateDifference(), tripName);
+      displayTripHeaders(dateDifference(), tripName);
       console.log('tripCreated');
       $('.newTrip').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
@@ -441,6 +440,20 @@ return weatherResults;
       $('.navList-packing').addClass('hidden');
       $('.tripPlanner').removeClass('hidden');
       $('.navList-planner').removeClass('hidden');
+    });
+
+    // packingListTriggers
+
+    $('.itemList').on('click', '.delete', function(event) {
+      console.log('delete');
+      $(this).parent('.items').remove();
+    });
+
+    $('.button-addItem').click(function() {
+      const itemAdded = $(this).parent('.listBox').find('.itemToAdd').val();
+      console.log(itemAdded);
+      const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div></div><br>`;
+      $(this).parent('.listBox').find('.itemList').append(newItem);
     });
 
     // key listeners
