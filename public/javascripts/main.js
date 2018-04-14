@@ -79,17 +79,16 @@ function renderLatLon(data) {
 }
 
 function displayRestaurantResults(data) {
-  const restaurantResults = data.items.map((restaurant, index) => renderRestaurantResults(restaurant,index));
+  const restaurantResults = data.restaurants.map((items, index) => renderRestaurantResults(items,index));
   $(".restaurantContainer").html(restaurantResults);
 }
 
-function renderRestaurantResults(restaurant, index) {
-  console.log(restaurant);
-  const restaurantName = restaurant.name;
-  const restaurantAddress = restaurant.location.address;
-  const restaurantURL = restaurant.url;
-  const type = restaurant.cuisines;
-  const rating = restaurant.user_rating.aggregate_rating;
+function renderRestaurantResults(items, index) {
+  const restaurantName = items.restaurant.name;
+  const restaurantAddress = items.restaurant.location.address;
+  const restaurantURL = items.restaurant.url;
+  const type = items.restaurant.cuisines;
+  const rating = items.restaurant.user_rating.aggregate_rating;
 
   const restaurantResults = 
   `<div class="restaurantResults">
