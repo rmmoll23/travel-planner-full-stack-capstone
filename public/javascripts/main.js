@@ -3,26 +3,40 @@
   // const serverBase = 'https://travel-planner-capstone.herokuapp.com';
   const serverBase = '';
 
+  function setHeader(xhr) {
+    xhr.setRequestHeader('user-key', '3487285e21b6370abf8d29bfc2bb0a29');
+  }
+
   
   // API Calls
-function getWeatherForecast(city, countryCode, callback){
-    $.getJSON(`api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&appid=3e012f872736c45d1c4ad8ca39091bbf&units=imperial&callback=?`)
+function getWeatherForecast(lat, lon, callback){
+    $.getJSON(`api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3e012f872736c45d1c4ad8ca39091bbf&units=imperial&callback=?`)
     .done(callback)
     .fail(function(err){
         console.log(err)
     });
 }
 
-function getCityId(city, callback){
-    $.getJSON(`https://developers.zomato.com/api/v2.1/locations?query=${city}&user-key: 3487285e21b6370abf8d29bfc2bb0a29&callback=?`)
+function getLatLon(city, callback){
+    $.ajax({
+      url: `https://developers.zomato.com/api/v2.1/locations?query=${city}`,
+      type: 'GET',
+      dataType: 'json',
+      beforeSend: setHeader
+    })
     .done(callback)
     .fail(function(err){
         console.log(err)
     });
 }
 
-function getRestaurants(cityId, callback){
-    $.getJSON(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&user-key: 3487285e21b6370abf8d29bfc2bb0a29&entity_type=city&count=50&sort=rating&order=desc&callback=?`)
+function getRestaurants(lat, lon, callback){
+  $.ajax({
+    url: `https://developers.zomato.com/api/v2.1/search?lat=${lat}&lon=${lon}&sort=rating&order=desc`,
+    type: 'GET',
+    dataType: 'json',
+    beforeSend: setHeader
+  })
     .done(callback)
     .fail(function(err){
         console.log(err)
@@ -39,17 +53,26 @@ function getHikingTrails(lat, lon, callback){
 
 // Render and Display API results
 
+function renderLatLon(data) {
+  const lat = data.city.coord.lat;
+  const lon = data.city.coord.lon;
+  getWeatherForecast(lat, lon, displayWeatherResults());
+  getRestaurants(lat, lon, displayRestaurantResults());
+  getHikingTrails(lat, lon, displayHikingTrailsResults());
+
+}
+
 function displayRestaurantResults(data) {
-  const restaurantResults = data.restaurants.map((restaurants, index) => renderRestaurantResults(restaurants,index));
+  const restaurantResults = data.restaurants.restaurant.map((restaurant, index) => renderRestaurantResults(restaurants,index));
   $(".restaurantContainer").html(restaurantResults);
 }
 
-function renderRestaurantResults(restaurants, index) {
-  const restaurantName = restaurants.name;
-  const restaurantAddress = restaurants.location.address;
-  const restaurantURL = restaurants.url;
-  const type = restaurants.cuisines;
-  const rating = restaurants.user_rating.aggregate_rating;
+function renderRestaurantResults(restaurant, index) {
+  const restaurantName = restaurant.name;
+  const restaurantAddress = restaurant.location.address;
+  const restaurantURL = restaurant.url;
+  const type = restaurant.cuisines;
+  const rating = restaurant.user_rating.aggregate_rating;
 
   const restaurantResults = 
   `<div class="restaurantResults">
@@ -276,7 +299,10 @@ return weatherResults;
 
     $('#createTrip').click(function() {
       const tripName = $('#tripName').val();
-      displayTripHeaders(dateDifference(), tripName);
+      const city = $('#tripLocation').val();
+      console.log(city, tripName);
+      getLatLon(city, renderLatLon)
+      .done(displayTripHeaders(dateDifference(), tripName));
       console.log('tripCreated');
       $('.newTrip').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
