@@ -166,17 +166,17 @@ function renderWeatherResults(item, index) {
   const low = Math.round(item.main.temp_min);
   const high = Math.round(item.main.temp_max);
   const weatherIcon = item.weather[0].icon;
-  // const timeConversion = new Date(item.dt * 1000);
-  // const date = timeConversion.getDate();
-  // console.log(date);
-
-  const weatherResults = 
-  `<div class="weatherContainer">
-  <h3>Day 1</h3>
-  <img src='http://openweathermap.org/img/w/${weatherIcon}.png'/>
-  <p>High: <span>${high}</span></p>
-  <p>Low: <span>${low}</span></p>
-  </div>`;
+  const time = item.dt;
+  const myDate = new Date( time *1000);
+  const options = {year: 'numeric', month: 'long', day: 'numeric' };
+  const currentDate = myDate.toLocaleString('en-US', options);
+ 
+  const weatherResults = `<div class="weatherContainer">
+    <h3>${currentDate}</h3>
+    <img src='http://openweathermap.org/img/w/${weatherIcon}.png'/>
+    <p>High: <span>${high}</span></p>
+    <p>Low: <span>${low}</span></p>
+    </div>`;
 return weatherResults;
 }
 
