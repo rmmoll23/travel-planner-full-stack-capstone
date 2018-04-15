@@ -67,7 +67,7 @@ function getRestaurants(lat, lon, startNumber){
 
 function getHikingTrails(lat, lon){
   $.ajax({
-    url: `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=50&sort=quality&key=200240688-9f702ff0e042839c3e70ab4f893b733f`,
+    url: `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=50&maxResults=40&sort=quality&key=200240688-9f702ff0e042839c3e70ab4f893b733f`,
     type: 'GET',
     dataType: 'json',
   })
