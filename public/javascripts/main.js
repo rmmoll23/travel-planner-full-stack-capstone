@@ -46,6 +46,18 @@ function getLatLon(city){
     });
 }
 
+function getPlaces(lat, lon, searchInput){
+  $.getJSON(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=50000&keyword=${searchInput}&rankBy=prominence&key= AIzaSyB8wYopFhHNaCNt9f9lko97Da9hX8z3vZU`)
+  .done(function(result) {
+    console.log(result);
+    displayPlaces(result);
+  })
+  .fail(function(err){
+      console.log(err)
+  });
+}
+
+
 function getRestaurants(lat, lon, startNumber){
   $.ajax({
     url: `https://developers.zomato.com/api/v2.1/search?start=${startNumber}&count=60&lat=${lat}&lon=${lon}&sort=rating&order=desc`,
@@ -89,10 +101,12 @@ function renderLocationKey (data) {
 function renderLatLon(data) {
   const lat = data.location_suggestions[0].latitude;
   const lon = data.location_suggestions[0].longitude;
-  console.log(lat, lon);
+  localStorage.setItem("lat", lat);
+  localStorage.setItem("lon", lon);
   getRestaurants(lat, lon, 0);
   getRestaurants(lat, lon, 20);
   getRestaurants(lat, lon, 40);
+  getPlaces(lat, lon, 'things to do');
   getHikingTrails(lat, lon);
 }
 
@@ -111,14 +125,39 @@ function renderRestaurantResults(items, index) {
   let restaurantResults = '<div class="restaurantResults">';
   restaurantResults += `<p>Name: <a href="${restaurantURL}" target="_blank">${restaurantName}</a></p>`;
   restaurantResults += `<p>Rating: <span>${rating}/5</span></p>`;
-  restaurantResults += '<p>Type: <span>${type}</span></p>';
-  restaurantResults += '<p>Address: <span>${restaurantAddress}</span></p>';
+  restaurantResults += `<p>Type: <span>${type}</span></p>`;
+  restaurantResults += `<p>Address: <span>${restaurantAddress}</span></p>`;
   restaurantResults += '<select class="dayDropDown" name="days">';
             
   restaurantResults += '</select>'
   restaurantResults += '<button type="button">Add to Planner</button>'
   restaurantResults += '</div>';
 return restaurantResults;
+}
+
+function displayPlaces(data) {
+  
+  const Places = data.results.map((result, index) => renderPlaces(result,index));
+  $(".activityResultsContainer").append(Places);
+}
+
+function renderPlaces(result, index) {
+  const placeName = result.name;
+  const placeAddress = result.vicinity;
+  const type = result.types[0];
+  const rating = result.rating;
+
+  let Places = '<div class="activityResults">';
+  Places += `<p>Name: ${placeName}</p>`;
+  Places += `<p>Rating: <span>${rating}/5</span></p>`;
+  Places += `<p>Type: <span>${type}</span></p>`;
+  Places += `<p>Address: <span>${placeAddress}</span></p>`;
+  Places += '<select class="dayDropDown" name="days">';
+            
+  Places += '</select>'
+  Places += '<button type="button">Add to Planner</button>'
+  Places += '</div>';
+return Places;
 }
 
 function displayHikingTrailsResults(data) {
@@ -516,6 +555,17 @@ return weatherResults;
       $('.tripPlanner').removeClass('hidden');
       $('.navList-planner').removeClass('hidden');
     });
+
+    // activitySearch
+    $('.activityContainer').on('click', '#activitySearch-button', function(e) {
+      e.preventDefault();
+      const searchTerm = $('#activitySearch-input').val();
+      console.log(searchTerm);
+      const lat = localStorage.getItem('lat');
+      const lon = localStorage.getItem('lon');
+      $('.activityResultsContainer').html('');
+      getPlaces(lat, lon, searchTerm);
+    })
 
     // packingListTriggers
 
