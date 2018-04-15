@@ -3,8 +3,7 @@
   // const serverBase = 'https://travel-planner-capstone.herokuapp.com';
   const serverBase = '';
   
-  const username = {};
-
+  let username = '';
   
   // API Calls
 function getWeatherForecast(locationKey){
@@ -57,7 +56,6 @@ function getRestaurants(lat, lon, startNumber){
   }
   })
     .done(function(result) {
-      console.log(result);
       displayRestaurantResults(result);
     })
     .fail(function(err){
@@ -96,7 +94,6 @@ function renderLatLon(data) {
   getRestaurants(lat, lon, 20);
   getRestaurants(lat, lon, 40);
   getHikingTrails(lat, lon);
-
 }
 
 function displayRestaurantResults(data) {
@@ -111,17 +108,16 @@ function renderRestaurantResults(items, index) {
   const type = items.restaurant.cuisines;
   const rating = items.restaurant.user_rating.aggregate_rating;
 
-  const restaurantResults = 
-  `<div class="restaurantResults">
-    <p>Name: <a href="${restaurantURL}" target="_blank">${restaurantName}</a></p>
-    <p>Rating: <span>${rating}/5</span></p>
-    <p>Type: <span>${type}</span></p>
-    <p>Address: <span>${restaurantAddress}</span></p>
-    <select class="dayDropDown" name="days">
+  let restaurantResults = '<div class="restaurantResults">';
+  restaurantResults += `<p>Name: <a href="${restaurantURL}" target="_blank">${restaurantName}</a></p>`;
+  restaurantResults += `<p>Rating: <span>${rating}/5</span></p>`;
+  restaurantResults += '<p>Type: <span>${type}</span></p>';
+  restaurantResults += '<p>Address: <span>${restaurantAddress}</span></p>';
+  restaurantResults += '<select class="dayDropDown" name="days">';
             
-    </select>
-    <button type="button">Add to Planner</button>
-</div>`;
+  restaurantResults += '</select>'
+  restaurantResults += '<button type="button">Add to Planner</button>'
+  restaurantResults += '</div>';
 return restaurantResults;
 }
 
@@ -137,7 +133,7 @@ function renderHikingTrailsResults(trail, index) {
   const trailRating = trail.stars;
   let difficulty = trail.difficulty;
 
-  console.log(difficulty);
+  // console.log(difficulty);
 
   if (difficulty === "black") {
     difficulty = "difficult";
@@ -159,17 +155,14 @@ function renderHikingTrailsResults(trail, index) {
     difficulty = "moderately easy";
   }
 
-  const hikingTrailsResults = 
-  `<div class="hikeResults">
-  <p>Name: <a href="${trailsURL}" target="_blank">${trailsName}</a></p>
-  <p>Length: <span>${length} miles</span></p>
-  <p>Difficulty: <span>${difficulty}</span></p>
-  <p>Rating: <span>${trailRating}/5</span></p>
-  <select class="dayDropDown" name="days">
+  let hikingTrailsResults = '<div class="hikeResults">';
+  hikingTrailsResults += `<p>Name: <a href="${trailsURL}" target="_blank">${trailsName}</a></p>`;
+  hikingTrailsResults += `<p>Length: <span>${length} miles</span></p>`;
+  hikingTrailsResults += `<p>Difficulty: <span>${difficulty}</span></p>`;
+  hikingTrailsResults += `<p>Rating: <span>${trailRating}/5</span></p>`;
+  hikingTrailsResults += '<select class="dayDropDown" name="days">';
           
-  </select>
-  <button type="button">Add to Planner</button>
-</div>`;
+  hikingTrailsResults += '</div>';
 return hikingTrailsResults;
 }
 
@@ -265,18 +258,24 @@ return weatherResults;
     date2 = new Date(date2);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
     console.log(diffDays);
-    displayDayDropDown(diffDays);
-    return diffDays;
+    localStorage.setItem("tripLength", diffDays);
+    
   }
 
   // Displays headers on each view
-  function displayTripHeaders(tripLength, tripTitle) {
-    const headerText = `${tripTitle} (${tripLength} days)`;
+  function displayTripHeaders() {
+    const name = localStorage.getItem("tripName");
+    const length = localStorage.getItem("tripLength");
+    console.log(name, length);
+    const headerText = `${name} (${length} days)`;
     $('.viewHeader').html(headerText);
   }
 
   // Displays day drop down in search containers
-  function displayDayDropDown(days) {
+  function displayDayDropDown() {
+    console.log('dropDownDisplay');
+    const days = localStorage.getItem("tripLength");
+    console.log(days);
     for (let i = 1; i = days; i++) {
       const dropDown = `<option value="day${i}">Day ${i}</option>`
       $('.dayDropDown').append(dropDown);
@@ -339,15 +338,20 @@ return weatherResults;
 
     $('#createTrip').click(function(e) {
       e.preventDefault();
-      const tripName = $('#tripName').val();
+      const name = $('#tripName').val();
       const city = $('#tripLocation').val();
-      console.log(city, tripName);
+
+      localStorage.setItem("tripName", name);
       getLatLon(city);
       getLocationKey(city);
-      // (displayTripHeaders(dateDifference(), tripName));
+      dateDifference();
+      displayTripHeaders();
+      
       console.log('tripCreated');
       $('#tripName').val('');
       $('#tripLocation').val('');
+      $('#from').val('');
+      $('to').val('');
 
       $('.newTrip').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
@@ -542,4 +546,4 @@ return weatherResults;
     handleEventListeners();
     $(".fadeOutHeader").fadeOut(15000);
     datePickerCalendar();
-  });
+    });

@@ -18,7 +18,7 @@ body {
 }
 
 form {
-  margin: 100px 0 80px 0;
+  padding: 110px 0 80px 0;
 }
 
 button {
@@ -151,6 +151,22 @@ label {
   left: 20px;
 }
 
+.logIn {
+  background-color: lightblue;
+  height: 580px;
+}
+
+
+.signUp {
+  background-color: lightblue;
+  height: 580px;
+}
+
+#signUpForm {
+  padding: 110px 0 80px 0;
+}
+
+
 li {
   list-style-type: none;
   display: inline;
@@ -165,7 +181,9 @@ h1, h2 {
 
 .profile {
   text-align: center;
-  margin-top: 90px;
+  padding-top: 200px;
+  background-color: lightblue;
+  height: 380px;
 }
 
 .profile ul {
@@ -173,6 +191,7 @@ h1, h2 {
   width: max-content;
   padding: 15px;
   margin: 0 auto;
+  background-color: white;
 }
 
 .profile li {
@@ -181,9 +200,14 @@ h1, h2 {
 
 .profile button {
   margin: 30px 0 30px 0;
+  background-color: white;
 }
 
 /* newTrip */
+
+.newTrip {
+  background-color: lightblue;
+}
 
 .newTrip h1{
   margin-bottom: 30px;
@@ -252,15 +276,21 @@ span {
   position: relative;
   overflow: scroll;
   padding: 15px 0 15px 0;
+  background-color: lightblue;
 }
 
 .restaurantResults, .activityResults, .hikeResults {
   border: black solid;
+  background-color: white;
   display: inline-block;
   margin-top: 10px;
   width: 90%;
   text-align: left;
   padding: 5px;
+}
+
+#activitySearch-button {
+  background-color: white;
 }
 
 
@@ -271,6 +301,7 @@ span {
   text-align: center;
   padding: 20px;
   margin-top: 90px;
+  background-color: lightblue;
 }
 
 .tripPlanner h1,h3 {
@@ -287,6 +318,7 @@ span {
   padding: 15px;
   min-width: 100px;
   max-width: 350px;
+  background-color: white;
 }
 
 .dayContainer:hover {
@@ -346,6 +378,7 @@ span {
 .packingList {
   text-align: center;
   margin-top: 90px;
+  background-color: lightblue;
 }
 
 .packListHeaders {
@@ -382,6 +415,7 @@ span {
   padding: 15px;
   height: 300px;
   min-width: 250px;
+  background-color: white;
 }
 
 .listBox {
