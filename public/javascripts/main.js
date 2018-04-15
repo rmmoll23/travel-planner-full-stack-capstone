@@ -47,9 +47,9 @@ function getLatLon(city){
     });
 }
 
-function getRestaurants(lat, lon){
+function getRestaurants(lat, lon, startNumber){
   $.ajax({
-    url: `https://developers.zomato.com/api/v2.1/search?lat=${lat}&lon=${lon}&sort=rating&order=desc`,
+    url: `https://developers.zomato.com/api/v2.1/search?start=${startNumber}&count=60&lat=${lat}&lon=${lon}&sort=rating&order=desc`,
     type: 'GET',
     dataType: 'json',
     headers: {
@@ -92,14 +92,16 @@ function renderLatLon(data) {
   const lat = data.location_suggestions[0].latitude;
   const lon = data.location_suggestions[0].longitude;
   console.log(lat, lon);
-  getRestaurants(lat, lon);
+  getRestaurants(lat, lon, 0);
+  getRestaurants(lat, lon, 20);
+  getRestaurants(lat, lon, 40);
   getHikingTrails(lat, lon);
 
 }
 
 function displayRestaurantResults(data) {
   const restaurantResults = data.restaurants.map((items, index) => renderRestaurantResults(items,index));
-  $(".restaurantContainer").html(restaurantResults);
+  $(".restaurantContainer").append(restaurantResults);
 }
 
 function renderRestaurantResults(items, index) {
@@ -124,7 +126,6 @@ return restaurantResults;
 }
 
 function displayHikingTrailsResults(data) {
-  console.log(data);
   const hikingTrailsResults = data.trails.map((trail, index) => renderHikingTrailsResults(trail,index));
   $(".hikeContainer").html(hikingTrailsResults);
 }
@@ -178,10 +179,9 @@ function displayWeatherResults(data) {
 }
 
 function renderWeatherResults(forecast, index) {
-  console.log(forecast);
   const low = forecast.Temperature.Minimum.Value;
   const high = forecast.Temperature.Maximum.Value;
-  
+
   let weatherIcon = forecast.Day.Icon;
   if (weatherIcon < 10) {
     weatherIcon = '0' + weatherIcon;
