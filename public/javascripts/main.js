@@ -7,9 +7,8 @@
 
   
   // API Calls
-function getWeatherForecast(lat, lon){
-  console.log('hello');
-    $.getJSON(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3e012f872736c45d1c4ad8ca39091bbf&units=imperial&callback=?`)
+function getWeatherForecast(locationKey){
+    $.getJSON(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=VFDAkPsWGspNGI0hnUmmssJqqUxWZgJn`)
     // .done(callback)
     .done(function(result) {
       console.log(result);
@@ -18,6 +17,17 @@ function getWeatherForecast(lat, lon){
     .fail(function(err){
         console.log(err)
     });
+}
+
+function getLocationKey(city) {
+  $.getJSON(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=VFDAkPsWGspNGI0hnUmmssJqqUxWZgJn&q=${city}`)
+  // .done(callback)
+  .done(function(result) {
+    renderLocationKey(result);
+  })
+  .fail(function(err){
+      console.log(err)
+  });
 }
 
 function getLatLon(city){
@@ -72,11 +82,16 @@ function getHikingTrails(lat, lon){
 
 // Render and Display API results
 
+function renderLocationKey (data) {
+  const locationKey = data[0].Key;
+  console.log(locationKey);
+  getWeatherForecast(locationKey);
+}
+
 function renderLatLon(data) {
   const lat = data.location_suggestions[0].latitude;
   const lon = data.location_suggestions[0].longitude;
   console.log(lat, lon);
-  getWeatherForecast(lat, lon);
   getRestaurants(lat, lon);
   getHikingTrails(lat, lon);
 
@@ -158,22 +173,28 @@ return hikingTrailsResults;
 }
 
 function displayWeatherResults(data) {
-  const weatherResults = data.list.map((item, index) => renderWeatherResults(item,index));
+  const weatherResults = data.DailyForecasts.map((forecast, index) => renderWeatherResults(forecast,index));
   $(".weatherBar").html(weatherResults);
 }
 
-function renderWeatherResults(item, index) {
-  const low = Math.round(item.main.temp_min);
-  const high = Math.round(item.main.temp_max);
-  const weatherIcon = item.weather[0].icon;
-  const time = item.dt;
+function renderWeatherResults(forecast, index) {
+  console.log(forecast);
+  const low = forecast.Temperature.Minimum.Value;
+  const high = forecast.Temperature.Maximum.Value;
+  
+  let weatherIcon = forecast.Day.Icon;
+  if (weatherIcon < 10) {
+    weatherIcon = '0' + weatherIcon;
+  }
+
+  const time = forecast.EpochDate;
   const myDate = new Date( time *1000);
   const options = {year: 'numeric', month: 'long', day: 'numeric' };
   const currentDate = myDate.toLocaleString('en-US', options);
  
   const weatherResults = `<div class="weatherContainer">
     <h3>${currentDate}</h3>
-    <img src='http://openweathermap.org/img/w/${weatherIcon}.png'/>
+    <img src="https://developer.accuweather.com/sites/default/files/${weatherIcon}-s.png"/>
     <p>High: <span>${high}</span></p>
     <p>Low: <span>${low}</span></p>
     </div>`;
@@ -322,6 +343,7 @@ return weatherResults;
       const city = $('#tripLocation').val();
       console.log(city, tripName);
       getLatLon(city);
+      getLocationKey(city);
       // (displayTripHeaders(dateDifference(), tripName));
       console.log('tripCreated');
       $('#tripName').val('');
