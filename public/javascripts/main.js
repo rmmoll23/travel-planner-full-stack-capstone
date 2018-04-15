@@ -56,7 +56,11 @@ function getRestaurants(lat, lon){
 }
 
 function getHikingTrails(lat, lon){
-    $.getJSON(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=50&sort=quality&key=200240688-9f702ff0e042839c3e70ab4f893b733f&callback=?`)
+  $.ajax({
+    url: `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lon}&maxDistance=50&sort=quality&key=200240688-9f702ff0e042839c3e70ab4f893b733f`,
+    type: 'GET',
+    dataType: 'json',
+  })
     .done(function(result) {
       console.log(result);
       displayHikingTrailsResults(result);
@@ -92,7 +96,7 @@ function renderRestaurantResults(items, index) {
 
   const restaurantResults = 
   `<div class="restaurantResults">
-    <p>Name: <a href="${restaurantURL}">${restaurantName}</a></p>
+    <p>Name: <a href="${restaurantURL}" target="_blank">${restaurantName}</a></p>
     <p>Rating: <span>${rating}/5</span></p>
     <p>Type: <span>${type}</span></p>
     <p>Address: <span>${restaurantAddress}</span></p>
@@ -105,16 +109,17 @@ return restaurantResults;
 }
 
 function displayHikingTrailsResults(data) {
-  const hikingTrailsResults = data.map((trails, index) => renderHikingTrailsResults(trails,index));
+  console.log(data);
+  const hikingTrailsResults = data.trails.map((trail, index) => renderHikingTrailsResults(trail,index));
   $(".hikeContainer").html(hikingTrailsResults);
 }
 
-function renderHikingTrailsResults(trails, index) {
-  const trailsName = trails.name;
-  const trailsURL = trails.url;
-  const length = trails.length;
-  const trailRating = trails.stars;
-  let difficulty = trails.difficulty;
+function renderHikingTrailsResults(trail, index) {
+  const trailsName = trail.name;
+  const trailsURL = trail.url;
+  const length = trail.length;
+  const trailRating = trail.stars;
+  let difficulty = trail.difficulty;
 
   console.log(difficulty);
 
@@ -140,10 +145,10 @@ function renderHikingTrailsResults(trails, index) {
 
   const hikingTrailsResults = 
   `<div class="hikeResults">
-  <p>Name: <a href="${trailsURL}">${trailsName}</a></p>
-  <p>Length: <span>${length}</span></p>
+  <p>Name: <a href="${trailsURL}" target="_blank">${trailsName}</a></p>
+  <p>Length: <span>${length} miles</span></p>
   <p>Difficulty: <span>${difficulty}</span></p>
-  <p>Rating: <span>${trailRating}</span></p>
+  <p>Rating: <span>${trailRating}/5</span></p>
   <select class="dayDropDown" name="days">
           
   </select>
@@ -158,8 +163,8 @@ function displayWeatherResults(data) {
 }
 
 function renderWeatherResults(item, index) {
-  const low = item.main.temp_min;
-  const high = item.main.temp_max;
+  const low = Math.round(item.main.temp_min);
+  const high = Math.round(item.main.temp_max);
   const weatherIcon = item.weather[0].icon;
   // const timeConversion = new Date(item.dt * 1000);
   // const date = timeConversion.getDate();

@@ -205,9 +205,12 @@ h1, h2 {
   min-width: 100px;
   max-width: 350px;
 }
+.weatherContainer span {
+  color: lightseagreen;
+}
 
 span {
-  color: lightseagreen;
+  color: darkgray;
 }
 
 .activitySelection p {
