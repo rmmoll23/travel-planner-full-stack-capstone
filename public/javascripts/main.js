@@ -125,14 +125,14 @@ function renderRestaurantResults(items, index) {
   const rating = items.restaurant.user_rating.aggregate_rating;
 
   let restaurantResults = '<div class="restaurantResults">';
-  restaurantResults += `<p>Name: <a href="${restaurantURL}" target="_blank">${restaurantName}</a></p>`;
+  restaurantResults += `<p>Name: <span id="restaurantName"><a href="${restaurantURL}" target="_blank">${restaurantName}</a></span></p>`;
   restaurantResults += `<p>Rating: <span>${rating}/5</span></p>`;
   restaurantResults += `<p>Type: <span>${type}</span></p>`;
-  restaurantResults += `<p>Address: <span>${restaurantAddress}</span></p>`;
+  restaurantResults += `<p>Address: <span id="restaurantAddress">${restaurantAddress}</span></p>`;
   restaurantResults += '<select class="dayDropDown" name="days">';
             
   restaurantResults += '</select>'
-  restaurantResults += '<button type="button">Add to Planner</button>';
+  restaurantResults += '<button id="addToPlanner"type="submit">Add to Planner</button>';
   restaurantResults += '</div>';
 return restaurantResults;
 }
@@ -150,14 +150,14 @@ function renderPlaces(result, index) {
   const rating = result.rating;
 
   let Places = '<div class="activityResults">';
-  Places += `<p>Name: ${placeName}</p>`;
+  Places += `<p>Name: <span id="placeName">${placeName}</span></p>`;
   Places += `<p>Rating: <span>${rating}/5</span></p>`;
   Places += `<p>Type: <span>${type}</span></p>`;
-  Places += `<p>Address: <span>${placeAddress}</span></p>`;
+  Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
   Places += '<select class="dayDropDown" name="days">';
             
   Places += '</select>';
-  Places += '<button type="button">Add to Planner</button>';
+  Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
   Places += '</div>';
 return Places;
 }
@@ -171,6 +171,7 @@ function renderHikingTrailsResults(trail, index) {
   const trailsName = trail.name;
   const trailsURL = trail.url;
   const length = trail.length;
+  const trailLocation = trail.location;
   const trailRating = trail.stars;
   let difficulty = trail.difficulty;
 
@@ -197,14 +198,15 @@ function renderHikingTrailsResults(trail, index) {
   }
 
   let hikingTrailsResults = '<div class="hikeResults">';
-  hikingTrailsResults += `<p>Name: <a href="${trailsURL}" target="_blank">${trailsName}</a></p>`;
+  hikingTrailsResults += `<p>Name: <span id="trailName"><a href="${trailsURL}" target="_blank">${trailsName}</a></span></p>`;
   hikingTrailsResults += `<p>Length: <span>${length} miles</span></p>`;
   hikingTrailsResults += `<p>Difficulty: <span>${difficulty}</span></p>`;
   hikingTrailsResults += `<p>Rating: <span>${trailRating}/5</span></p>`;
+  hikingTrailsResults += `<p>Location: <span id="trailLocation">${trailLocation}</span></p>`;
   hikingTrailsResults += '<select class="dayDropDown" name="days">';
 
   hikingTrailsResults += '</select>';
-  hikingTrailsResults += '<button type="button">Add to Planner</button>';       
+  hikingTrailsResults += '<button id="addToPlanner" type="submit">Add to Planner</button>';       
   hikingTrailsResults += '</div>';
 return hikingTrailsResults;
 }
@@ -619,7 +621,7 @@ return weatherResults;
       $('.navList-planner').removeClass('hidden');
     });
 
-    // activitySearch
+    // activitySearchTriggers
     $('.activityContainer').on('click', '#activitySearch-button', function(e) {
       e.preventDefault();
       const searchTerm = $('#activitySearch-input').val();
@@ -629,6 +631,51 @@ return weatherResults;
       getPlaces(lat, lon, searchTerm);
       $('#activitySearch-input').val('');
     })
+
+    // restaurants
+    $('.restaurantContainer').on('click', '#addToPlanner', function(e) {
+      e.preventDefault();
+      let daySelected = $(this).parent('.restaurantResults').find('select').val();
+      daySelected = daySelected.replace(/\D/g,'');
+      daySelected = `.day${daySelected}`;
+      console.log(daySelected);
+
+      const name = $(this).parent('.restaurantResults').find('#restaurantName').text();
+      const address = $(this).parent('.restaurantResults').find('#restaurantAddress').text();
+      console.log(name, address);
+    });
+
+    // search
+
+    $('.activityResultsContainer').on('click', '#addToPlanner', function(e) {
+      e.preventDefault();
+      let daySelected = $(this).parent('.activityResults').find('select').val();
+      daySelected = daySelected.replace(/\D/g,'');
+      daySelected = `.day${daySelected}`;
+      console.log(daySelected);
+
+      const name = $(this).parent('.activityResults').find('#placeName').text();
+      const address = $(this).parent('.activityResults').find('#placeAddress').text();
+      console.log(name, address);
+
+    });
+
+    // hiking
+
+    $('.hikeContainer').on('click', '#addToPlanner', function(e) {
+      e.preventDefault();
+      let daySelected = $(this).parent('.hikeResults').find('select').val();
+      daySelected = daySelected.replace(/\D/g,'');
+      daySelected = `.day${daySelected}`;
+      console.log(daySelected);
+
+      const name = $(this).parent('.hikeResults').find('#trailName').text();
+      const location = $(this).parent('.hikeResults').find('#trailLocation').text();
+      console.log(name, location);
+
+    });
+
+
 
     // packingListTriggers
 
@@ -642,6 +689,7 @@ return weatherResults;
       console.log(itemAdded);
       const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
       $(this).parent('.listBox').find('.itemList').append(newItem);
+      $(this).parent('.listBox').find('.itemToAdd').val('');
     });
 
     // key listeners
