@@ -319,10 +319,49 @@ return weatherResults;
     const days = localStorage.getItem("tripLength");
     let dropDown = '';
     for (let i = 1; i <= days; i++) {
-      dropDown += `<option value="day${i}">Day ${i}</option>`;
+      dropDown += `<option class="dropDownDay${i}" value="day${i}">Day ${i}</option>`;
     }
     $('.dayDropDown').html(dropDown);
   }
+
+  function displayTravelPlanner() {
+    const days = localStorage.getItem("tripLength");
+    let dayContainer = '';
+    for (let i = 1; i <= days; i++) {
+      dayContainer += `<div class="dayContainer plannerDay${i}">
+            <h3>Day ${i}</h3>
+            <p>0 activities saved</p>
+        </div>`;
+    }
+    $('.plannerDays').html(dayContainer);
+  }
+
+  function displayDayView() {
+    const days = localStorage.getItem("tripLength");
+    const name = localStorage.getItem("tripName");
+    let dayView = '';
+    for (let i = 1; i <= days; i++) {
+      dayView += `<div class="dayPage day${i} hidden"><h1 class="dayHeader">${name} (Day ${i})</h1>
+      <div class="activities">
+
+      </div>
+      </div>`
+    }
+    $('.dayView').html(dayView);
+  }
+
+  function displayDayViewContent () {
+    // const content = `<div class="dayActivity">
+    // <h2><a href="#">Eiffel Tower</a></h2>
+    // <p>Address</p><br>
+    // <button class="button-delete" type="button">Delete</button>
+    // <textarea rows="4" cols="50" class="notesInput">Notes... 
+    // </textarea>
+    // <button class="button-notes" type="button">Save Notes</button>
+    // </div>`
+
+  }
+  
   
   function handleEventListeners() {
 
@@ -388,6 +427,8 @@ return weatherResults;
       getLocationKey(city);
       dateDifference();
       displayTripHeaders();
+      displayTravelPlanner();
+      displayDayView();
       
       console.log('tripCreated');
       $('#tripName').val('');
@@ -426,10 +467,17 @@ return weatherResults;
 
     // tripPlanner listeners
 
-    $('.dayContainer').click(function() {
+    $('.tripPlanner').on('click', '.dayContainer', function() {
       console.log('dayView');
+      let element = $(this).attr('class');
+      element = element.replace(/\D/g,'');
+      element = `.day${element}`;
+      console.log(element);
+      
+      
       $('.tripPlanner').addClass('hidden');
       $('.dayView').removeClass('hidden');
+      $(element).removeClass('hidden');
       $('.navList-planner').addClass('hidden');
       $('.navList-day').removeClass('hidden');
     });
@@ -508,6 +556,9 @@ return weatherResults;
       $('.dayView').addClass('hidden');
       $('.navList-day').addClass('hidden');
       $('.profile').removeClass('hidden');
+      for (let i = 1; i <=30; i++) {
+        $(`.day${i}`).addClass('hidden');
+      }
     });
 
     $('#activityNav-day').click(function() {
@@ -516,6 +567,9 @@ return weatherResults;
       $('.navList-day').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
       $('.navList-activity').removeClass('hidden');
+      for (let i = 1; i <=30; i++) {
+        $(`.day${i}`).addClass('hidden');
+      }
     });
 
     $('#packingNav-day').click(function() {
@@ -524,6 +578,9 @@ return weatherResults;
       $('.navList-day').addClass('hidden');
       $('.packingList').removeClass('hidden');
       $('.navList-packing').removeClass('hidden');
+      for (let i = 1; i <=30; i++) {
+        $(`.day${i}`).addClass('hidden');
+      }
     });
 
     $('#plannerNav-day').click(function() {
@@ -532,6 +589,9 @@ return weatherResults;
       $('.navList-day').addClass('hidden');
       $('.tripPlanner').removeClass('hidden');
       $('.navList-planner').removeClass('hidden');
+      for (let i = 1; i <=30; i++) {
+        $(`.day${i}`).addClass('hidden');
+      }
     });
 
     // packing Nav

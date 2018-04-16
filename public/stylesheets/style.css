@@ -309,12 +309,12 @@ span {
 }
 
 .tripPlanner h1,h3 {
-  border-bottom: solid lightseagreen;
+  border-bottom: solid rgb(125, 224, 219);
   width: max-content;
   margin: 0 auto;
 }
 
-.dayContainer {
+.plannerDays div {
   border: lightseagreen solid;
   display: inline-block;
   width: 20%;
