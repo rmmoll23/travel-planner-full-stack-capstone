@@ -293,6 +293,10 @@ span {
   background-color: white;
 }
 
+#activitySearch-input {
+  font-size: 12px;
+}
+
 
 
 /* tripPlanner */

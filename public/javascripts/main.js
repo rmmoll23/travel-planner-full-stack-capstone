@@ -69,6 +69,7 @@ function getRestaurants(lat, lon, startNumber){
   })
     .done(function(result) {
       displayRestaurantResults(result);
+      displayDayDropDown()
     })
     .fail(function(err){
         console.log(err)
@@ -315,8 +316,8 @@ return weatherResults;
     console.log('dropDownDisplay');
     const days = localStorage.getItem("tripLength");
     console.log(days);
-    for (let i = 1; i = days; i++) {
-      const dropDown = `<option value="day${i}">Day ${i}</option>`
+    for (let i = 1; i <= days; i++) {
+      const dropDown = `<option value="day${i}">Day ${i}</option>`;
       $('.dayDropDown').append(dropDown);
     }
   }
