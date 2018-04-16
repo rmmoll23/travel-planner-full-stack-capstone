@@ -51,6 +51,7 @@ function getPlaces(lat, lon, searchInput){
   .done(function(result) {
     console.log(result);
     displayPlaces(result);
+    displayDayDropDown();
   })
   .fail(function(err){
       console.log(err)
@@ -131,7 +132,7 @@ function renderRestaurantResults(items, index) {
   restaurantResults += '<select class="dayDropDown" name="days">';
             
   restaurantResults += '</select>'
-  restaurantResults += '<button type="button">Add to Planner</button>'
+  restaurantResults += '<button type="button">Add to Planner</button>';
   restaurantResults += '</div>';
 return restaurantResults;
 }
@@ -155,8 +156,8 @@ function renderPlaces(result, index) {
   Places += `<p>Address: <span>${placeAddress}</span></p>`;
   Places += '<select class="dayDropDown" name="days">';
             
-  Places += '</select>'
-  Places += '<button type="button">Add to Planner</button>'
+  Places += '</select>';
+  Places += '<button type="button">Add to Planner</button>';
   Places += '</div>';
 return Places;
 }
@@ -201,7 +202,9 @@ function renderHikingTrailsResults(trail, index) {
   hikingTrailsResults += `<p>Difficulty: <span>${difficulty}</span></p>`;
   hikingTrailsResults += `<p>Rating: <span>${trailRating}/5</span></p>`;
   hikingTrailsResults += '<select class="dayDropDown" name="days">';
-          
+
+  hikingTrailsResults += '</select>';
+  hikingTrailsResults += '<button type="button">Add to Planner</button>';       
   hikingTrailsResults += '</div>';
 return hikingTrailsResults;
 }
@@ -313,13 +316,12 @@ return weatherResults;
 
   // Displays day drop down in search containers
   function displayDayDropDown() {
-    console.log('dropDownDisplay');
     const days = localStorage.getItem("tripLength");
-    console.log(days);
+    let dropDown = '';
     for (let i = 1; i <= days; i++) {
-      const dropDown = `<option value="day${i}">Day ${i}</option>`;
-      $('.dayDropDown').append(dropDown);
+      dropDown += `<option value="day${i}">Day ${i}</option>`;
     }
+    $('.dayDropDown').html(dropDown);
   }
   
   function handleEventListeners() {
@@ -561,11 +563,11 @@ return weatherResults;
     $('.activityContainer').on('click', '#activitySearch-button', function(e) {
       e.preventDefault();
       const searchTerm = $('#activitySearch-input').val();
-      console.log(searchTerm);
       const lat = localStorage.getItem('lat');
       const lon = localStorage.getItem('lon');
       $('.activityResultsContainer').html('');
       getPlaces(lat, lon, searchTerm);
+      $('#activitySearch-input').val('');
     })
 
     // packingListTriggers
