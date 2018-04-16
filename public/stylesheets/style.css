@@ -362,11 +362,18 @@ span {
   margin: 25px;
   padding: 20px;
   position: relative;
+  height: 180px;
 }
 
 .button-notes {
   position: absolute;
   right: 20px;
+  bottom: 20px;
+}
+
+.button-delete {
+  position: absolute;
+  bottom: 20px;
 }
 
 .notesInput {
@@ -374,7 +381,7 @@ span {
   right: 150px;
   height: 100px;
   width: 300px;
-  top: 25%;
+  bottom: 20px;
 }
 
 /* packingList */
@@ -469,6 +476,10 @@ footer ul {
 
 @media only screen and (max-width: 600px) {
 
+  .dayActivity {
+    height: auto;
+  }
+
   .landingBottom li {
     list-style-type: none;
     display: block;
@@ -493,6 +504,7 @@ footer ul {
     position: absolute;
     right: 15px;
     top: 15px;
+    bottom: auto;
   }
 } 
 

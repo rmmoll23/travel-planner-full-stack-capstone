@@ -352,15 +352,17 @@ return weatherResults;
     $('.dayView').html(dayView);
   }
 
-  function displayDayViewContent () {
-    // const content = `<div class="dayActivity">
-    // <h2><a href="#">Eiffel Tower</a></h2>
-    // <p>Address</p><br>
-    // <button class="button-delete" type="button">Delete</button>
-    // <textarea rows="4" cols="50" class="notesInput">Notes... 
-    // </textarea>
-    // <button class="button-notes" type="button">Save Notes</button>
-    // </div>`
+  function displayDayViewContent(name, address, daySelected, url) {
+    const dayViewContent = `<div class="dayActivity">
+    <h2><a href="${url}" target="_blank">${name}</a></h2>
+    <p>${address}</p><br>
+    <button class="button-delete" type="button">Delete</button>
+    <textarea rows="4" cols="50" class="notesInput">Notes... 
+    </textarea>
+    <button class="button-notes" type="button">Save Notes</button>
+    </div>`
+
+    $(`${daySelected}`).find('.activities').append(dayViewContent);
 
   }
   
@@ -642,7 +644,10 @@ return weatherResults;
 
       const name = $(this).parent('.restaurantResults').find('#restaurantName').text();
       const address = $(this).parent('.restaurantResults').find('#restaurantAddress').text();
-      console.log(name, address);
+      const url = $(this).parent('.restaurantResults').find('a').attr('href');
+      console.log(name, address, url);
+      displayDayViewContent(name, address, daySelected, url);
+      alert(`Item added to planner`);
     });
 
     // search
@@ -657,6 +662,8 @@ return weatherResults;
       const name = $(this).parent('.activityResults').find('#placeName').text();
       const address = $(this).parent('.activityResults').find('#placeAddress').text();
       console.log(name, address);
+      displayDayViewContent(name, address, daySelected);
+      alert(`Item added to planner`);
 
     });
 
@@ -671,9 +678,20 @@ return weatherResults;
 
       const name = $(this).parent('.hikeResults').find('#trailName').text();
       const location = $(this).parent('.hikeResults').find('#trailLocation').text();
-      console.log(name, location);
+      const url = $(this).parent('.hikeResults').find('a').attr('href');
+      console.log(name, location, url);
+      displayDayViewContent(name, location, daySelected);
+      alert(`Item added to planner`);
 
     });
+
+    // dayViewTriggers
+
+    // deleteEvent
+    $('.dayView').on('click', '.button-delete', function(e) {
+      $(this).parent('.dayActivity').remove();
+      console.log('deletedEvent');
+    })
 
 
 
