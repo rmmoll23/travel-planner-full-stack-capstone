@@ -718,8 +718,9 @@ return weatherResults;
 
       const name = $(this).parent('.activityResults').find('#placeName').text();
       const address = $(this).parent('.activityResults').find('#placeAddress').text();
-      console.log(name, address);
-      displayDayViewContent(name, address, daySelected);
+      const url = $(this).parent('.activityResults').find('a').attr('href');
+      console.log(name, address, url);
+      displayDayViewContent(name, address, daySelected, url);
       alert(`Item added to planner`);
 
     });
@@ -737,7 +738,7 @@ return weatherResults;
       const location = $(this).parent('.hikeResults').find('#trailLocation').text();
       const url = $(this).parent('.hikeResults').find('a').attr('href');
       console.log(name, location, url);
-      displayDayViewContent(name, location, daySelected);
+      displayDayViewContent(name, location, daySelected, url);
       alert(`Item added to planner`);
 
     });
