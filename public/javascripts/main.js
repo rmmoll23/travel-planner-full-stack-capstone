@@ -58,6 +58,16 @@ function getPlaces(lat, lon, searchInput){
   });
 }
 
+function getPlaceUrl(placeId, callback) {
+$.getJSON(`  https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=AIzaSyB8wYopFhHNaCNt9f9lko97Da9hX8z3vZU&callback=?
+`)
+.done(callback)
+.fail(function(err){
+    console.log(err)
+});
+}
+
+
 
 function getRestaurants(lat, lon, startNumber){
   $.ajax({
@@ -140,17 +150,27 @@ return restaurantResults;
 function displayPlaces(data) {
   
   const Places = data.results.map((result, index) => renderPlaces(result,index));
-  $(".activityResultsContainer").append(Places);
+  Promise.all(Places)
+    .then((arrResolvedPromises) => {
+      $(".activityResultsContainer").append(arrResolvedPromises);
+    })
 }
 
-function renderPlaces(result, index) {
+function renderPlaces (result, index) {
+  return new Promise((resolve) => {
+      // add place url
+  const placeId = result.place_id
   const placeName = result.name;
   const placeAddress = result.vicinity;
   const type = result.types[0];
   const rating = result.rating;
+  
+  getPlaceUrl(placeId, function(data){
+  const placeURL = data.result.website;
+          
 
-  let Places = '<div class="activityResults">';
-  Places += `<p>Name: <span id="placeName">${placeName}</span></p>`;
+          let Places = '<div class="activityResults">';
+  Places += `<p>Name: <span id="placeName"><a href="${placeURL}" target="_blank">${placeName}</a></span></p>`;
   Places += `<p>Rating: <span>${rating}/5</span></p>`;
   Places += `<p>Type: <span>${type}</span></p>`;
   Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
@@ -159,8 +179,33 @@ function renderPlaces(result, index) {
   Places += '</select>';
   Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
   Places += '</div>';
-return Places;
+  resolve(Places);
+      });
+  });
 }
+
+// function renderPlaces(result, index) {
+//   // add place url
+//   const placeId = result.place_id
+//   const placeURL = getPlaceUrl(placeId);
+
+//   const placeName = result.name;
+//   const placeAddress = result.vicinity;
+//   const type = result.types[0];
+//   const rating = result.rating;
+
+//   let Places = '<div class="activityResults">';
+//   Places += `<p>Name: <span id="placeName"><a href="${placeURL}" target="_blank">${placeName}</a></span></p>`;
+//   Places += `<p>Rating: <span>${rating}/5</span></p>`;
+//   Places += `<p>Type: <span>${type}</span></p>`;
+//   Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
+//   Places += '<select class="dayDropDown" name="days">';
+            
+//   Places += '</select>';
+//   Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
+//   Places += '</div>';
+// return Places;
+// }
 
 function displayHikingTrailsResults(data) {
   const hikingTrailsResults = data.trails.map((trail, index) => renderHikingTrailsResults(trail,index));

@@ -309,7 +309,7 @@ span {
 }
 
 .tripPlanner h1,h3 {
-  border-bottom: solid rgb(125, 224, 219);
+  border-bottom: solid black;
   width: max-content;
   margin: 0 auto;
 }
