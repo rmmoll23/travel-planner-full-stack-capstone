@@ -363,7 +363,19 @@ return weatherResults;
     </div>`
 
     $(`${daySelected}`).find('.activities').append(dayViewContent);
+    activityCount(daySelected);
+  }
 
+  // activityCount
+  function activityCount(daySelected) {
+    const itemCount = $(`${daySelected}`).find('.activities').children().length;
+    console.log(itemCount);
+    const day = daySelected.replace(/\D/g,'');
+    console.log(day);
+
+    const activityCount = `<p>${itemCount} activities saved</p>`;
+    $(`.plannerDay${day}`).find('p').html(activityCount);
+    
   }
   
   
