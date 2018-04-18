@@ -249,7 +249,7 @@ return weatherResults;
 
   // Displays day drop down in search containers
   function displayDayDropDown() {
-    console.log('days');
+    console.log('dayDropDownAdded');
     const days = localStorage.getItem("tripLength");
     let dropDown = '';
     for (let i = 1; i <= days; i++) {
@@ -584,12 +584,13 @@ return weatherResults;
     // activitySearchTriggers
     $('.activityContainer').on('click', '#activitySearch-button', function(e) {
       e.preventDefault();
-      const searchTerm = $('#activitySearch-input').val();
-      const lat = localStorage.getItem('lat');
-      const lon = localStorage.getItem('lon');
+      const keyword = $('#activitySearch-input').val();
+      const lat = +localStorage.getItem('lat');
+      const lon = +localStorage.getItem('lon');
+      console.log(typeof +lat ,typeof +lon);
+
       $('.activityResultsContainer').html('');
-      // getPlaces(lat, lon, searchTerm);
-      initSearch(lat, lon, searchTerm);
+      initSearch(lat, lon, keyword);
       $('#activitySearch-input').val('');
     })
 
@@ -671,11 +672,11 @@ return weatherResults;
 
     // key listeners
 
-  //   $('.memeBanner').on('keyup', '.clickableIcon', function(event) {
-  //     if (event.keyCode === 13) {
-  //       $(this).click();
-  //     }
-  //   });
+    $('.activityContainer').on('keyup', '#activitySearch-input', function(event) {
+      if (event.keyCode === 13) {
+        $('#activitySearch-button').click();
+      }
+    });
   
   }
   

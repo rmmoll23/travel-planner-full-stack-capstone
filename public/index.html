@@ -11,25 +11,18 @@
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
         <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
       #map {
         display: none;
       }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+     
     </style>
     <script>
 
       var map;
-      var infowindow;
 
       function initSearch(lat, lon, keyword) {
-        var location = {lat: lat, lng: lon};
+              console.log(lat, lon, keyword);
+        let location = {lat: lat, lng: lon};
 
         map = new google.maps.Map(document.getElementById('map'), {
           center: location,
@@ -46,7 +39,6 @@
       function callback(results, status) {
         console.log(results)
         displayPlaces(results);
-        displayDayDropDown();
       }
 
       function displayPlaces(data) {
@@ -54,12 +46,12 @@
         Promise.all(Places)
         .then((arrResolvedPromises) => {
       $(".activityResultsContainer").append(arrResolvedPromises);
+      displayDayDropDown();
     })
 }
 
 function renderPlaces (result, index) {
   return new Promise((resolve) => {
-        console.log(result);
   const placeId = result.place_id
   const placeName = result.name;
   const placeAddress = result.formatted_address;
@@ -67,6 +59,8 @@ function renderPlaces (result, index) {
   const rating = result.rating;
   
   getPlaceUrl(placeId, function(data){
+          console.log(data);
+
           let placeURL = '';
           if (data === null) {
 
