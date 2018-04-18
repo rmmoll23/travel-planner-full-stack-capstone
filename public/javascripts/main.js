@@ -44,29 +44,7 @@ function getLatLon(city){
     .fail(function(err){
         console.log(err)
     });
-}
-
-function getPlaces(lat, lon, searchInput){
-  $.getJSON(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=50000&keyword=${searchInput}&rankBy=prominence&key= AIzaSyB8wYopFhHNaCNt9f9lko97Da9hX8z3vZU`)
-  .done(function(result) {
-    console.log(result);
-    displayPlaces(result);
-    displayDayDropDown();
-  })
-  .fail(function(err){
-      console.log(err)
-  });
-}
-
-function getPlaceUrl(placeId, callback) {
-$.getJSON(`  https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=AIzaSyB8wYopFhHNaCNt9f9lko97Da9hX8z3vZU&callback=?
-`)
-.done(callback)
-.fail(function(err){
-    console.log(err)
-});
-}
-
+  }
 
 
 function getRestaurants(lat, lon, startNumber){
@@ -118,7 +96,7 @@ function renderLatLon(data) {
   getRestaurants(lat, lon, 0);
   getRestaurants(lat, lon, 20);
   getRestaurants(lat, lon, 40);
-  getPlaces(lat, lon, 'things to do');
+  initSearch(lat, lon, 'things to do');
   getHikingTrails(lat, lon);
 }
 
@@ -147,65 +125,6 @@ function renderRestaurantResults(items, index) {
 return restaurantResults;
 }
 
-function displayPlaces(data) {
-  
-  const Places = data.results.map((result, index) => renderPlaces(result,index));
-  Promise.all(Places)
-    .then((arrResolvedPromises) => {
-      $(".activityResultsContainer").append(arrResolvedPromises);
-    })
-}
-
-function renderPlaces (result, index) {
-  return new Promise((resolve) => {
-      // add place url
-  const placeId = result.place_id
-  const placeName = result.name;
-  const placeAddress = result.vicinity;
-  const type = result.types[0];
-  const rating = result.rating;
-  
-  getPlaceUrl(placeId, function(data){
-  const placeURL = data.result.website;
-          
-
-          let Places = '<div class="activityResults">';
-  Places += `<p>Name: <span id="placeName"><a href="${placeURL}" target="_blank">${placeName}</a></span></p>`;
-  Places += `<p>Rating: <span>${rating}/5</span></p>`;
-  Places += `<p>Type: <span>${type}</span></p>`;
-  Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
-  Places += '<select class="dayDropDown" name="days">';
-            
-  Places += '</select>';
-  Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
-  Places += '</div>';
-  resolve(Places);
-      });
-  });
-}
-
-// function renderPlaces(result, index) {
-//   // add place url
-//   const placeId = result.place_id
-//   const placeURL = getPlaceUrl(placeId);
-
-//   const placeName = result.name;
-//   const placeAddress = result.vicinity;
-//   const type = result.types[0];
-//   const rating = result.rating;
-
-//   let Places = '<div class="activityResults">';
-//   Places += `<p>Name: <span id="placeName"><a href="${placeURL}" target="_blank">${placeName}</a></span></p>`;
-//   Places += `<p>Rating: <span>${rating}/5</span></p>`;
-//   Places += `<p>Type: <span>${type}</span></p>`;
-//   Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
-//   Places += '<select class="dayDropDown" name="days">';
-            
-//   Places += '</select>';
-//   Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
-//   Places += '</div>';
-// return Places;
-// }
 
 function displayHikingTrailsResults(data) {
   const hikingTrailsResults = data.trails.map((trail, index) => renderHikingTrailsResults(trail,index));
@@ -284,7 +203,6 @@ function renderWeatherResults(forecast, index) {
 return weatherResults;
 }
 
-
   // function updateMeme(id) {
   //   console.log('Updating meme `' + id + '`');
   //   $.ajax({
@@ -305,39 +223,7 @@ return weatherResults;
   //   });
   // }
 
-// datepicker
-
-  function datePickerCalendar() {
-    var dateFormat = "mm/dd/yy",
-      from = $( "#from" )
-        .datepicker({
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 1
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = $( "#to" ).datepicker({
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 1
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  };
+  
 
   function dateDifference() {
     let date1 = $('#from').val();
@@ -363,6 +249,7 @@ return weatherResults;
 
   // Displays day drop down in search containers
   function displayDayDropDown() {
+    console.log('days');
     const days = localStorage.getItem("tripLength");
     let dropDown = '';
     for (let i = 1; i <= days; i++) {
@@ -398,14 +285,28 @@ return weatherResults;
   }
 
   function displayDayViewContent(name, address, daySelected, url) {
-    const dayViewContent = `<div class="dayActivity">
-    <h2><a href="${url}" target="_blank">${name}</a></h2>
-    <p>${address}</p><br>
-    <button class="button-delete" type="button">Delete</button>
-    <textarea rows="4" cols="50" class="notesInput">Notes... 
-    </textarea>
-    <button class="button-notes" type="button">Save Notes</button>
-    </div>`
+    console.log(url);
+    let dayViewContent = '';
+    if (url === undefined) {
+      dayViewContent = `<div class="dayActivity">
+      <h2>${name}</h2>
+      <p>${address}</p><br>
+      <button class="button-delete" type="button">Delete</button>
+      <textarea rows="4" cols="50" class="notesInput">Notes... 
+      </textarea>
+      <button class="button-notes" type="button">Save Notes</button>
+      </div>`
+    }
+    else {
+      dayViewContent = `<div class="dayActivity">
+      <h2><a href="${url}" target="_blank">${name}</a></h2>
+      <p>${address}</p><br>
+      <button class="button-delete" type="button">Delete</button>
+      <textarea rows="4" cols="50" class="notesInput">Notes... 
+      </textarea>
+      <button class="button-notes" type="button">Save Notes</button>
+      </div>`
+    }
 
     $(`${daySelected}`).find('.activities').append(dayViewContent);
     activityCount(daySelected);
@@ -687,7 +588,8 @@ return weatherResults;
       const lat = localStorage.getItem('lat');
       const lon = localStorage.getItem('lon');
       $('.activityResultsContainer').html('');
-      getPlaces(lat, lon, searchTerm);
+      // getPlaces(lat, lon, searchTerm);
+      initSearch(lat, lon, searchTerm);
       $('#activitySearch-input').val('');
     })
 
@@ -752,7 +654,6 @@ return weatherResults;
     })
 
 
-
     // packingListTriggers
 
     $('.itemList').on('click', '.delete', function(event) {
@@ -782,5 +683,5 @@ return weatherResults;
   $(function() {
     handleEventListeners();
     $(".fadeOutHeader").fadeOut(15000);
-    datePickerCalendar();
     });
+

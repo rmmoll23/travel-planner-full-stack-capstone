@@ -10,6 +10,104 @@
         <!-- <link href="../stylesheets/jquery.loader.css" rel="stylesheet" /> -->
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+        <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        display: none;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+
+      var map;
+      var infowindow;
+
+      function initSearch(lat, lon, keyword) {
+        var location = {lat: lat, lng: lon};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: location,
+          zoom: 15
+        });
+
+        var service = new google.maps.places.PlacesService(map);
+        service.textSearch({
+          location: location,
+          query: keyword
+        }, callback);
+      }
+
+      function callback(results, status) {
+        console.log(results)
+        displayPlaces(results);
+        displayDayDropDown();
+      }
+
+      function displayPlaces(data) {
+        const Places = data.map((result, index) => renderPlaces(result,index));
+        Promise.all(Places)
+        .then((arrResolvedPromises) => {
+      $(".activityResultsContainer").append(arrResolvedPromises);
+    })
+}
+
+function renderPlaces (result, index) {
+  return new Promise((resolve) => {
+        console.log(result);
+  const placeId = result.place_id
+  const placeName = result.name;
+  const placeAddress = result.formatted_address;
+  const type = result.types[0];
+  const rating = result.rating;
+  
+  getPlaceUrl(placeId, function(data){
+          let placeURL = '';
+          if (data === null) {
+
+          let Places = '<div class="activityResults">';
+        Places += `<p>Name: <span id="placeName">${placeName}</span></p>`;
+        Places += `<p>Rating: <span>${rating}/5</span></p>`;
+        Places += `<p>Type: <span>${type}</span></p>`;
+        Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
+        Places += '<select class="dayDropDown" name="days">';
+                
+        Places += '</select>';
+        Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
+        Places += '</div>';
+        resolve(Places);
+          }
+          else {
+                placeURL = data.website;
+
+          let Places = '<div class="activityResults">';
+        Places += `<p>Name: <span id="placeName"><a href="${placeURL}" target="_blank">${placeName}</a></span></p>`;
+        Places += `<p>Rating: <span>${rating}/5</span></p>`;
+        Places += `<p>Type: <span>${type}</span></p>`;
+        Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
+        Places += '<select class="dayDropDown" name="days">';
+                
+        Places += '</select>';
+        Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
+        Places += '</div>';
+        resolve(Places);
+        }
+      });
+  });
+}
+
+function getPlaceUrl(place_Id, callback) {
+        const details = new google.maps.places.PlacesService(map);
+                details.getDetails({
+                        placeId: place_Id
+                }, callback);
+}
+    </script>
 </head>
 
 <body>
@@ -293,19 +391,52 @@
         <li><a href="https://github.com/rmmoll23" title="Check out my code on GitHub" target="_blank">GitHub</a></li>
     </ul>      
  </footer>
-
+ <div id="map"></div>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI0aS01tu1KsJFA2fWIJCB8L-_Lb9k_qo&libraries=places" async defer></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script >
+        function datePickerCalendar() {
+    var dateFormat = "mm/dd/yy",
+      from = $( "#from" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 1
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  };
+  $(datePickerCalendar());
+</script>
  <script
  src="https://code.jquery.com/jquery-3.2.1.min.js"
  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
  crossorigin="anonymous">
 </script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- <script src="../javascripts/jquery.loader.js"></script> -->
 <script src="../javascripts/signUp.js"></script>
 <script src="../javascripts/logIn.js"></script>
 <script src="../javascripts/main.js"></script>
-
 
 </body>
 
