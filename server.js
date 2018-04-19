@@ -16,9 +16,9 @@ mongoose.Promise = global.Promise;
 
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
-const tripsRouter = require('./trips/tripsRouter');
-const itemsRouter = require('./items/itemsRouter');
-const activitiesRouter = require('./activities/activitiesRouter');
+const { router: tripsRouter } = require('./trips');
+const { router: itemsRouter } = require('./items');
+const { router: activitiesRouter } = require('./activities');
 
 
 
