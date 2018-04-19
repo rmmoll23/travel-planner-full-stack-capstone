@@ -37,13 +37,17 @@
       }
 
       function callback(results, status) {
-        console.log(results)
-        displayPlaces(results);
+        console.log('apiCall');
+        console.log(results.length);
+        const searchResults = results.splice(9, 10);
+        const secondSearchResults = results.splice(0, 10);
+        setTimeout(function(){ displayPlaces(searchResults); }, 2000);
+        setTimeout(function(){ displayPlaces(secondSearchResults); }, 7000);
       }
 
       function displayPlaces(data) {
-        const Places = data.map((result, index) => renderPlaces(result,index));
-        Promise.all(Places)
+        const places = data.map((result, index) => renderPlaces(result,index));
+        Promise.all(places)
         .then((arrResolvedPromises) => {
       $(".activityResultsContainer").append(arrResolvedPromises);
       displayDayDropDown();
@@ -57,48 +61,50 @@ function renderPlaces (result, index) {
   const placeAddress = result.formatted_address;
   const type = result.types[0];
   const rating = result.rating;
-  
-  getPlaceUrl(placeId, function(data){
-          console.log(data);
+  console.log(placeId);
+  getPlaceUrl(placeId, function(place, status){
+          console.log('apiCall');
+          console.log(status, google.maps.places.PlacesServiceStatus.OK);
+          console.log(place);
 
           let placeURL = '';
-          if (data === null) {
+          if (place === null) {
 
-          let Places = '<div class="activityResults">';
-        Places += `<p>Name: <span id="placeName">${placeName}</span></p>`;
-        Places += `<p>Rating: <span>${rating}/5</span></p>`;
-        Places += `<p>Type: <span>${type}</span></p>`;
-        Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
-        Places += '<select class="dayDropDown" name="days">';
+          let places = '<div class="activityResults">';
+        places += `<p>Name: <span id="placeName">${placeName}</span></p>`;
+        places += `<p>Rating: <span>${rating}/5</span></p>`;
+        places += `<p>Type: <span>${type}</span></p>`;
+        places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
+        places += '<select class="dayDropDown" name="days">';
                 
-        Places += '</select>';
-        Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
-        Places += '</div>';
-        resolve(Places);
+        places += '</select>';
+        places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
+        places += '</div>';
+        resolve(places);
           }
           else {
-                placeURL = data.website;
+                placeURL = place.website;
 
-          let Places = '<div class="activityResults">';
-        Places += `<p>Name: <span id="placeName"><a href="${placeURL}" target="_blank">${placeName}</a></span></p>`;
-        Places += `<p>Rating: <span>${rating}/5</span></p>`;
-        Places += `<p>Type: <span>${type}</span></p>`;
-        Places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
-        Places += '<select class="dayDropDown" name="days">';
+          let places = '<div class="activityResults">';
+        places += `<p>Name: <span id="placeName"><a href="${placeURL}" target="_blank">${placeName}</a></span></p>`;
+        places += `<p>Rating: <span>${rating}/5</span></p>`;
+        places += `<p>Type: <span>${type}</span></p>`;
+        places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
+        places += '<select class="dayDropDown" name="days">';
                 
-        Places += '</select>';
-        Places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
-        Places += '</div>';
-        resolve(Places);
+        places += '</select>';
+        places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
+        places += '</div>';
+        resolve(places);
         }
-      });
+      })
   });
 }
 
-function getPlaceUrl(place_Id, callback) {
+function getPlaceUrl(placeId, callback) {
         const details = new google.maps.places.PlacesService(map);
                 details.getDetails({
-                        placeId: place_Id
+                        placeId 
                 }, callback);
 }
     </script>

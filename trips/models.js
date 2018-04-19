@@ -1,43 +1,26 @@
-// 'use strict';
+'use strict';
 
-// const mongoose = require('mongoose');
-// mongoose.Promise = global.Promise;
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
-// const PhotoSchema = mongoose.Schema({
-//   photoURL: {type: String, required: true},
-//   liked: {type: Number},
-//   date: {type: Date, default: Date.now}
-// });
+const TripSchema = mongoose.Schema({
+  username: {type: String, required: true},
+  tripName: {type: String, required: true},
+  location: {type: String, required: true},
+  tripLength: {type: Number, required: true}
+});
 
 
-// PhotoSchema.methods.serialize = function() {
-//   return {
-//     id: this._id,
-//     photoURL: this.photoURL,
-//     liked: this.liked,
-//     date: this.date,
-//   };
-// };
+TripSchema.methods.serialize = function() {
+  return {
+    username: this.username,
+    tripName: this.tripName,
+    location: this.location,
+    tripLength: this.tripLength
+  };
+};
 
-// const Photo = mongoose.model('Photo', PhotoSchema);
-
-// const MemeSchema = mongoose.Schema({
-//     memeURL: {type: String, required: true},
-//     liked: {type: Number},
-//     date: {type: Date, default: Date.now},
-//   });
-  
-  
-//   MemeSchema.methods.serialize = function() {
-//     return {
-//       id: this._id,
-//       memeURL: this.memeURL,
-//       liked: this.liked,
-//       date: this.date,
-//     };
-//   };
-  
-//   const Meme = mongoose.model('Meme', MemeSchema);
+const Trip = mongoose.model('Trip', TripSchema);
   
 
-// module.exports = {Photo, Meme};
+module.exports = {Trip};
