@@ -7,11 +7,13 @@ const ItemSchema = mongoose.Schema({
   category: {type: String, required: true},
   username: {type: String, required: true, unique: true},
   itemName: {type: String, required: true},
+  tripName: {type: String, required: true},
   checked: {type: Boolean, required: true}
 });
 
 ItemSchema.methods.serialize = function() {
   return {
+    tripName: this.tripName,
     itemName: this.itemName,
     username: this.username,
     checked: this.checked,

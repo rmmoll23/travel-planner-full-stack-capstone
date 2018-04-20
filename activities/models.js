@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const ActivitySchema = mongoose.Schema({
+  tripName: {type: String, required: true},
   activityName: {type: String, required: true},
   username: {type: String, required: true},
   activityURL: {type: String, required: true},
@@ -15,6 +16,7 @@ const ActivitySchema = mongoose.Schema({
 
 ActivitySchema.methods.serialize = function() {
   return {
+    tripName: this.tripName,
     activityName: this.activityName,
     username: this.username,
     activityURL: this.activityURL,
