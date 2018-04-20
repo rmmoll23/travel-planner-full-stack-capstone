@@ -26,7 +26,7 @@ router.get('/:username', (req, res) => {
   });
   
   router.post('/', (req, res) => {
-    const requiredFields = ['username, tripName, location, tripLength'];
+    const requiredFields = ['username', 'tripName', 'location', 'tripLength'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
       if (!(field in req.body)) {
@@ -63,4 +63,4 @@ router.get('/:username', (req, res) => {
   });
 
 
-module.exports = router;
+module.exports = { router };

@@ -203,6 +203,57 @@ function renderWeatherResults(forecast, index) {
 return weatherResults;
 }
 
+// CRUD Operations
+
+function createTripPost(name, city, username, tripLength) {
+  console.log('tripToDatabase');
+
+      const createTripObject = {
+        username: username,
+        tripName: name,
+        location: city,
+        tripLength: tripLength
+      };
+      console.log(createTripObject);
+
+      $.ajax({
+        type: 'POST',
+        url: serverBase + '/trips',
+        dataType: 'json',
+        data: JSON.stringify(createTripObject),
+        contentType: 'application/json'
+      })
+      .fail(function(error) {
+        console.log(error)
+      })
+      .done(function (result) {
+        console.log(result);
+        console.log('tripCreated');
+        $('#tripName').val('');
+        $('#tripLocation').val('');
+        $('#from').val('');
+        $('to').val('');
+        $('#tripList').append(`<li><a href="#">${result.name}</a></li>`);
+        $('.newTrip').addClass('hidden');
+        $('.activitySelection').removeClass('hidden');
+        $('.navList-activity').removeClass('hidden');
+      })
+    }
+
+    function getTripList(username) {
+        console.log('Retrieving tripList')
+        const tripListURL = serverBase + `/trips/${username}`;
+        $.getJSON(tripListURL, function(trips) {
+          const tripList = trips.map(function(trip) {
+            const tripListTemplate = 
+              `<li><a href="#">${trip.tripName}</a></li>`;
+            return tripListTemplate;
+          })
+          $('#tripList').append(tripList);
+        });
+      }
+
+
   // function updateMeme(id) {
   //   console.log('Updating meme `' + id + '`');
   //   $.ajax({
@@ -249,7 +300,7 @@ return weatherResults;
 
   // Displays day drop down in search containers
   function displayDayDropDown() {
-    console.log('dayDropDownAdded');
+    
     const days = localStorage.getItem("tripLength");
     let dropDown = '';
     for (let i = 1; i <= days; i++) {
@@ -391,16 +442,11 @@ return weatherResults;
       displayTripHeaders();
       displayTravelPlanner();
       displayDayView();
-      
-      console.log('tripCreated');
-      $('#tripName').val('');
-      $('#tripLocation').val('');
-      $('#from').val('');
-      $('to').val('');
+      const username = localStorage.getItem("username");
+      const tripLength = localStorage.getItem("tripLength");
 
-      $('.newTrip').addClass('hidden');
-      $('.activitySelection').removeClass('hidden');
-      $('.navList-activity').removeClass('hidden');
+
+      createTripPost(name, city, username, tripLength);
     });
 
     $('#cancelTrip').click(function() {

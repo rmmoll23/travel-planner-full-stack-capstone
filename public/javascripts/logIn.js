@@ -35,6 +35,8 @@ function handleLoginSubmit() {
 				.done(function (response) {
 					if (response.authToken) {
 						console.log('logged in');
+						localStorage.setItem("username", uname);
+						getTripList(uname);
 						$('.logIn').addClass('hidden');
 						$('.profile').removeClass('hidden');
 					} else {

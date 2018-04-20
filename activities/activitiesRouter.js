@@ -74,4 +74,4 @@ router.get('/:username', (req, res) => {
       console.log(res);
   });
 
-module.exports = router;
+module.exports = { router };

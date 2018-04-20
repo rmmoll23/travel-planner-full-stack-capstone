@@ -37,8 +37,7 @@
       }
 
       function callback(results, status) {
-        console.log('apiCall');
-        console.log(results.length);
+
         const searchResults = results.splice(9, 10);
         const secondSearchResults = results.splice(0, 10);
         setTimeout(function(){ displayPlaces(searchResults); }, 2000);
@@ -61,11 +60,8 @@ function renderPlaces (result, index) {
   const placeAddress = result.formatted_address;
   const type = result.types[0];
   const rating = result.rating;
-  console.log(placeId);
+  
   getPlaceUrl(placeId, function(place, status){
-          console.log('apiCall');
-          console.log(status, google.maps.places.PlacesServiceStatus.OK);
-          console.log(place);
 
           let placeURL = '';
           if (place === null) {
@@ -197,9 +193,9 @@ function getPlaceUrl(placeId, callback) {
    
 </main>
 <main role="main" class="profile hidden">
-        <h1>Welcome, John!</h1>
+        <h1 >Welcome, <span id="firstName">John!</span></h1>
         <h2>Current Saved Trips</h2>
-        <ul>
+        <ul id="tripList">
                 <li><a href="#">Australian Outback</a></li>
                 <li><a href="#">African Safari</a></li>
                 <li><a href="#">Rocky Mountains</a></li>
