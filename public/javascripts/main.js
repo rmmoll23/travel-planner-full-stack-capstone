@@ -94,7 +94,6 @@ function getHikingTrails(lat, lon){
 
 function renderLocationKey (data) {
   const locationKey = data[0].Key;
-  console.log(locationKey);
   getWeatherForecast(locationKey);
 }
 
@@ -216,7 +215,7 @@ return weatherResults;
 }
 
 // CRUD Operations
-
+// Trip Requests
 function createTripPost(name, city, username, tripLength) {
   console.log('tripToDatabase');
 
@@ -226,7 +225,6 @@ function createTripPost(name, city, username, tripLength) {
         location: city,
         tripLength: tripLength
       };
-      console.log(createTripObject);
 
       $.ajax({
         type: 'POST',
@@ -239,7 +237,6 @@ function createTripPost(name, city, username, tripLength) {
         console.log(error)
       })
       .done(function (result) {
-        console.log(result);
         console.log('tripCreated');
         $('#tripName').val('');
         $('#tripLocation').val('');
@@ -255,9 +252,7 @@ function createTripPost(name, city, username, tripLength) {
     function getTripList(username) {
         console.log('Retrieving tripList')
         const tripListURL = serverBase + `/trips/${username}`;
-        console.log(tripListURL);
         $.getJSON(tripListURL, function(trips) {
-          console.log(trips);
           const tripList = trips.map(function(trip) {
             const tripListTemplate = 
               `<li><a href="#">${trip.tripName}</a></li>`;
@@ -271,7 +266,6 @@ function createTripPost(name, city, username, tripLength) {
     console.log(`Retrieving trip ${name}`);
     const tripName = name.replace(' ', '-');
     const username = localStorage.getItem('username');
-    console.log(tripName);
     const getTripURL = serverBase + `/trips/${username}/${tripName}`;
     
     $.getJSON(getTripURL, function(trip) {
@@ -289,6 +283,7 @@ function createTripPost(name, city, username, tripLength) {
       displayTripHeaders();
       displayTravelPlanner();
       displayDayView();
+      getActivities();
       })
       .fail(function(error) {
         console.log(error);
@@ -298,6 +293,7 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-activity').removeClass('hidden');
     }
 
+    // Activity Requests
     function postActivity(name, address, day, url) {
       console.log('activityToDatabase');
     
@@ -310,7 +306,6 @@ function createTripPost(name, city, username, tripLength) {
             day: day,
             notes: ''
           };
-          console.log(createActivityObject);
     
           $.ajax({
             type: 'POST',
@@ -323,10 +318,30 @@ function createTripPost(name, city, username, tripLength) {
             console.log(error)
           })
           .done(function (result) {
-            console.log(result);
             console.log('activityPosted');
           })
         }
+
+    function getActivities() {
+        console.log('Retrieving activityList')
+        const username = store.username; 
+        const days = store.tripLength; 
+        const location = store.location; 
+        const name = store.tripName;  
+        const activityListURL = serverBase + `/activities/${username}/${name}`;
+        $.getJSON(activityListURL, function(activities) {
+          console.log(activities);
+          const activityList = activities.map(function(activity) {
+            const activityURL = activity.activityURL;
+            const activityName = activity.activityName;
+            const address = activity.address;
+            let day = activity.day;
+            day = `.day${day}`;
+            const notes = activity.notes;
+            displayDayViewContent(activityName, address, day, activityURL, notes)
+          })
+        });
+      }
     
 
 
@@ -418,15 +433,15 @@ function createTripPost(name, city, username, tripLength) {
     $('.dayView').html(dayView);
   }
 
-  function displayDayViewContent(name, address, daySelected, url) {
-    console.log(url);
+  function displayDayViewContent(name, address, daySelected, url, notes) {
+    console.log(name, address, daySelected, url, notes);
     let dayViewContent = '';
     if (url === undefined) {
       dayViewContent = `<div class="dayActivity">
       <h2>${name}</h2>
       <p>${address}</p><br>
       <button class="button-delete" type="button">Delete</button>
-      <textarea rows="4" cols="50" class="notesInput">Notes... 
+      <textarea rows="4" cols="50" class="notesInput">${notes} 
       </textarea>
       <button class="button-notes" type="button">Save Notes</button>
       </div>`
@@ -436,7 +451,7 @@ function createTripPost(name, city, username, tripLength) {
       <h2><a href="${url}" target="_blank">${name}</a></h2>
       <p>${address}</p><br>
       <button class="button-delete" type="button">Delete</button>
-      <textarea rows="4" cols="50" class="notesInput">Notes... 
+      <textarea rows="4" cols="50" class="notesInput">${notes} 
       </textarea>
       <button class="button-notes" type="button">Save Notes</button>
       </div>`
@@ -657,7 +672,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.dayView').addClass('hidden');
       $('.navList-day').addClass('hidden');
       $('.profile').removeClass('hidden');
-      for (let i = 1; i <=30; i++) {
+      const days = store.tripLength;
+      for (let i = 1; i <= days; i++) {
         $(`.day${i}`).addClass('hidden');
       }
     });
@@ -668,7 +684,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-day').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
       $('.navList-activity').removeClass('hidden');
-      for (let i = 1; i <=30; i++) {
+      const days = store.tripLength;
+      for (let i = 1; i <= days; i++) {
         $(`.day${i}`).addClass('hidden');
       }
     });
@@ -679,7 +696,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-day').addClass('hidden');
       $('.packingList').removeClass('hidden');
       $('.navList-packing').removeClass('hidden');
-      for (let i = 1; i <=30; i++) {
+      const days = store.tripLength;
+      for (let i = 1; i <= days; i++) {
         $(`.day${i}`).addClass('hidden');
       }
     });
@@ -690,7 +708,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-day').addClass('hidden');
       $('.tripPlanner').removeClass('hidden');
       $('.navList-planner').removeClass('hidden');
-      for (let i = 1; i <=30; i++) {
+      const days = store.tripLength;
+      for (let i = 1; i <= days; i++) {
         $(`.day${i}`).addClass('hidden');
       }
     });
