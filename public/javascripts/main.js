@@ -298,6 +298,37 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-activity').removeClass('hidden');
     }
 
+    function postActivity(name, address, day, url) {
+      console.log('activityToDatabase');
+    
+          const createActivityObject = {
+            tripName: store.tripName,
+            activityName: name,
+            username: store.username,
+            activityURL: url,
+            address: address,
+            day: day,
+            notes: ''
+          };
+          console.log(createActivityObject);
+    
+          $.ajax({
+            type: 'POST',
+            url: serverBase + '/activities',
+            dataType: 'json',
+            data: JSON.stringify(createActivityObject),
+            contentType: 'application/json'
+          })
+          .fail(function(error) {
+            console.log(error)
+          })
+          .done(function (result) {
+            console.log(result);
+            console.log('activityPosted');
+          })
+        }
+    
+
 
   // function updateMeme(id) {
   //   console.log('Updating meme `' + id + '`');
@@ -715,8 +746,11 @@ function createTripPost(name, city, username, tripLength) {
       const name = $(this).parent('.restaurantResults').find('#restaurantName').text();
       const address = $(this).parent('.restaurantResults').find('#restaurantAddress').text();
       const url = $(this).parent('.restaurantResults').find('a').attr('href');
+      let day = $(this).parent('.restaurantResults').find('select').val();
+      day = day.replace(/\D/g,'');
       console.log(name, address, url);
       displayDayViewContent(name, address, daySelected, url);
+      postActivity(name, address, day, url);
       alert(`Item added to planner`);
     });
 
@@ -732,8 +766,11 @@ function createTripPost(name, city, username, tripLength) {
       const name = $(this).parent('.activityResults').find('#placeName').text();
       const address = $(this).parent('.activityResults').find('#placeAddress').text();
       const url = $(this).parent('.activityResults').find('a').attr('href');
+      let day = $(this).parent('.activityResults').find('select').val();
+      day = day.replace(/\D/g,'');
       console.log(name, address, url);
       displayDayViewContent(name, address, daySelected, url);
+      postActivity(name, address, day, url);
       alert(`Item added to planner`);
 
     });
@@ -750,8 +787,11 @@ function createTripPost(name, city, username, tripLength) {
       const name = $(this).parent('.hikeResults').find('#trailName').text();
       const location = $(this).parent('.hikeResults').find('#trailLocation').text();
       const url = $(this).parent('.hikeResults').find('a').attr('href');
+      let day = $(this).parent('.hikeResults').find('select').val();
+      day = day.replace(/\D/g,'');
       console.log(name, location, url);
       displayDayViewContent(name, location, daySelected, url);
+      postActivity(name, address, day, url);
       alert(`Item added to planner`);
 
     });
