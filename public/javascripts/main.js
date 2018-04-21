@@ -421,7 +421,7 @@ function createTripPost(name, city, username, tripLength) {
     // const days = localStorage.getItem("tripLength");
     const days = store.tripLength;
     // const name = localStorage.getItem("tripName");
-    const name = store.tripLength;
+    const name = store.tripName;
     let dayView = '';
     for (let i = 1; i <= days; i++) {
       dayView += `<div class="dayPage day${i} hidden"><h1 class="dayHeader">${name} (Day ${i})</h1>
