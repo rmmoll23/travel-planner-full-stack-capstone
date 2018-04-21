@@ -8,7 +8,7 @@ const {Trip} = require('./models');
 router.get('/:username', (req, res) => {
       Trip.find({username: req.params.username})
       .then(trips => {
-        res.json(trips);
+        res.json(trips)
       })
       .catch(err => {
         console.error(err);
@@ -16,9 +16,15 @@ router.get('/:username', (req, res) => {
       });
   });
   
-  router.get('/:username', (req, res) => {
-      Trip.findOne({tripName: req.body.tripName}, {username: req.params.username})
-      .then(trip => res.json(trip))
+  router.get('/:username/:tripName', (req, res) => {
+      const name = req.params.tripName.replace('-', ' ');
+      Trip.findOne({
+          tripName: name,
+          username: req.params.username
+        })
+      .then(trip => {
+          res.json(trip)
+      })
       .catch(err => {
         console.error(err);
         res.status(500).json({ error: 'something went horribly awry' });

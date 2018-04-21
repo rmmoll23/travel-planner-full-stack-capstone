@@ -6,7 +6,10 @@ const jsonParser = bodyParser.json();
 const {Item} = require('./models');
 
 router.get('/:username', (req, res) => {
-      Item.find({username: req.params.username}, {tripName: req.body.tripName})
+      Item.find({
+        username: req.params.username, 
+        tripName: req.body.tripName
+      })
       .then(items => {
         res.json(items);
       })
@@ -17,7 +20,7 @@ router.get('/:username', (req, res) => {
   });
   
   router.post('/', (req, res) => {
-    const requiredFields = ['itemName, username, checked, category, tripName'];
+    const requiredFields = ['itemName', 'username', 'checked', 'category', 'tripName'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
       if (!(field in req.body)) {

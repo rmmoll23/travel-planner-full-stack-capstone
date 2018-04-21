@@ -1,9 +1,19 @@
 'use strict';
+
+let store = {
+  username: '',
+  tripName: '',
+  tripLength: '',
+  location: '',
+  latitude: '',
+  longitude: ''
+}
+
+
   
   // const serverBase = 'https://travel-planner-capstone.herokuapp.com';
   const serverBase = '';
   
-  let username = '';
   
   // API Calls
 function getWeatherForecast(locationKey){
@@ -93,6 +103,8 @@ function renderLatLon(data) {
   const lon = data.location_suggestions[0].longitude;
   localStorage.setItem("lat", lat);
   localStorage.setItem("lon", lon);
+  store.latitude = lat;
+  store.longitude = lon;
   getRestaurants(lat, lon, 0);
   getRestaurants(lat, lon, 20);
   getRestaurants(lat, lon, 40);
@@ -243,7 +255,9 @@ function createTripPost(name, city, username, tripLength) {
     function getTripList(username) {
         console.log('Retrieving tripList')
         const tripListURL = serverBase + `/trips/${username}`;
+        console.log(tripListURL);
         $.getJSON(tripListURL, function(trips) {
+          console.log(trips);
           const tripList = trips.map(function(trip) {
             const tripListTemplate = 
               `<li><a href="#">${trip.tripName}</a></li>`;
@@ -252,6 +266,37 @@ function createTripPost(name, city, username, tripLength) {
           $('#tripList').append(tripList);
         });
       }
+
+   function getTrip(name) {
+    console.log(`Retrieving trip ${name}`);
+    const tripName = name.replace(' ', '-');
+    const username = localStorage.getItem('username');
+    console.log(tripName);
+    const getTripURL = serverBase + `/trips/${username}/${tripName}`;
+    
+    $.getJSON(getTripURL, function(trip) {
+      store.username = trip.username;
+      store.tripLength = trip.tripLength;
+      store.location = trip.location;
+      store.tripName = trip.tripName;
+      console.log(trip)
+      return trip;
+      })
+      .done(function(result) {
+      console.log('success')
+      getLatLon(result.location);
+      getLocationKey(result.location);
+      displayTripHeaders();
+      displayTravelPlanner();
+      displayDayView();
+      })
+      .fail(function(error) {
+        console.log(error);
+      })
+      $('.profile').addClass('hidden');
+      $('.activitySelection').removeClass('hidden');
+      $('.navList-activity').removeClass('hidden');
+    }
 
 
   // function updateMeme(id) {
@@ -286,13 +331,16 @@ function createTripPost(name, city, username, tripLength) {
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
     console.log(diffDays);
     localStorage.setItem("tripLength", diffDays);
+    store.tripLength = diffDays;
     
   }
 
   // Displays headers on each view
   function displayTripHeaders() {
-    const name = localStorage.getItem("tripName");
-    const length = localStorage.getItem("tripLength");
+    // const name = localStorage.getItem("tripName");
+    const name = store.tripName;
+    // const length = localStorage.getItem("tripLength");
+    const length = store.tripLength;
     console.log(name, length);
     const headerText = `${name} (${length} days)`;
     $('.viewHeader').html(headerText);
@@ -301,7 +349,8 @@ function createTripPost(name, city, username, tripLength) {
   // Displays day drop down in search containers
   function displayDayDropDown() {
     
-    const days = localStorage.getItem("tripLength");
+    // const days = localStorage.getItem("tripLength");
+    const days = store.tripLength;
     let dropDown = '';
     for (let i = 1; i <= days; i++) {
       dropDown += `<option class="dropDownDay${i}" value="day${i}">Day ${i}</option>`;
@@ -310,7 +359,8 @@ function createTripPost(name, city, username, tripLength) {
   }
 
   function displayTravelPlanner() {
-    const days = localStorage.getItem("tripLength");
+    // const days = localStorage.getItem("tripLength");
+    const days = store.tripLength;
     let dayContainer = '';
     for (let i = 1; i <= days; i++) {
       dayContainer += `<div class="dayContainer plannerDay${i}">
@@ -322,8 +372,10 @@ function createTripPost(name, city, username, tripLength) {
   }
 
   function displayDayView() {
-    const days = localStorage.getItem("tripLength");
-    const name = localStorage.getItem("tripName");
+    // const days = localStorage.getItem("tripLength");
+    const days = store.tripLength;
+    // const name = localStorage.getItem("tripName");
+    const name = store.tripLength;
     let dayView = '';
     for (let i = 1; i <= days; i++) {
       dayView += `<div class="dayPage day${i} hidden"><h1 class="dayHeader">${name} (Day ${i})</h1>
@@ -428,6 +480,13 @@ function createTripPost(name, city, username, tripLength) {
       $('.newTrip').removeClass('hidden');
     });
 
+    $('#tripList').on('click', 'a', function(e) {
+      e.preventDefault();
+      const name = $(this).text();
+      console.log(name);
+      getTrip(name);
+    })
+
     // newTrip listeners 
 
     $('#createTrip').click(function(e) {
@@ -436,6 +495,7 @@ function createTripPost(name, city, username, tripLength) {
       const city = $('#tripLocation').val();
 
       localStorage.setItem("tripName", name);
+      store.tripName = name;
       getLatLon(city);
       getLocationKey(city);
       dateDifference();
@@ -443,7 +503,9 @@ function createTripPost(name, city, username, tripLength) {
       displayTravelPlanner();
       displayDayView();
       const username = localStorage.getItem("username");
+      // const username = store.username;
       const tripLength = localStorage.getItem("tripLength");
+      // const tripLength = store.tripLength;
 
 
       createTripPost(name, city, username, tripLength);
@@ -632,7 +694,9 @@ function createTripPost(name, city, username, tripLength) {
       e.preventDefault();
       const keyword = $('#activitySearch-input').val();
       const lat = +localStorage.getItem('lat');
+      // const lat = +store.latitude;
       const lon = +localStorage.getItem('lon');
+      // const lon = +store.longitude;
       console.log(typeof +lat ,typeof +lon);
 
       $('.activityResultsContainer').html('');
