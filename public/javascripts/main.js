@@ -342,6 +342,21 @@ function createTripPost(name, city, username, tripLength) {
           })
         });
       }
+
+      function updateNotes(day, activityTitle, notes, name) {
+        const username = store.username;
+        // const tripName = name.replace(' ', '-');
+        // const activityName = activityTitle.replace(' ', '-');
+        $.ajax({
+              url: serverBase + `/activities/${username}/${name}/${activityTitle}/${day}`,
+              method: 'PUT',
+              data: `notes=${notes}`,
+            })
+            .done(function(data) {
+              console.log(data);
+              console.log('success');
+            })
+          }
     
 
 
@@ -434,7 +449,7 @@ function createTripPost(name, city, username, tripLength) {
   }
 
   function displayDayViewContent(name, address, daySelected, url, notes) {
-    console.log(name, address, daySelected, url, notes);
+    console.log(notes);
     let dayViewContent = '';
     if (url === undefined) {
       dayViewContent = `<div class="dayActivity">
@@ -464,9 +479,7 @@ function createTripPost(name, city, username, tripLength) {
   // activityCount
   function activityCount(daySelected) {
     const itemCount = $(`${daySelected}`).find('.activities').children().length;
-    console.log(itemCount);
     const day = daySelected.replace(/\D/g,'');
-    console.log(day);
 
     const activityCount = `<p>${itemCount} activities saved</p>`;
     $(`.plannerDay${day}`).find('p').html(activityCount);
@@ -822,6 +835,18 @@ function createTripPost(name, city, username, tripLength) {
       $(this).parent('.dayActivity').remove();
       console.log('deletedEvent');
     })
+
+    $('.dayView').on('click', '.button-notes', function(e) {
+      e.preventDefault();
+      let day = $(this).parent('.dayActivity').parent('.activities').parent('.dayPage').find('.dayHeader').text();
+      day = day = day.replace(/\D/g,'');
+      const activityName = $(this).parent('.dayActivity').find('a').text();
+      const notes = $(this).parent('.dayActivity').find('textarea').val();
+      const tripName = store.tripName;
+      updateNotes(day, activityName, notes, tripName);
+    })
+
+
 
 
     // packingListTriggers

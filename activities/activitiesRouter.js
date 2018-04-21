@@ -61,8 +61,11 @@ router.get('/:username/:tripName', (req, res) => {
   });
   
   
-  router.put('/:username', (req, res) => {
-    const requiredFields = ['activityName, notes, tripName'];
+  router.put('/:username/:tripName/:activityName/:day', (req, res) => {
+    // const name = req.params.tripName.replace('-', ' ');
+    // const activityName = req.params.activityName.replace('-', ' ');
+
+    const requiredFields = ['notes'];
     for (let i=0; i<requiredFields.length; i++) {
       const field = requiredFields[i];
       if (!(field in req.body)) {
@@ -71,8 +74,12 @@ router.get('/:username/:tripName', (req, res) => {
         return res.status(400).send(message);
       }
     }
-    Activity.findOneAndUpdate({username: req.params.username}, {activityName: req.body.activityName}, {notes: req.body.notes}, {tripName: req.body.tripName}, { $set: {'notes': req.body.notes} })
-      .then(updatedMeme => res.status(204).end())
+    Activity.findOneAndUpdate({
+      username: req.params.username, 
+      activityName: req.params.activityName, 
+      tripName: req.params.tripName,
+      day: req.params.day}, { $set: {'notes': req.body.notes} })
+      .then(updatedNotes => res.status(204).end())
       .catch(err => res.status(500).json({ message: 'Something went wrong' }));
       console.log(res);
   });
