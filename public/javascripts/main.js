@@ -379,6 +379,7 @@ function createTripPost(name, city, username, tripLength) {
       // packingList
       function postItemToPackingList(itemAdded, category) {
         console.log('itemToDatabase');
+        console.log(store.username);
     
           const createItemObject = {
             tripName: store.tripName,
@@ -645,7 +646,8 @@ function createTripPost(name, city, username, tripLength) {
       e.preventDefault();
       const name = $('#tripName').val();
       const city = $('#tripLocation').val();
-
+      const username = localStorage.getItem("username");
+      store.username = username;
       store.tripName = name;
       getLatLon(city);
       getLocationKey(city);
@@ -653,7 +655,6 @@ function createTripPost(name, city, username, tripLength) {
       displayTripHeaders();
       displayTravelPlanner();
       displayDayView();
-      const username = store.username;
       const tripLength = store.tripLength;
 
       createTripPost(name, city, username, tripLength);
@@ -854,7 +855,8 @@ function createTripPost(name, city, username, tripLength) {
       let day = $(this).parent('.restaurantResults').find('select').val();
       day = day.replace(/\D/g,'');
       console.log(name, address, url);
-      displayDayViewContent(name, address, daySelected, url);
+      const notes = '';
+      displayDayViewContent(name, address, daySelected, url, notes);
       postActivity(name, address, day, url);
       alert(`Item added to planner`);
     });
@@ -874,7 +876,8 @@ function createTripPost(name, city, username, tripLength) {
       let day = $(this).parent('.activityResults').find('select').val();
       day = day.replace(/\D/g,'');
       console.log(name, address, url);
-      displayDayViewContent(name, address, daySelected, url);
+      const notes = '';
+      displayDayViewContent(name, address, daySelected, url, notes);
       postActivity(name, address, day, url);
       alert(`Item added to planner`);
 
@@ -895,8 +898,9 @@ function createTripPost(name, city, username, tripLength) {
       let day = $(this).parent('.hikeResults').find('select').val();
       day = day.replace(/\D/g,'');
       console.log(name, location, url);
-      displayDayViewContent(name, location, daySelected, url);
-      postActivity(name, address, day, url);
+      const notes = '';
+      displayDayViewContent(name, location, daySelected, url, notes);
+      postActivity(name, location, day, url);
       alert(`Item added to planner`);
 
     });

@@ -179,6 +179,11 @@ h1, h2 {
 
 /* profile */
 
+#tripList {
+  height: 100px;
+  min-width: 200px;
+}
+
 .profile {
   text-align: center;
   padding-top: 200px;
