@@ -266,7 +266,6 @@ function createTripPost(name, city, username, tripLength) {
     console.log(`Retrieving trip ${name}`);
     const tripName = name.replace(' ', '-');
     const username = localStorage.getItem('username');
-    store.username = username;
     const getTripURL = serverBase + `/trips/${username}/${tripName}`;
     
     $.getJSON(getTripURL, function(trip) {
@@ -379,15 +378,17 @@ function createTripPost(name, city, username, tripLength) {
 
       // packingList
       function postItemToPackingList(itemAdded, category) {
-        console.log('activityToDatabase');
+        console.log('itemToDatabase');
     
           const createItemObject = {
             tripName: store.tripName,
             category: category,
             username: store.username,
             itemName: itemAdded,
-            checked: false
+            checked: "on"
           };
+
+          console.log(createItemObject);
     
           $.ajax({
             type: 'POST',
@@ -427,6 +428,27 @@ function createTripPost(name, city, username, tripLength) {
           console.log(result);
           console.log('success');
         })
+      }
+
+      function deletePackingListItem(itemName, category) {
+        const tripName = store.tripName;
+        const username = store.username;
+        itemName = itemName.trim();
+        console.log(itemName + 'hello');
+        $.ajax({
+              url: serverBase + `/items/${username}/${tripName}/${itemName}/${category}`,
+              method: 'DELETE',
+            })
+            .done(function(data) {
+              console.log('success');
+            })
+            .fail(function (jqXHR, error, errorThrown) {
+              console.log(jqXHR);
+              console.log(error);
+              console.log(errorThrown);
+              const alertError = 'Error encountered in DELETE.';
+              alertUser(alertError);
+            })
       }
     
 
@@ -911,7 +933,14 @@ function createTripPost(name, city, username, tripLength) {
 
     $('.itemList').on('click', '.delete', function(event) {
       console.log('delete');
+      const checked = $(this).parent('.items').val();
+      const itemName = $(this).parent('.items').text();
+      let category = $(this).parent('.items').parent('.itemList').attr('class');
+      category = category.replace('itemList ','');
+      console.log(itemName);
+      console.log(category);
       $(this).parent('.items').remove();
+      deletePackingListItem(itemName, category);
     });
 
     $('.button-addItem').click(function() {

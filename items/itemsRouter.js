@@ -20,6 +20,7 @@ router.get('/:username/:tripName', (req, res) => {
   });
   
   router.post('/', (req, res) => {
+    console.log(req.body);
     const requiredFields = ['itemName', 'username', 'checked', 'category', 'tripName'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
@@ -45,8 +46,13 @@ router.get('/:username/:tripName', (req, res) => {
   
   });
   
-  router.delete('/:username', (req, res) => {
-    Item.findOneAndRemove({username: req.params.username}, {category: req.body.category}, {itemName: req.body.itemName}, {tripName: req.body.tripName})
+  router.delete('/:username/:tripName/:itemName/:category', (req, res) => {
+    console.log(req.params);
+    Item.findOneAndRemove({
+      username: req.params.username, 
+      category: req.params.category, 
+      itemName: req.params.itemName, 
+      tripName: req.params.tripName})
       .then(() => {
         res.status(204).json({ message: 'success' });
       })
@@ -56,7 +62,7 @@ router.get('/:username/:tripName', (req, res) => {
       });
   });
 
-  router.put('/:username', (req, res) => {
+  router.put('/:username/:tripName/:itemName/:category', (req, res) => {
     const requiredFields = ['itemName, category, checked, tripName'];
     for (let i=0; i<requiredFields.length; i++) {
       const field = requiredFields[i];
@@ -66,7 +72,11 @@ router.get('/:username/:tripName', (req, res) => {
         return res.status(400).send(message);
       }
     }
-    Activity.findOneAndUpdate({username: req.params.username}, {itemName: req.body.itemName}, {tripName: req.body.tripName}, {category: req.body.category}, {checked: req.body.checked}, { $set: {'checked': req.body.checked} })
+    Activity.findOneAndUpdate({
+      username: req.params.username, 
+      itemName: req.params.itemName, 
+      tripName: req.params.tripName,
+      category: req.params.category}, { $set: {'checked': req.body.checked} })
       .then(updatedItem => res.status(204).end())
       .catch(err => res.status(500).json({ message: 'Something went wrong' }));
       console.log(res);
