@@ -343,20 +343,37 @@ function createTripPost(name, city, username, tripLength) {
         });
       }
 
-      function updateNotes(day, activityTitle, notes, name) {
+      function deleteActivity(tripName, activityName, day) {
+        console.log(tripName, activityName, day);
         const username = store.username;
-        // const tripName = name.replace(' ', '-');
-        // const activityName = activityTitle.replace(' ', '-');
         $.ajax({
-              url: serverBase + `/activities/${username}/${name}/${activityTitle}/${day}`,
+              url: serverBase + `/activities/${username}/${tripName}/${activityName}/${day}`,
+              method: 'DELETE',
+            })
+            .done(function(data) {
+              console.log('success');
+            })
+            .fail(function (jqXHR, error, errorThrown) {
+              console.log(jqXHR);
+              console.log(error);
+              console.log(errorThrown);
+              const alertError = 'Error encountered in DELETE.';
+              alertUser(alertError);
+            })
+      }
+
+      function updateNotes(day, activityName, notes, name) {
+        const username = store.username;
+       
+        $.ajax({
+              url: serverBase + `/activities/${username}/${name}/${activityName}/${day}`,
               method: 'PUT',
               data: `notes=${notes}`,
             })
             .done(function(data) {
-              console.log(data);
               console.log('success');
             })
-          }
+      }
     
 
 
@@ -611,22 +628,6 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-day').removeClass('hidden');
     });
 
-    // dayView listeners
-
-    $('.button-delete').click(function() {
-      console.log('deleteActivity');
-    });
-
-    $('.button-notes').click(function() {
-      console.log('saveNotes');
-    });
-
-    // packingList listeners
-
-    $('.button-addItem').click(function() {
-      console.log('addItem');
-    });
-
     // nav listeners
 
 // activity Nav
@@ -832,8 +833,14 @@ function createTripPost(name, city, username, tripLength) {
 
     // deleteEvent
     $('.dayView').on('click', '.button-delete', function(e) {
-      $(this).parent('.dayActivity').remove();
+      e.preventDefault();
+      let day = $(this).parent('.dayActivity').parent('.activities').parent('.dayPage').find('.dayHeader').text();
+      day = day = day.replace(/\D/g,'');
+      const activityName = $(this).parent('.dayActivity').find('a').text();
+      const tripName = store.tripName;
       console.log('deletedEvent');
+      deleteActivity(tripName, activityName, day);
+      $(this).parent('.dayActivity').remove();
     })
 
     $('.dayView').on('click', '.button-notes', function(e) {
@@ -843,6 +850,7 @@ function createTripPost(name, city, username, tripLength) {
       const activityName = $(this).parent('.dayActivity').find('a').text();
       const notes = $(this).parent('.dayActivity').find('textarea').val();
       const tripName = store.tripName;
+      
       updateNotes(day, activityName, notes, tripName);
     })
 

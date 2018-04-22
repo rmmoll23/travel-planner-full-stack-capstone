@@ -18,6 +18,22 @@ router.get('/:username/:tripName', (req, res) => {
         res.status(500).json({ error: 'something went terribly wrong' });
       });
   });
+
+  router.get('/:username/:tripName/:activityName/:day', (req, res) => {
+    Activity.findOne({
+      tripName: req.params.tripName, 
+      username: req.params.username,
+      activityName: req.params.activityName,
+      day: req.params.day
+    })
+    .then(activity => {
+      res.json(activity);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'something went terribly wrong' });
+    });
+});
   
   
   router.post('/', (req, res) => {
@@ -49,9 +65,16 @@ router.get('/:username/:tripName', (req, res) => {
   });
   
   
-  router.delete('/:userName', (req, res) => {
-    Activity.findOneAndRemove({username: req.params.username}, {day: req.body.day}, {tripName: req.body.tripName}, {activityName: req.body.activityName})
-      .then(() => {
+  router.delete('/:username/:tripName/:activityName/:day', (req, res) => {
+    console.log(req.params.username, req.params.tripName, req.params.activityName, req.params.day);
+    Activity.findOneAndRemove({
+      username: req.params.username, 
+      tripName: req.params.tripName, 
+      activityName: req.params.activityName,
+      day: req.params.day
+    })
+      .then((activity) => {
+        console.log(activity);
         res.status(204).json({ message: 'success' });
       })
       .catch(err => {
