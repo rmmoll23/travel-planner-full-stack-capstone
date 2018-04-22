@@ -5,10 +5,10 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const {Item} = require('./models');
 
-router.get('/:username', (req, res) => {
+router.get('/:username/:tripName', (req, res) => {
       Item.find({
         username: req.params.username, 
-        tripName: req.body.tripName
+        tripName: req.params.tripName
       })
       .then(items => {
         res.json(items);

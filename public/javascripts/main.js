@@ -266,6 +266,7 @@ function createTripPost(name, city, username, tripLength) {
     console.log(`Retrieving trip ${name}`);
     const tripName = name.replace(' ', '-');
     const username = localStorage.getItem('username');
+    store.username = username;
     const getTripURL = serverBase + `/trips/${username}/${tripName}`;
     
     $.getJSON(getTripURL, function(trip) {
@@ -284,6 +285,7 @@ function createTripPost(name, city, username, tripLength) {
       displayTravelPlanner();
       displayDayView();
       getActivities();
+      getPackingListItems();
       })
       .fail(function(error) {
         console.log(error);
@@ -338,7 +340,7 @@ function createTripPost(name, city, username, tripLength) {
             let day = activity.day;
             day = `.day${day}`;
             const notes = activity.notes;
-            displayDayViewContent(activityName, address, day, activityURL, notes)
+            displayDayViewContent(activityName, address, day, activityURL, notes);
           })
         });
       }
@@ -401,6 +403,30 @@ function createTripPost(name, city, username, tripLength) {
             console.log('itemPosted');
             console.log(result);
           })
+      }
+
+      function getPackingListItems() {
+        console.log('Retrieving packingList')
+        const username = store.username;
+        const tripName = store.tripName;
+        const packingListURL = serverBase + `/items/${username}/${tripName}`;
+        $.getJSON(packingListURL, function(items) {
+          const itemList = items.map(function(item) {
+            const newItem = 
+            `<div class="items"><label><input type="checkbox">${item.itemName}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
+            console.log(newItem);
+            const itemClass = `.${item.category}`;
+            console.log(itemClass);
+            $(itemClass).append(newItem);
+          })
+        })
+        .fail(function(err) {
+          console.log(error);
+        })
+        .done(function(result) {
+          console.log(result);
+          console.log('success');
+        })
       }
     
 
@@ -598,7 +624,6 @@ function createTripPost(name, city, username, tripLength) {
       const name = $('#tripName').val();
       const city = $('#tripLocation').val();
 
-      localStorage.setItem("tripName", name);
       store.tripName = name;
       getLatLon(city);
       getLocationKey(city);
@@ -606,11 +631,8 @@ function createTripPost(name, city, username, tripLength) {
       displayTripHeaders();
       displayTravelPlanner();
       displayDayView();
-      const username = localStorage.getItem("username");
-      // const username = store.username;
-      const tripLength = localStorage.getItem("tripLength");
-      // const tripLength = store.tripLength;
-
+      const username = store.username;
+      const tripLength = store.tripLength;
 
       createTripPost(name, city, username, tripLength);
     });
