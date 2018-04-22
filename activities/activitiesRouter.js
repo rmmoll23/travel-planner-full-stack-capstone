@@ -18,23 +18,6 @@ router.get('/:username/:tripName', (req, res) => {
         res.status(500).json({ error: 'something went terribly wrong' });
       });
   });
-
-  router.get('/:username/:tripName/:activityName/:day', (req, res) => {
-    Activity.findOne({
-      tripName: req.params.tripName, 
-      username: req.params.username,
-      activityName: req.params.activityName,
-      day: req.params.day
-    })
-    .then(activity => {
-      res.json(activity);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: 'something went terribly wrong' });
-    });
-});
-  
   
   router.post('/', (req, res) => {
     const requiredFields = ['activityName', 'username', 'activityURL', 'address', 'day', 'notes', 'tripName'];

@@ -374,6 +374,34 @@ function createTripPost(name, city, username, tripLength) {
               console.log('success');
             })
       }
+
+      // packingList
+      function postItemToPackingList(itemAdded, category) {
+        console.log('activityToDatabase');
+    
+          const createItemObject = {
+            tripName: store.tripName,
+            category: category,
+            username: store.username,
+            itemName: itemAdded,
+            checked: false
+          };
+    
+          $.ajax({
+            type: 'POST',
+            url: serverBase + '/items',
+            dataType: 'json',
+            data: JSON.stringify(createItemObject),
+            contentType: 'application/json'
+          })
+          .fail(function(error) {
+            console.log(error)
+          })
+          .done(function (result) {
+            console.log('itemPosted');
+            console.log(result);
+          })
+      }
     
 
 
@@ -866,10 +894,12 @@ function createTripPost(name, city, username, tripLength) {
 
     $('.button-addItem').click(function() {
       const itemAdded = $(this).parent('.listBox').find('.itemToAdd').val();
+      const category = $(this).parent('.listBox').parent('.packListContainer').find('.packListHeaders').text();
       console.log(itemAdded);
       const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
       $(this).parent('.listBox').find('.itemList').append(newItem);
       $(this).parent('.listBox').find('.itemToAdd').val('');
+      postItemToPackingList(itemAdded, category);
     });
 
     // key listeners
