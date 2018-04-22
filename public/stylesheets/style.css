@@ -179,6 +179,10 @@ h1, h2 {
 
 /* profile */
 
+#firstName {
+  color: black;
+}
+
 #tripList {
   height: 100px;
   min-width: 200px;

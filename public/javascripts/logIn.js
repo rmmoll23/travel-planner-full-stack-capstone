@@ -36,6 +36,7 @@ function handleLoginSubmit() {
 					if (response.authToken) {
 						console.log('logged in');
 						localStorage.setItem("username", uname);
+						getFirstName(uname);
 						getTripList(uname);
 						$('.logIn').addClass('hidden');
 						$('.profile').removeClass('hidden');

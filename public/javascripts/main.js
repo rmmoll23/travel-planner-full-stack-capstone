@@ -215,6 +215,18 @@ return weatherResults;
 }
 
 // CRUD Operations
+// User Requests
+function getFirstName(username) {
+  console.log('Retrieving tripList')
+  const userURL = serverBase + `/api/users/${username}`;
+  $.getJSON(userURL, function(user) {
+    console.log(user);
+    const firstName = user.firstName;
+    $('#firstName').html(firstName);
+  })
+}
+
+
 // Trip Requests
 function createTripPost(name, city, username, tripLength) {
   console.log('tripToDatabase');
