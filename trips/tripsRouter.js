@@ -3,7 +3,8 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const {Trip} = require('./models');
+const {Trip, ItemsDefault} = require('./models');
+const {Item} = require('../items/models');
 
 router.get('/:username', (req, res) => {
       Trip.find({username: req.params.username})
@@ -48,7 +49,34 @@ router.get('/:username', (req, res) => {
           location: req.body.location,
           tripLength: req.body.tripLength
         })
-      .then(trips => res.status(201).json(trips))
+      .then(trips => {
+        
+            ItemsDefault.find()
+              .then(defaultItems => {
+                for (let i = 0; i < defaultItems.length; i++) {
+                    Item.create({
+                      itemName: defaultItems[i].itemName, 
+                      username: req.body.username,
+                      checked: defaultItems[i].checked,
+                      category: defaultItems[i].category,
+                      tripName: req.body.tripName
+                    })
+                      .then(items => console.log(items))
+                      .catch(err => {
+                        console.error(err);
+                        res.status(500).json({ error: 'Something went wrong' });
+                      });
+                }
+              })
+              .catch(err => {
+                console.error(err);
+                res.status(500).json({ error: 'something went horribly awry' });
+              });
+
+
+
+        res.status(201).json(trips)
+      })
       .catch(err => {
         console.error(err);
         res.status(500).json({ error: 'Something went wrong' });

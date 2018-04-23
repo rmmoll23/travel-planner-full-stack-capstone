@@ -21,6 +21,19 @@ TripSchema.methods.serialize = function() {
 };
 
 const Trip = mongoose.model('Trip', TripSchema);
+
+const ItemsDefaultSchema = mongoose.Schema({
+  category: {type: String, required: true},
+  username: {type: String, required: true},
+  itemName: {type: String, required: true},
+  tripName: {type: String, required: true},
+  checked: {type: String, required: true}
+  }, 
+  {collection: "items-default"
+});
+
+const ItemsDefault = mongoose.model('ItemsDefault', ItemsDefaultSchema);
+
   
 
-module.exports = {Trip};
+module.exports = {Trip, ItemsDefault};

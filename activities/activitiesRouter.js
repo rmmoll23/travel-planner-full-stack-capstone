@@ -68,8 +68,6 @@ router.get('/:username/:tripName', (req, res) => {
   
   
   router.put('/:username/:tripName/:activityName/:day', (req, res) => {
-    // const name = req.params.tripName.replace('-', ' ');
-    // const activityName = req.params.activityName.replace('-', ' ');
 
     const requiredFields = ['notes'];
     for (let i=0; i<requiredFields.length; i++) {

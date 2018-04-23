@@ -428,17 +428,19 @@ function createTripPost(name, city, username, tripLength) {
           const itemList = items.map(function(item) {
             const newItem = 
             `<div class="items"><label><input type="checkbox">${item.itemName}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
-            console.log(newItem);
             const itemClass = `.${item.category}`;
-            console.log(itemClass);
+            if (item.checked === 'on') {
+              $("input[type='checkbox']").prop('checked', true);;
+            }
             $(itemClass).append(newItem);
-          })
+          });
+
+
         })
         .fail(function(err) {
           console.log(error);
         })
         .done(function(result) {
-          console.log(result);
           console.log('success');
         })
       }
@@ -461,6 +463,21 @@ function createTripPost(name, city, username, tripLength) {
               console.log(errorThrown);
               const alertError = 'Error encountered in DELETE.';
               alertUser(alertError);
+            })
+      }
+
+      function updatePackingListItem(itemName, category, checked) {
+        const username = store.username;
+        const tripName = store.tripName;
+        const item = itemName.trim();
+       
+        $.ajax({
+              url: serverBase + `/items/${username}/${tripName}/${item}/${category}`,
+              method: 'PUT',
+              data: `checked=${checked}`,
+            })
+            .done(function(data) {
+              console.log('success');
             })
       }
     
@@ -667,6 +684,7 @@ function createTripPost(name, city, username, tripLength) {
       displayTripHeaders();
       displayTravelPlanner();
       displayDayView();
+      getPackingListItems()
       const tripLength = store.tripLength;
 
       createTripPost(name, city, username, tripLength);
@@ -949,7 +967,6 @@ function createTripPost(name, city, username, tripLength) {
 
     $('.itemList').on('click', '.delete', function(event) {
       console.log('delete');
-      const checked = $(this).parent('.items').val();
       const itemName = $(this).parent('.items').text();
       let category = $(this).parent('.items').parent('.itemList').attr('class');
       category = category.replace('itemList ','');
@@ -968,6 +985,27 @@ function createTripPost(name, city, username, tripLength) {
       $(this).parent('.listBox').find('.itemToAdd').val('');
       postItemToPackingList(itemAdded, category);
     });
+
+    $('.itemList').on('click', 'input', function() {
+      let checked = $(this).parent('label').parent('.items').find('input');
+      if (checked.is(":checked")) {
+            console.log(true);
+            checked = 'on';
+          }
+      else {
+            console.log(false);
+            checked = 'off';
+          }
+
+      console.log(checked);
+      const itemName = $(this).parent('label').parent('.items').text();
+      let category = $(this).parent('label').parent('.items').parent('.itemList').attr('class');
+      category = category.replace('itemList ','');
+      console.log(itemName, category, checked);
+      updatePackingListItem(itemName, category, checked);
+    })
+
+
 
     // key listeners
 

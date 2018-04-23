@@ -63,23 +63,25 @@ router.get('/:username/:tripName', (req, res) => {
   });
 
   router.put('/:username/:tripName/:itemName/:category', (req, res) => {
-    const requiredFields = ['itemName, category, checked, tripName'];
+    console.log(req.body.checked);
+    
+    const requiredFields = ['checked'];
     for (let i=0; i<requiredFields.length; i++) {
       const field = requiredFields[i];
       if (!(field in req.body)) {
-        const message = `Missing \`${field}\` in request body`
+        const message = `Missing \`${field}\` in request body`;
         console.error(message);
         return res.status(400).send(message);
       }
     }
-    Activity.findOneAndUpdate({
+    Item.findOneAndUpdate({
       username: req.params.username, 
       itemName: req.params.itemName, 
       tripName: req.params.tripName,
       category: req.params.category}, { $set: {'checked': req.body.checked} })
       .then(updatedItem => res.status(204).end())
       .catch(err => res.status(500).json({ message: 'Something went wrong' }));
-      console.log(res);
+      // console.log(res);
   });
 
 module.exports = { router };
