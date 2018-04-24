@@ -66,30 +66,30 @@ function renderPlaces (result, index) {
           let placeURL = '';
           if (place === null) {
 
-          let places = '<div class="activityResults">';
-        places += `<p>Name: <span id="placeName">${placeName}</span></p>`;
-        places += `<p>Rating: <span>${rating}/5</span></p>`;
-        places += `<p>Type: <span>${type}</span></p>`;
-        places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
-        places += '<select class="dayDropDown" name="days">';
+          let places = '<div tabindex=1 class="activityResults">';
+        places += `<p tabindex=1>Name: <span id="placeName">${placeName}</span></p>`;
+        places += `<p tabindex=1>Rating: <span>${rating}/5</span></p>`;
+        places += `<p tabindex=1>Type: <span>${type}</span></p>`;
+        places += `<p tabindex=1>Address: <span id="placeAddress">${placeAddress}</span></p>`;
+        places += '<select tabindex=1 class="dayDropDown" name="days">';
                 
         places += '</select>';
-        places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
+        places += '<button tabindex=1 id="addToPlanner" type="submit">Add to Planner</button>';
         places += '</div>';
         resolve(places);
           }
           else {
                 placeURL = place.website;
 
-          let places = '<div class="activityResults">';
-        places += `<p>Name: <span id="placeName"><a href="${placeURL}" target="_blank">${placeName}</a></span></p>`;
-        places += `<p>Rating: <span>${rating}/5</span></p>`;
-        places += `<p>Type: <span>${type}</span></p>`;
-        places += `<p>Address: <span id="placeAddress">${placeAddress}</span></p>`;
-        places += '<select class="dayDropDown" name="days">';
+          let places = '<div tabindex=1 class="activityResults">';
+        places += `<p tabindex=1>Name: <span id="placeName"><a href="${placeURL}" target="_blank" tabindex=1>${placeName}</a></span></p>`;
+        places += `<p tabindex=1>Rating: <span>${rating}/5</span></p>`;
+        places += `<p tabindex=1>Type: <span>${type}</span></p>`;
+        places += `<p tabindex=1>Address: <span id="placeAddress">${placeAddress}</span></p>`;
+        places += '<select tabindex=1 class="dayDropDown" name="days">';
                 
         places += '</select>';
-        places += '<button id="addToPlanner" type="submit">Add to Planner</button>';
+        places += '<button tabindex=1 id="addToPlanner" type="submit">Add to Planner</button>';
         places += '</div>';
         resolve(places);
         }
@@ -109,23 +109,23 @@ function getPlaceUrl(placeId, callback) {
 <body>
  <nav role="navigation">
         <h1><img class="logo" src="../images/globe icon.png"/>&nbsp; &nbsp;Travel Planner</h1>
-        <ul class="navList-activity hidden">
+        <ul tabindex=1 class="navList-activity hidden">
             <li><a id="profileNav-activity" href="#">Profile Page</a></li>
             <li><a id="packingNav-activity" href="#">Packing List</a></li>
             <li><a id="plannerNav-activity" href="#">Trip Planner</a></li>
         </ul> 
-        <ul class="navList-planner hidden">
+        <ul tabindex=1 class="navList-planner hidden">
             <li><a id="profileNav-planner" href="#">Profile Page</a></li>
             <li><a id="packingNav-planner" href="#">Packing List</a></li>
             <li><a id="activityNav-planner" href="#">Activity Selection Page</a></li>
         </ul>
-        <ul class="navList-day hidden">
+        <ul tabindex=1 class="navList-day hidden">
             <li><a id="profileNav-day" href="#">Profile Page</a></li>
             <li><a id="packingNav-day" href="#">Packing List</a></li>
             <li><a id="plannerNav-day" href="#">Trip Planner</a></li>
             <li><a id="activityNav-day" href="#">Activity Selection Page</a></li>
         </ul>
-        <ul class="navList-packing hidden">
+        <ul tabindex=1 class="navList-packing hidden">
             <li><a id="profileNav-packing" href="#">Profile Page</a></li>
             <li><a id="plannerNav-packing" href="#">Trip Planner</a></li>
             <li><a id="activityNav-packing" href="#">Activity Selection Page</a></li>
@@ -133,14 +133,14 @@ function getPlaceUrl(placeId, callback) {
  </nav>
  <main role="main" class="landing">
         <div class="landingTop">
-                <h2 class="fadeOutHeader">All of your traveling needs in one place</h1>
+                <h2 aria-label="All of your traveling needs in one place" class="fadeOutHeader" tabindex=1>All of your traveling needs in one place</h1>
         </div>
         <div class="landingBottom">
                 <h2>Features</h2>
                 <ul class="landingList">
-                        <li>Search for things to do</li>
-                        <li>Add them to your planner</li>
-                        <li>Make a packing list</li>
+                        <li tabindex=1 aria-label="Search for things to do">Search for things to do</li>
+                        <li tabindex=1 aria-label="Add them to your Planner">Add them to your planner</li>
+                        <li tabindex=1 aria-label="Make a packing list">Make a packing list</li>
                 </ul>
                 <button id="signUp-button" class="button-left" type="button">Sign Up</button>
                 <button id="logIn-button" class="button-right" type="button">Log In</button>
@@ -154,16 +154,16 @@ function getPlaceUrl(placeId, callback) {
                   <p>Please fill in this form to create an account</p>
 
                   <label for="name">First Name</label>
-                  <input type="text" id="signUp-firstName" value="Ryan" name="name" required><br><br>
+                  <input aria-label="Enter first name" type="text" id="signUp-firstName" name="name" required><br><br>
 
                   <label for="username">Username</label>
-                  <input type="text" id="signUp-username" value="demoUser" name="username" required><br><br>
+                  <input aria-label="Enter username" type="text" id="signUp-username" name="username" required><br><br>
               
                   <label for="password">Password</label>
-                  <input type="password" id="signUp-password" value="password" name="password" required><br><br>
+                  <input aria-label="Enter password" type="password" id="signUp-password" name="password" required><br><br>
               
                   <label for="password-confirm">Confirm Password</label>
-                  <input type="password" id="signUp-passwordB" value="password" name="password-confirm" required><br><br>
+                  <input aria-label="Confirm password" type="password" id="signUp-passwordB" name="password-confirm" required><br><br>
                   <button id="cancel" class="button-left" type="button">Cancel</button>
                   <button id="createAccount" class="button-right" type="submit">Submit</button>
                   
@@ -180,7 +180,7 @@ function getPlaceUrl(placeId, callback) {
                   <p>Please enter your username and password</p>
               
                   <label for="username">Username</label>
-                  <input id="logIn-username" type="text" placeholder="Enter Username" value="demoUser" name="username" required><br><br>
+                  <input aria-label="Enter username" id="logIn-username" type="text" placeholder="Enter Username" value="demoUser" name="username" required><br><br>
               
                   <label for="password">Password</label>
                   <input id="logIn-password" type="password" placeholder="Enter Password" name="password" value="password" required><br><br>
@@ -193,8 +193,8 @@ function getPlaceUrl(placeId, callback) {
    
 </main>
 <main role="main" class="profile hidden">
-        <h1 >Welcome, <span id="firstName">John!</span></h1>
-        <h2>Current Saved Trips</h2>
+        <h1 tabindex=1 aria-label="Welcome">Welcome, <span id="firstName">John!</span></h1>
+        <h2 tabindex=1 aria-label="Current Saved Trips">Current Saved Trips</h2>
         <ul id="tripList">
                
         </ul>
@@ -206,16 +206,16 @@ function getPlaceUrl(placeId, callback) {
                   <h1>Create new trip</h1>
 
                   <label for="tripName">Name of trip</label>
-                  <input type="text" id="tripName" placeholder="Enter name of trip" name="tripName" value="demo" required><br><br>
+                  <input aria-label="Enter name of trip" type="text" id="tripName" placeholder="Enter name of trip" name="tripName" required><br><br>
 
                   <label for="city">Location</label>
-                  <input type="text" id="tripLocation" placeholder="Enter city" name="city" value="Denver" required><br><br>
+                  <input aria-label="Enter city of trip" type="text" id="tripLocation" placeholder="Enter city" name="city" required><br><br>
               
                   <label for="from">Start Date</label>
-                  <input type="text" id="from" name="from" placeholder="Enter trip start date" value="04/16/2018"><br><br>
+                  <input aria-label="Enter start date of trip" type="text" id="from" name="from" placeholder="Enter trip start date"><br><br>
 
                   <label for="to">End Date</label>
-                  <input type="text" id="to" name="to" placeholder="Enter trip end date" value="04/23/2018"><br><br>
+                  <input aria-label="Enter end date of trip"type="text" id="to" name="to" placeholder="Enter trip end date"><br><br>
 
                   <button id="cancelTrip" class="button-left" type="button">Cancel</button>
                   <button id="createTrip" class="button-right" type="submit">Submit</button>
@@ -224,15 +224,15 @@ function getPlaceUrl(placeId, callback) {
         </form>
 </main>
 <main role="main" class="activitySelection hidden">
-        <h1 class="viewHeader">Paris Getaway (8 days)</h1>
-        <h2>5 Day Weather Forecast</h2>
+        <h1 tabindex=1 class="viewHeader"></h1>
+        <h2 tabindex=1 aria-label="5 day weather forecast">5 Day Weather Forecast</h2>
         <div class="weatherBar">
                 
         </div>
         <div class="searchContainers">
                 <div class="restaurantSearch">
                         <h2>Restaurants</h2>
-                        <div class="restaurantContainer">
+                        <div tabindex=1 aria-label="Restaurant search results in the area" class="restaurantContainer">
                                 
                         </div>
                 </div>
@@ -240,26 +240,26 @@ function getPlaceUrl(placeId, callback) {
                         <h2>Activities/Places to Stay</h2>
                         <div class="activityContainer">
                                 <label for="search"></label>
-                                <input name="search" id="activitySearch-input" type="text" placeholder="search" required>
-                                <button id="activitySearch-button" type="submit">Search</button>
-                                <div class="activityResultsContainer">
+                                <input tabindex=1 name="search" id="activitySearch-input" type="text" aria-label="Enter what you would like to search for in this city" placeholder="search" required>
+                                <button tabindex=1 id="activitySearch-button" type="submit">Search</button>
+                                <div tabindex=1 aria-label="Activity search results in the area" aria-live="assertive" class="activityResultsContainer">
 
                                 </div>
                         </div>
                 </div>
                 <div class="hikeSearch">
                         <h2>Hiking Trails</h2>
-                        <div class="hikeContainer">
+                        <div tabindex=1 aria-label="Hiking search results in the area" class="hikeContainer">
                                 
                         </div>
                 </div>
         </div>
-        <button id="viewPlanner" class="button-left" type="button">View Trip Planner</button>
-        <button id="createPackList" class="button-right" type="button">Create Packing List</button>
+        <button tabindex=1 id="viewPlanner" class="button-left" type="button">View Trip Planner</button>
+        <button tabindex=1 id="createPackList" class="button-right" type="button">Create Packing List</button>
 </main>
 <main role="main" class="tripPlanner hidden">
-        <h1 class="viewHeader">Paris Getaway (8 days)</h1>
-        <p>Select a day to view more details</p><br>
+        <h1 class="viewHeader"></h1>
+        <p tabindex=1>Select a day to view more details</p><br>
         <div class="plannerDays">
                 
         </div>  
@@ -271,60 +271,60 @@ function getPlaceUrl(placeId, callback) {
 
 </main>
 <main role="main" class="packingList hidden">
-        <h1 class="packListHeaders viewHeader">Paris Getaway (8 days)</h1>
+        <h1 tabindex=1 aria-label="packing list" class="packListHeaders viewHeader"></h1>
         <div>
                 <div class="packListContainer">
-                        <h2 class="packListHeaders">Clothing</h2>
+                        <h2 tabindex=1 class="packListHeaders">Clothing</h2>
                         <div class="listBox">
-                                <div class="itemList Clothing">
+                                <div tabindex=1 class="itemList Clothing">
                                         
                                 </div>
-                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
+                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" tabindex=1 required><button tabindex=1 class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
-                        <h2 class="packListHeaders">Pets</h2>
+                        <h2 tabindex=1 class="packListHeaders">Pets</h2>
                         <div class="listBox">
-                                <div class="itemList Pets">
+                                <div class="itemList Pets" tabindex=1>
                                        
                                 </div>
-                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
+                                <input type="text" placeholder="Add Item" name="addItem" tabindex=1 class="itemToAdd" required><button tabindex=1 class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
-                        <h2 class="packListHeaders">Media</h2>
+                        <h2 tabindex=1 class="packListHeaders">Media</h2>
                         <div class="listBox">
-                                <div class="itemList Media">
+                                <div tabindex=1 class="itemList Media">
                                        
                                 </div>
-                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
+                                <input type="text" placeholder="Add Item" name="addItem" tabindex=1 class="itemToAdd" required><button tabindex=1 class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
-                        <h2 class="packListHeaders">Toiletries</h2>
+                        <h2 tabindex=1 class="packListHeaders">Toiletries</h2>
                         <div class="listBox">
-                                <div class="itemList Toiletries">
+                                <div tabindex=1 class="itemList Toiletries">
                                        
                                 </div>
-                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
+                                <input type="text" placeholder="Add Item" name="addItem" tabindex=1 class="itemToAdd" required><button tabindex=1 class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
-                        <h2 class="packListHeaders">Travel</h2>
+                        <h2 tabindex=1 class="packListHeaders">Travel</h2>
                         <div class="listBox">
                                 <div class="itemList Travel">
                                         
                                 </div>
-                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
+                                <input type="text" placeholder="Add Item" name="addItem" tabindex=1 class="itemToAdd" required><button tabindex=1 class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                 <div class="packListContainer">
-                        <h2 class="packListHeaders">Miscellaneous</h2>
+                        <h2 tabindex=1 class="packListHeaders">Miscellaneous</h2>
                         <div class="listBox">
                                 <div class="itemList Miscellaneous">
                                         
                                 </div>
-                                <input type="text" placeholder="Add Item" name="addItem" class="itemToAdd" required><button class="button-addItem" type="button">Add Item</button>
+                                <input type="text" placeholder="Add Item" name="addItem" tabindex=1 class="itemToAdd" required><button tabindex=1 class="button-addItem" type="button">Add Item</button>
                         </div>
                 </div>
                                         
