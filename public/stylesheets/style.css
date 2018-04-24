@@ -186,6 +186,7 @@ h1, h2 {
 #tripList {
   height: 100px;
   min-width: 200px;
+  overflow: scroll;
 }
 
 .profile {

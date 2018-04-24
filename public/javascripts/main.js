@@ -427,12 +427,13 @@ function createTripPost(name, city, username, tripLength) {
         $.getJSON(packingListURL, function(items) {
           const itemList = items.map(function(item) {
             const newItem = 
-            `<div class="items"><label><input type="checkbox">${item.itemName}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
+            `<div class="items"><label><input type="checkbox" name="${item.itemName}">${item.itemName}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
             const itemClass = `.${item.category}`;
-            if (item.checked === 'on') {
-              $("input[type='checkbox']").prop('checked', true);;
-            }
             $(itemClass).append(newItem);
+            if (item.checked === 'on') {
+              console.log(item.itemName);
+              $(`input[name='${item.itemName}']`).prop('checked', true);;
+            }
           });
 
 
@@ -472,7 +473,7 @@ function createTripPost(name, city, username, tripLength) {
         const item = itemName.trim();
        
         $.ajax({
-              url: serverBase + `/items/${username}/${tripName}/${item}/${category}`,
+              url: serverBase + `/items/${username}/${tripName}/${item }/${category}`,
               method: 'PUT',
               data: `checked=${checked}`,
             })
