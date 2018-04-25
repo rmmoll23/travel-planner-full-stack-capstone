@@ -364,6 +364,7 @@ function createTripPost(name, city, username, tripLength) {
             })
             .done(function(data) {
               console.log('success');
+              activityCount(day);
             })
             .fail(function (jqXHR, error, errorThrown) {
               console.log(jqXHR);
@@ -738,6 +739,7 @@ function createTripPost(name, city, username, tripLength) {
       $('.activitySelection').addClass('hidden');
       $('.navList-activity').addClass('hidden');
       $('.profile').removeClass('hidden');
+      $('.itemList').empty();
     });
 
     $('#plannerNav-activity').click(function() {
@@ -763,6 +765,7 @@ function createTripPost(name, city, username, tripLength) {
       $('.tripPlanner').addClass('hidden');
       $('.navList-planner').addClass('hidden');
       $('.profile').removeClass('hidden');
+      $('.itemList').empty();
     });
 
     $('#activityNav-planner').click(function() {
@@ -791,6 +794,7 @@ function createTripPost(name, city, username, tripLength) {
       const days = store.tripLength;
       for (let i = 1; i <= days; i++) {
         $(`.day${i}`).addClass('hidden');
+        $('.itemList').empty();
       }
     });
 
@@ -837,6 +841,7 @@ function createTripPost(name, city, username, tripLength) {
       $('.packingList').addClass('hidden');
       $('.navList-packing').addClass('hidden');
       $('.profile').removeClass('hidden');
+      $('.itemList').empty();
     });
 
     $('#activityNav-packing').click(function() {
