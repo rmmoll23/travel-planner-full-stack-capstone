@@ -419,12 +419,20 @@ span {
 
 .delete {
   display: inline;
-  position: absolute;
-  right: 15px;
   cursor: pointer;
 }
 
 .delete:hover {
+  color: red;
+}
+
+.deleteTrip {
+  display: inline;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.deleteTrip:hover {
   color: red;
 }
 

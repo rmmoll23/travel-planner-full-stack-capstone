@@ -85,8 +85,10 @@ router.get('/:username', (req, res) => {
   });
   
   
-  router.delete('/:username', (req, res) => {
-    Trip.findOneAndRemove({username: req.params.username}, {tripName: req.body.tripName})
+  router.delete('/:username/:tripName', (req, res) => {
+    Trip.findOneAndRemove({
+      username: req.params.username, 
+      tripName: req.params.tripName})
       .then(() => {
         res.status(204).json({ message: 'success' });
       })
