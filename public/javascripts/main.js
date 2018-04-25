@@ -17,7 +17,7 @@ let store = {
   
   // API Calls
 function getWeatherForecast(locationKey){
-    $.getJSON(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=VFDAkPsWGspNGI0hnUmmssJqqUxWZgJn`)
+    $.getJSON(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=VFDAkPsWGspNGI0hnUmmssJqqUxWZgJn`)
     // .done(callback)
     .done(function(result) {
       console.log(result);
@@ -29,7 +29,7 @@ function getWeatherForecast(locationKey){
 }
 
 function getLocationKey(city) {
-  $.getJSON(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=VFDAkPsWGspNGI0hnUmmssJqqUxWZgJn&q=${city}`)
+  $.getJSON(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=VFDAkPsWGspNGI0hnUmmssJqqUxWZgJn&q=${city}`)
   // .done(callback)
   .done(function(result) {
     renderLocationKey(result);
