@@ -523,28 +523,64 @@ footer ul {
   button {
     font-size: 12px;
   }
+
+  #viewPlanner {
+    margin-top: 100px;
+  }
+
+  .activitySelection button {
+    margin: 15px;
+  }
+
+  #signUpForm {
+    padding: 110px 0 1px 0;
+  }
+
+  .signUp {
+    height: auto;
+  }
+
+  .profile {
+    padding-top: 150px;
+  }
+
+  .fadeOutHeader {
+    color: white;
+  }
   
   .activitySelection h1 {
-    font-size: 20px;
+    font-size: 25px;
+  }
+
+  .newTrip {
+    height: 650px;
   }
 
   .packListHeaders {
    font-size: 20px;
   }
 
+  .restaurantSearch {
+    display: block;
+    height: 400px;
+    width: 80%;
+    margin: 50px auto 30px auto;
+    padding: 15px;
+  }
+
   .dayHeader {
-    font-size: 20px;
+    font-size: 25px;
   }
 
   .dayView p {
     font-size: 12px;
   }
 
-  .activitySelection button {
+  /* .activitySelection button {
     margin: 100px 0 50px 0;
-  }
+  } */
 
-  .restaurantSearch, .activitySearch, .hikeSearch {
+ .activitySearch, .hikeSearch {
     display: block;
     height: 400px;
     width: 80%;
@@ -553,7 +589,13 @@ footer ul {
   }
 
   .activitySelection, .tripPlanner, .dayView, .packingList {
-    margin-top: 160px;
+    margin-top: 130px;
+    padding: 20px;
+  }
+
+  .landingList {
+    width: 300px;
+    margin: auto;
   }
 
   .weatherContainer {
@@ -586,8 +628,8 @@ footer ul {
   }
 
   .container {
-    width: 200px;
-    font-size: 10px;
+    font-size: 12px;
+    width: 240px;
   }
 
   .tripPlanner h1 {
