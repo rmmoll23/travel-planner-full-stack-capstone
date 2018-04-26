@@ -675,7 +675,15 @@ footer ul {
 }
 
 .restaurantSearch, .activitySearch, .hikeSearch {
-  padding: 0px;
+  padding: 15px 0px;
+}
+
+.activitySelection h1 {
+  max-width: 300px;
+}
+
+.tripPlanner h1 {
+  max-width: 300px;
 }
 
 }
