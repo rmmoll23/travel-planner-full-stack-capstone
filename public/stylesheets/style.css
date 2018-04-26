@@ -671,7 +671,11 @@ footer ul {
 @media only screen and (max-width: 350px) {
 
 .restaurantContainer, .activityContainer, .hikeContainer {
-  width: 300px;
+  width: 90%;
+}
+
+.restaurantSearch, .activitySearch, .hikeSearch {
+  padding: 0px;
 }
 
 }
