@@ -528,6 +528,11 @@ footer ul {
 
 @media only screen and (max-width: 450px) {
 
+  .delete {
+  right: 20px;
+  position: absolute;
+  }
+
   button {
     font-size: 12px;
   }
@@ -662,3 +667,11 @@ footer ul {
 
 
 } 
+
+@media only screen and (max-width: 350px) {
+
+.restaurantContainer, .activityContainer, .hikeContainer {
+  width: 300px;
+}
+
+}
