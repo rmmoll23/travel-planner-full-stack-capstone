@@ -704,3 +704,11 @@ footer ul {
 }
 
 }
+
+@media only screen and (max-width: 750px) {
+
+  .landingBottom li {
+    list-style-type: none;
+    display: block;
+  }
+}
