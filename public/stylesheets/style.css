@@ -669,6 +669,7 @@ footer ul {
   .container input {
     display: block;
     position: static;
+    width: 95%;
   }
 
 
