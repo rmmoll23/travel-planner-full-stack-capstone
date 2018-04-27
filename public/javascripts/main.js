@@ -1009,7 +1009,7 @@ function createTripPost(name, city, username, tripLength) {
       const category = $(this).parent('.listBox').parent('.packListContainer').find('.packListHeaders').text();
       // console.log(itemAdded);
       const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
-      $(this).parent('.listBox').find('.itemList').append(newItem);
+      $(this).parent('.listBox').find('.itemList').prepend(newItem);
       $(this).parent('.listBox').find('.itemToAdd').val('');
       postItemToPackingList(itemAdded, category);
     });
