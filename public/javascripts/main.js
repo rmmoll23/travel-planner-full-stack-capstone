@@ -1006,12 +1006,18 @@ function createTripPost(name, city, username, tripLength) {
 
     $('.button-addItem').click(function() {
       const itemAdded = $(this).parent('.listBox').find('.itemToAdd').val();
-      const category = $(this).parent('.listBox').parent('.packListContainer').find('.packListHeaders').text();
-      // console.log(itemAdded);
-      const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
-      $(this).parent('.listBox').find('.itemList').prepend(newItem);
-      $(this).parent('.listBox').find('.itemToAdd').val('');
-      postItemToPackingList(itemAdded, category);
+      if (itemAdded === '') {
+        alert('Item input field cannot be blank');
+      }
+      else {
+        alert(`${itemAdded} added successfully`);
+        const category = $(this).parent('.listBox').parent('.packListContainer').find('.packListHeaders').text();
+        // console.log(itemAdded);
+        const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
+        $(this).parent('.listBox').find('.itemList').prepend(newItem);
+        $(this).parent('.listBox').find('.itemToAdd').val('');
+        postItemToPackingList(itemAdded, category);
+      }
     });
 
     $('.itemList').on('click', 'input', function() {
