@@ -21,6 +21,10 @@ form {
   padding: 110px 0 80px 0;
 }
 
+.demo {
+  color: lightseagreen;
+}
+
 button {
   border: black solid 1px;
   background-color: lightblue;
@@ -670,6 +674,11 @@ footer ul {
     display: block;
     position: static;
     width: 95%;
+    margin-bottom: 15px
+  }
+
+  .container br {
+    display: none;
   }
 
 
