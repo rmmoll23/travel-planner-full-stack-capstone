@@ -505,9 +505,15 @@ function createTripPost(name, city, username, tripLength) {
 
   function dateDifference() {
     let date1 = $('#from').val();
+    let date2 = $('#to').val();
+    if (date1 === '') {
+      alert('Must enter a start date');
+    }
+    if (date2 === '') {
+      alert('Must enter an end date');
+    }
     date1 = '\"' + date1 + '\"';
     date1 = new Date(date1);
-    let date2 = $('#to').val();
     date2 = '\"' + date2 + '\"';
     date2 = new Date(date2);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
@@ -686,9 +692,19 @@ function createTripPost(name, city, username, tripLength) {
       e.preventDefault();
       const name = $('#tripName').val();
       const city = $('#tripLocation').val();
+      if (name === '') {
+        alert('Must enter a trip name');
+      }
+
+      else if (city === '') {
+        alert('Must enter the name of a city');
+      }
+
+      else {
       const username = localStorage.getItem("username");
       store.username = username;
       store.tripName = name;
+
       // console.log(city);
       getLatLon(city);
       getLocationKey(city);
@@ -699,7 +715,10 @@ function createTripPost(name, city, username, tripLength) {
       getPackingListItems();
       const tripLength = store.tripLength;
 
+
+
       createTripPost(name, city, username, tripLength);
+      }
     });
 
     $('#cancelTrip').click(function() {
@@ -988,6 +1007,7 @@ function createTripPost(name, city, username, tripLength) {
       const tripName = store.tripName;
       
       updateNotes(day, activityName, notes, tripName);
+      alert('Notes saved');
     })
 
 
