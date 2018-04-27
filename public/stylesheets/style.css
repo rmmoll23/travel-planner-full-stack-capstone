@@ -346,6 +346,11 @@ span {
   margin-top: 90px;
 }
 
+.noActivities {
+  margin-bottom: 50px;
+  border-bottom: none;
+}
+
 .dayHeader {
   display: inline-block;
 }

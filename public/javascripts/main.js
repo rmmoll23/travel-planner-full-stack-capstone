@@ -562,7 +562,7 @@ function createTripPost(name, city, username, tripLength) {
     for (let i = 1; i <= days; i++) {
       dayView += `<div class="dayPage day${i} hidden"><h1 tabindex=1 class="dayHeader">${name} (Day ${i})</h1>
       <div class="activities">
-
+        <h3 class="noActivities">No activities added to this day.  Go to Activity Selection Page to add activities.</h3>
       </div>
       </div>`
     }
@@ -593,20 +593,22 @@ function createTripPost(name, city, username, tripLength) {
     }
 
     $(`${daySelected}`).find('.activities').append(dayViewContent);
+    $(`${daySelected}`).find('.activities').find('.noActivities').addClass('hidden');
     activityCount(daySelected);
   }
 
   // activityCount
   function activityCount(daySelected) {
-    // console.log(`count for ${daySelected}`);
-    const itemCount = $(`${daySelected}`).find('.activities').children().length;
-    // console.log(itemCount);
-    const day = daySelected.replace(/\D/g,'');
 
-    const activityCount = `<p>${itemCount} activities saved</p>`;
-    // console.log(activityCount);
-    $(`.plannerDay${day}`).find('p').html(activityCount);
-    
+    // console.log(`count for ${daySelected}`);
+    const itemCount = $(`${daySelected}`).find('.activities').children('.dayActivity').length;
+    console.log(itemCount);
+      // console.log(itemCount);
+      const day = daySelected.replace(/\D/g,'');
+
+      const activityCount = `<p>${itemCount} activities saved</p>`;
+      // console.log(activityCount);
+      $(`.plannerDay${day}`).find('p').html(activityCount);
   }
   
   
