@@ -914,6 +914,7 @@ function createTripPost(name, city, username, tripLength) {
       // console.log(typeof +lat ,typeof +lon);
 
       $('.activityResultsContainer').html('');
+      $('.activityResultsContainer').html('<h2 class="searchMessage">Searching...</h2>');
       initSearch(lat, lon, keyword);
       $('#activitySearch-input').val('');
     })

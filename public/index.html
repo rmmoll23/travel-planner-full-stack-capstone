@@ -49,6 +49,7 @@
         Promise.all(places)
         .then((arrResolvedPromises) => {
       $(".activityResultsContainer").append(arrResolvedPromises);
+      $(".searchMessage").addClass("hidden");
       displayDayDropDown();
     })
 }
@@ -245,6 +246,7 @@ function getPlaceUrl(placeId, callback) {
                                 <input tabindex=1 name="search" id="activitySearch-input" type="text" aria-label="Enter what you would like to search for in this city" placeholder="search" required>
                                 <button tabindex=1 id="activitySearch-button" type="submit">Search</button>
                                 <div tabindex=1 aria-label="Activity search results in the area" aria-live="assertive" class="activityResultsContainer">
+                                <h2 class="searchMessage">Searching...</h2>
 
                                 </div>
                         </div>
