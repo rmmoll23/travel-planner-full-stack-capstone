@@ -420,6 +420,8 @@ span {
 .delete {
   display: inline;
   cursor: pointer;
+  right: 20px;
+  position: absolute;
 }
 
 .delete:hover {

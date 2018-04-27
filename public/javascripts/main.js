@@ -274,7 +274,9 @@ function createTripPost(name, city, username, tripLength) {
       }
 
    function deleteTrip(tripName) {
-    const username = store.username;
+    const username = localStorage.getItem("username");
+    store.username = username;
+    console.log(username);
     $.ajax({
           url: serverBase + `/trips/${username}/${tripName}`,
           method: 'DELETE',
@@ -448,7 +450,7 @@ function createTripPost(name, city, username, tripLength) {
             const itemClass = `.${item.category}`;
             $(itemClass).append(newItem);
             if (item.checked === 'on') {
-              console.log(item.itemName);
+              // console.log(item.itemName);
               $(`input[name='${item.itemName}']`).prop('checked', true);;
             }
           });
