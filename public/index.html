@@ -150,7 +150,7 @@ function getPlaceUrl(placeId, callback) {
  </main>
  <main role="main" class="signUp hidden">
         <form id="signUpForm">
-                <div class="container">
+                <div id="signUpContainer" class="container">
                   <h1>Sign Up</h1>
                   <p>Please fill in this form to create an account</p>
 
@@ -212,7 +212,7 @@ function getPlaceUrl(placeId, callback) {
                   <input aria-label="Enter name of trip" type="text" id="tripName" placeholder="Enter name of trip" name="tripName" required><br><br>
 
                   <label for="city">Location</label>
-                  <input aria-label="Enter city of trip" type="text" id="tripLocation" placeholder="Enter city" name="city" required><br><br>
+                  <input aria-label="Enter city of trip" type="text" id="tripLocation" placeholder="Enter city: 'Austin, TX' or 'London, UK'" name="city" required><br><br>
               
                   <label for="from">Start Date</label>
                   <input aria-label="Enter start date of trip" type="text" id="from" name="from" placeholder="Enter trip start date"><br><br>
@@ -345,46 +345,45 @@ function getPlaceUrl(placeId, callback) {
  </footer>
  <div id="map"></div>
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI0aS01tu1KsJFA2fWIJCB8L-_Lb9k_qo&libraries=places" async defer></script>
+<script
+ src="https://code.jquery.com/jquery-3.2.1.min.js"
+ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+ crossorigin="anonymous">
+</script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script >
 function datePickerCalendar() {
-    var dateFormat = "mm/dd/yy",
-      from = $( "#from" )
-        .datepicker({
-          defaultDate: "+1w",
+      $( "#from" ).datepicker({
+          defaultDate: "+1d",
+          dateFormat: "mm/dd/yy",
+          minDate: 0,
           changeMonth: true,
-          numberOfMonths: 1
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = $( "#to" ).datepicker({
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 1
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
+          numberOfMonths: 1,
+          onSelect: function (date) {
+                var date2 = $('#from').datepicker('getDate');
+                date2.setDate(date2.getDate() + 1);
+                // $('#to').datepicker('setDate', date2);
+                //sets minDate to from date + 1
+                $('#to').datepicker('option', 'minDate', date2);
+            }
+        });
+        $('#to').datepicker({
+            dateFormat: "mm/dd/yy",
+            changeMonth: true,
+            numberOfMonths: 1,
+            onClose: function () {
+                var from = $('#from').datepicker('getDate');
+                var to = $('#to').datepicker('getDate');
+                //check to prevent a user from entering a date below date of from
+                if (to <= from) {
+                    var minDate = $('#to').datepicker('option', 'minDate');
+                    $('#to').datepicker('setDate', minDate);
+                }
+            }
+        });
   };
   $(datePickerCalendar());
-</script>
- <script
- src="https://code.jquery.com/jquery-3.2.1.min.js"
- integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
- crossorigin="anonymous">
 </script>
 <script src="../javascripts/signUp.js"></script>
 <script src="../javascripts/logIn.js"></script>

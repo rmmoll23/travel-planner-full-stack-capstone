@@ -13,8 +13,12 @@ body {
 
 #ui-datepicker-div {
   padding: 5px;
-  background: lightgrey;
+  background: white;
   border: black solid 2px;
+}
+
+#ui-datepicker-div span{
+  color: lightseagreen;
 }
 
 form {
@@ -132,7 +136,12 @@ nav h1 {
   padding-bottom: 5px;
 }
 
+#signUpContainer input {
+  width: 150px;
+}
+
 .container input {
+  width: 200px;
   display: inline-block;
   position: absolute;
   right: 20px;
