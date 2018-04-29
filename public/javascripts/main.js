@@ -49,6 +49,7 @@ function getLatLon(city){
     }
     })
     .done(function(result) {
+      alert('got lat lon');
       renderLatLon(result);
     })
     .fail(function(err){
@@ -705,6 +706,8 @@ function createTripPost(name, city, username, tripLength) {
       const username = localStorage.getItem("username");
       store.username = username;
       store.tripName = name;
+
+      alert(name);
 
       // console.log(city);
       getLatLon(city);
