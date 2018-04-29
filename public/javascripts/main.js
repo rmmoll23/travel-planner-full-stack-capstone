@@ -244,10 +244,12 @@ function createTripPost(name, city, username, tripLength) {
         contentType: 'application/json'
       })
       .fail(function(error) {
+        alert('not adding to db');
         alert(error);
       })
       .done(function (result) {
         // console.log(result);
+        alert('adding to db');
         alert('tripCreated');
         $('#tripName').val('');
         $('#tripLocation').val('');
