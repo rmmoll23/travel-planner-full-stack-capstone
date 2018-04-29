@@ -2,6 +2,9 @@ travel-planner-full-stack-capstone
 
 Travel-planner-full-stack-capstone is an interactive full-stack web app that allows users to search for and choose places to eat, things to do, and trails to hike in the location they are visiting, and save them in a daily planner covering the length of their trip.  
 
+# Live previews
+* with Node can be found here https://travel-planner-capstone.herokuapp.com/ and 
+* with React here https://rmmoll23.github.io/travel-planner-full-stack-capstone-react/build
 
 Screenshots:
 ![travel-planner-landing-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-landing-page.png)
@@ -62,3 +65,15 @@ MongoDB
 Mongoose
 mLab database
 Mocha and Chai for testing 
+
+
+## Node command lines
+* npm install ==> install all node modules
+* nodemon server.js ==> run node server
+* npm test ==> run the tests
+
+## React command lines
+* npm install ==> install all node modules
+* npm run build ==> build the react files in the "build" folder
+* npm start ==> run react server on http://127.0.0.1:8080
+* npm test ==> run the tests

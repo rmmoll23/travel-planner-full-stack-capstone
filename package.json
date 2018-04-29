@@ -1,6 +1,6 @@
 {
   "name": "travel-planner-full-stack-capstone",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nodemon server.js",
@@ -33,5 +33,18 @@
     "faker": "^4.1.0",
     "mocha": "^5.0.0",
     "nodemon": "^1.14.12"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmmoll23/travel-planner-full-stack-capstone.git"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "Ryan Moll",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmmoll23/travel-planner-full-stack-capstone/issues"
+  },
+  "homepage": "https://github.com/rmmoll23/travel-planner-full-stack-capstone#readme"
 }
