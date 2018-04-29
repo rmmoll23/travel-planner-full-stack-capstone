@@ -259,9 +259,7 @@ function createTripPost(name, city, username, tripLength) {
         console.log(errorThrown);
         })
       .done(function (result) {
-        // console.log(result);
-        alert('adding to db');
-        alert('tripCreated');
+       console.log('tripCreated');
         $('#tripName').val('');
         $('#tripLocation').val('');
         $('#from').val('');
@@ -537,8 +535,10 @@ function createTripPost(name, city, username, tripLength) {
     }
     date1 = '\"' + date1 + '\"';
     date1 = new Date(date1);
+    console.log(date1);
     date2 = '\"' + date2 + '\"';
     date2 = new Date(date2);
+    console.log(date2);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
     console.log(diffDays);
     localStorage.setItem("tripLength", diffDays);
@@ -712,7 +712,6 @@ function createTripPost(name, city, username, tripLength) {
     // newTrip listeners 
 
     $('#createTrip').click(function(e) {
-      alert('working');
       e.preventDefault();
       const name = $('#tripName').val();
       const city = $('#tripLocation').val();
@@ -739,7 +738,6 @@ function createTripPost(name, city, username, tripLength) {
       displayDayView();
       getPackingListItems();
       const tripLength = store.tripLength;
-      alert(tripLength);
       console.log(tripLength);
 
 
