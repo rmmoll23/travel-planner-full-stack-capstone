@@ -538,7 +538,7 @@ function createTripPost(name, city, username, tripLength) {
     date2 = '\"' + date2 + '\"';
     date2 = new Date(date2);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
-    // console.log(diffDays);
+    console.log(diffDays);
     localStorage.setItem("tripLength", diffDays);
     store.tripLength = diffDays;
     
@@ -741,8 +741,8 @@ function createTripPost(name, city, username, tripLength) {
       console.log(tripLength);
 
 
-
-      createTripPost(name, city, username, tripLength);
+      setTimeout(function(){ createTripPost(name, city, username, tripLength); }, 3000);
+      // createTripPost(name, city, username, tripLength);
       }
     });
 
