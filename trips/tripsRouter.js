@@ -13,7 +13,7 @@ router.get('/:username', (req, res) => {
       })
       .catch(err => {
         console.error(err);
-        res.status(500).json({ error: 'something went terribly wrong' });
+        res.status(500).json({ error: err });
       });
   });
   
@@ -28,7 +28,7 @@ router.get('/:username', (req, res) => {
       })
       .catch(err => {
         console.error(err);
-        res.status(500).json({ error: 'something went horribly awry' });
+        res.status(500).json({ error: err });
       });
   });
   
@@ -64,13 +64,13 @@ router.get('/:username', (req, res) => {
                       .then(items => console.log(items))
                       .catch(err => {
                         console.error(err);
-                        res.status(500).json({ error: 'Something went wrong' });
+                        res.status(500).json({ error: 'Item create inside the trip create loop failed due to' + err });
                       });
                 }
               })
               .catch(err => {
                 console.error(err);
-                res.status(500).json({ error: 'something went horribly awry' });
+                res.status(500).json({ error:'Item create inside the trip create loop failed due to' + err });
               });
 
 
@@ -79,7 +79,7 @@ router.get('/:username', (req, res) => {
       })
       .catch(err => {
         console.error(err);
-        res.status(500).json({ error: 'Something went wrong' });
+        res.status(500).json({ error: 'Item create inside the trip create loop failed due to' + err });
       });
   
   });
@@ -94,7 +94,7 @@ router.get('/:username', (req, res) => {
       })
       .catch(err => {
         console.error(err);
-        res.status(500).json({ error: 'something went terribly wrong' });
+        res.status(500).json({ error: err });
       });
   });
 

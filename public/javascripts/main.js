@@ -23,9 +23,11 @@ function getWeatherForecast(locationKey){
       // console.log(result);
       displayWeatherResults(result);
     })
-    .fail(function(err){
-        // console.log(err)
-    });
+    .fail(function (jqXHR, error, errorThrown) {
+      console.log(jqXHR);
+      console.log(error);
+      console.log(errorThrown);
+      });
 }
 
 function getLocationKey(city) {
@@ -51,9 +53,11 @@ function getLatLon(city){
     .done(function(result) {
       renderLatLon(result);
     })
-    .fail(function(err){
-        // console.log(err)
-    });
+    .fail(function (jqXHR, error, errorThrown) {
+      console.log(jqXHR);
+      console.log(error);
+      console.log(errorThrown);
+      });
   }
 
 
@@ -70,9 +74,11 @@ function getRestaurants(lat, lon, startNumber){
       displayRestaurantResults(result);
       displayDayDropDown()
     })
-    .fail(function(err){
-        // console.log(err)
-    });
+    .fail(function (jqXHR, error, errorThrown) {
+      console.log(jqXHR);
+      console.log(error);
+      console.log(errorThrown);
+      });
 }
 
 function getHikingTrails(lat, lon){
@@ -85,9 +91,11 @@ function getHikingTrails(lat, lon){
       // console.log(result);
       displayHikingTrailsResults(result);
     })
-    .fail(function(err){
-        // console.log(err)
-    });
+    .fail(function (jqXHR, error, errorThrown) {
+      console.log(jqXHR);
+      console.log(error);
+      console.log(errorThrown);
+      });
 }
 
 // Render and Display API results
@@ -243,11 +251,12 @@ function createTripPost(name, city, username, tripLength) {
         data: JSON.stringify(createTripObject),
         contentType: 'application/json'
       })
-      .fail(function(error) {
-        alert('not adding to db');
+      .fail(function (jqXHR, error, errorThrown) {
+        console.log('not adding to db');
+        console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
-      })
+        })
       .done(function (result) {
         // console.log(result);
         alert('adding to db');
@@ -320,9 +329,11 @@ function createTripPost(name, city, username, tripLength) {
       getActivities();
       getPackingListItems();
       })
-      .fail(function(error) {
-        // console.log(error);
-      })
+      .fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+        });
       $('.profile').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
       $('.navList-activity').removeClass('hidden');
@@ -349,9 +360,11 @@ function createTripPost(name, city, username, tripLength) {
             data: JSON.stringify(createActivityObject),
             contentType: 'application/json'
           })
-          .fail(function(error) {
-            // console.log(error)
-          })
+          .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            })
           .done(function (result) {
             // console.log('activityPosted');
           })
@@ -388,9 +401,9 @@ function createTripPost(name, city, username, tripLength) {
               // console.log('success');
             })
             .fail(function (jqXHR, error, errorThrown) {
-              // console.log(jqXHR);
-              // console.log(error);
-              // console.log(errorThrown);
+              console.log(jqXHR);
+              console.log(error);
+              console.log(errorThrown);
               const alertError = 'Error encountered in DELETE.';
               alertUser(alertError);
             })
@@ -431,9 +444,11 @@ function createTripPost(name, city, username, tripLength) {
             data: JSON.stringify(createItemObject),
             contentType: 'application/json'
           })
-          .fail(function(error) {
-            // console.log(error)
-          })
+          .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+            })
           .done(function (result) {
             // console.log('itemPosted');
             // console.log(result);
@@ -460,9 +475,11 @@ function createTripPost(name, city, username, tripLength) {
 
 
         })
-        .fail(function(err) {
-          // console.log(error);
-        })
+        .fail(function (jqXHR, error, errorThrown) {
+          console.log(jqXHR);
+          console.log(error);
+          console.log(errorThrown);
+          })
         .done(function(result) {
           // console.log('success');
         })
@@ -481,9 +498,9 @@ function createTripPost(name, city, username, tripLength) {
               // console.log('success');
             })
             .fail(function (jqXHR, error, errorThrown) {
-              // console.log(jqXHR);
-              // console.log(error);
-              // console.log(errorThrown);
+              console.log(jqXHR);
+              console.log(error);
+              console.log(errorThrown);
               const alertError = 'Error encountered in DELETE.';
               alertUser(alertError);
             })

@@ -15,7 +15,7 @@ router.get('/:username/:tripName', (req, res) => {
       })
       .catch(err => {
         console.error(err);
-        res.status(500).json({ error: 'something went terribly wrong' });
+        res.status(500).json({ error: err });
       });
   });
   
@@ -42,7 +42,7 @@ router.get('/:username/:tripName', (req, res) => {
       .then(activities => res.status(201).json(activities))
       .catch(err => {
         console.error(err);
-        res.status(500).json({ error: 'Something went wrong' });
+        res.status(500).json({ error: err });
       });
   
   });
@@ -62,7 +62,7 @@ router.get('/:username/:tripName', (req, res) => {
       })
       .catch(err => {
         console.error(err);
-        res.status(500).json({ error: 'something went terribly wrong' });
+        res.status(500).json({ error: err });
       });
   });
   
@@ -84,7 +84,7 @@ router.get('/:username/:tripName', (req, res) => {
       tripName: req.params.tripName,
       day: req.params.day}, { $set: {'notes': req.body.notes} })
       .then(updatedNotes => res.status(204).end())
-      .catch(err => res.status(500).json({ message: 'Something went wrong' }));
+      .catch(err => res.status(500).json({ message: err }));
       console.log(res);
   });
 
