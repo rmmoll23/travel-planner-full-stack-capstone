@@ -526,7 +526,9 @@ function createTripPost(name, city, username, tripLength) {
 
   function dateDifference() {
     let date1 = $('#from').val();
+    console.log(date1);
     let date2 = $('#to').val();
+    console.log(date2);
     if (date1 === '') {
       alert('Must enter a start date');
     }
