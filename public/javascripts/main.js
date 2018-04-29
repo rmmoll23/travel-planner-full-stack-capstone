@@ -688,7 +688,8 @@ function createTripPost(name, city, username, tripLength) {
 
     // newTrip listeners 
 
-    $('#createTrip').on('touchstart click', function(e) {
+    $('#createTrip').click(function(e) {
+      alert('working');
       e.preventDefault();
       const name = $('#tripName').val();
       const city = $('#tripLocation').val();
