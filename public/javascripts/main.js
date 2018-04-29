@@ -49,7 +49,6 @@ function getLatLon(city){
     }
     })
     .done(function(result) {
-      alert('got lat lon');
       renderLatLon(result);
     })
     .fail(function(err){
@@ -245,11 +244,11 @@ function createTripPost(name, city, username, tripLength) {
         contentType: 'application/json'
       })
       .fail(function(error) {
-        // console.log(error)
+        alert(error);
       })
       .done(function (result) {
         // console.log(result);
-        // console.log('tripCreated');
+        alert('tripCreated');
         $('#tripName').val('');
         $('#tripLocation').val('');
         $('#from').val('');
