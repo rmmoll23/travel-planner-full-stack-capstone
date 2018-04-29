@@ -245,7 +245,6 @@ function createTripPost(name, city, username, tripLength) {
       })
       .fail(function(error) {
         alert('not adding to db');
-        console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
       })
