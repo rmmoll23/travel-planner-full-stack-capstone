@@ -235,7 +235,8 @@ function getFirstName(username) {
 
 // Trip Requests
 function createTripPost(name, city, username, tripLength) {
-  // console.log('tripToDatabase');
+
+  console.log(tripLength);
 
       const createTripObject = {
         username: username,
@@ -726,7 +727,6 @@ function createTripPost(name, city, username, tripLength) {
       store.username = username;
       store.tripName = name;
 
-      alert(name);
 
       // console.log(city);
       getLatLon(city);
@@ -737,6 +737,8 @@ function createTripPost(name, city, username, tripLength) {
       displayDayView();
       getPackingListItems();
       const tripLength = store.tripLength;
+      alert(tripLength);
+      console.log(tripLength);
 
 
 
