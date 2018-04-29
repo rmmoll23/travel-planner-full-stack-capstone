@@ -688,7 +688,7 @@ function createTripPost(name, city, username, tripLength) {
 
     // newTrip listeners 
 
-    $('#createTrip').click(function(e) {
+    $('#createTrip').on('click', function(e) {
       e.preventDefault();
       const name = $('#tripName').val();
       const city = $('#tripLocation').val();
