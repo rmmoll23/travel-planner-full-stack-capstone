@@ -356,7 +356,7 @@ function getPlaceUrl(placeId, callback) {
 function datePickerCalendar() {
       $( "#from" ).datepicker({
           defaultDate: "+1d",
-          dateFormat: "mm/dd/yy",
+          dateFormat: "yy/mm/dd",
           minDate: 0,
           changeMonth: true,
           numberOfMonths: 1,
@@ -369,7 +369,7 @@ function datePickerCalendar() {
             }
         });
         $('#to').datepicker({
-            dateFormat: "mm/dd/yy",
+            dateFormat: "yy/mm/dd",
             changeMonth: true,
             numberOfMonths: 1,
             onClose: function () {
