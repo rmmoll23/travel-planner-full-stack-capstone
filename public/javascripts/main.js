@@ -541,7 +541,8 @@ function createTripPost(name, city, username, tripLength) {
     const date2array = date2.split("/");
     console.log(date2array);
     date2 = new Date(date2array[0], date2array[1], date2array[2]);
-    var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));  
     console.log(diffDays);
     localStorage.setItem("tripLength", diffDays);
     store.tripLength = diffDays;
