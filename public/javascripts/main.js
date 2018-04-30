@@ -744,8 +744,7 @@ function createTripPost(name, city, username, tripLength) {
       console.log(tripLength);
 
 
-      setTimeout(function(){ createTripPost(name, city, username, tripLength); }, 3000);
-      // createTripPost(name, city, username, tripLength);
+      createTripPost(name, city, username, tripLength);
       }
     });
 
