@@ -534,10 +534,10 @@ function createTripPost(name, city, username, tripLength) {
       alert('Must enter an end date');
     }
     date1 = '\"' + date1 + '\"';
-    date1 = new Date(2018, 04, 29, 0, 0, 0, 0);
+    date1 = new Date(2018, 04, 29);
     console.log(date1);
     date2 = '\"' + date2 + '\"';
-    date2 = new Date(2018, 05, 03, 0, 0, 0, 0);
+    date2 = new Date(2018, 05, 03);
     console.log(date2);
     var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
     console.log(diffDays);
