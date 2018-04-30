@@ -86,9 +86,11 @@ router.get('/:username', (req, res) => {
   
   
   router.delete('/:username/:tripName', (req, res) => {
+    const tripName = req.params.tripName.replace('-', ' ');
+    console.log(tripName);
     Trip.findOneAndRemove({
       username: req.params.username, 
-      tripName: req.params.tripName})
+      tripName: tripName})
       .then(() => {
         res.status(204).json({ message: 'success' });
       })

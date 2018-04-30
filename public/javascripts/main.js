@@ -11,8 +11,8 @@ let store = {
 
 
   
-  const serverBase = 'https://travel-planner-capstone.herokuapp.com';
-  // const serverBase = '';
+  // const serverBase = 'https://travel-planner-capstone.herokuapp.com';
+  const serverBase = '';
   
   
   // API Calls
@@ -288,8 +288,10 @@ function createTripPost(name, city, username, tripLength) {
     const username = localStorage.getItem("username");
     store.username = username;
     console.log(username);
+    console.log(tripName);
+    const name = tripName.replace(' ', '-');
     $.ajax({
-          url: serverBase + `/trips/${username}/${tripName}`,
+          url: serverBase + `/trips/${username}/${name}`,
           method: 'DELETE',
         })
         .done(function(data) {
@@ -716,8 +718,8 @@ function createTripPost(name, city, username, tripLength) {
 
     $('#createTrip').click(function(e) {
       e.preventDefault();
-      const name = $('#tripName').val();
-      const city = $('#tripLocation').val();
+      const name = $('#tripName').val().trim();
+      const city = $('#tripLocation').val().trim();
       if (name === '') {
         alert('Must enter a trip name');
       }
