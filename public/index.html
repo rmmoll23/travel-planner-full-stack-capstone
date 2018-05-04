@@ -4,7 +4,7 @@
 <head>
         <title>Travel Planner</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="maximum-scale">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <link rel="stylesheet" href="../stylesheets/jquery-ui.css">        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- <link href="../stylesheets/jquery.loader.css" rel="stylesheet" /> -->
@@ -134,14 +134,14 @@ function getPlaceUrl(placeId, callback) {
             <li><a id="activityNav-packing" href="#">Activity Selection Page</a></li>
         </ul>   
  </nav>
- <main role="main" class="landing">
-        <div class="landingTop">
-                <h2 aria-label="All of your traveling needs in one place" class="fadeOutHeader">All of your traveling needs in one place</h2>
+ <main role="main" className="landing">
+        <div className="landingTop">
+                <h2 aria-label="All of your traveling needs in one place" className="fadeOutHeader">All of your traveling needs in one place</h2>
                 <button id="signUp-button" type="button">Sign Up</button>
         </div>
-        <div class="landingBottom">
+        <div className="landingBottom">
                 <h2>Features</h2>
-                <ul class="landingList">
+                <ul className="landingList">
                         <li aria-label="Search for things to do">Search for things to do</li>
                         <li aria-label="Add them to your Planner">Add them to your planner</li>
                         <li aria-label="Make a packing list">Make a packing list</li>
@@ -199,7 +199,7 @@ function getPlaceUrl(placeId, callback) {
         <h1 tabindex=1 aria-label="Welcome">Welcome, <span id="firstName">John!</span></h1>
         <h2 tabindex=1 aria-label="Current Saved Trips">Current Saved Trips</h2>
         <ul id="tripList">
-                <h3 id="noTrips" class="hidden">No trips created yet</h3>
+                <h3 id="noTrips" className="hidden">No trips created yet</h3>
         </ul>
         <button id="newTrip" type="button">Create new trip</button>       
 </main>
