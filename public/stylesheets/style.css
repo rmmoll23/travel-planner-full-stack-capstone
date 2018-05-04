@@ -371,14 +371,15 @@ span {
   border: lightseagreen solid;
   display: inline-block;
   width: 20%;
-  margin-top: 10px;
+  margin: 5px;
   padding: 15px;
   min-width: 100px;
   max-width: 350px;
   background-color: white;
+  cursor: pointer;
 }
 
-.dayContainer:hover {
+.dayContainer {
   cursor: pointer;
 }
 
@@ -392,6 +393,7 @@ span {
 .noActivities {
   margin-bottom: 50px;
   border-bottom: none;
+  width: auto;
 }
 
 .dayHeader {
