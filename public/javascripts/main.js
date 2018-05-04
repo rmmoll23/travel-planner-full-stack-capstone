@@ -1175,6 +1175,5 @@ function createTripPost(name, city, username, tripLength) {
   
   $(function() {
     handleEventListeners();
-    $(".fadeOutHeader").fadeOut(18000);
     });
 
