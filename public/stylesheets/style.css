@@ -58,13 +58,13 @@ a {
   border: lightblue solid 1px;
   background-color: white;
   position: absolute;
-  right: 80px;
+  right: 90px;
   top: 35%;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 #signUpButtonNav {
-  font-size: 12px;
+  font-size: 15px;
   color: white;
   border: solid lightblue 1px;
   position: absolute;
@@ -547,6 +547,25 @@ footer ul {
 
 
 @media only screen and (max-width: 600px) {
+
+  #logIn-button {
+    color: lightblue;
+    border: lightblue solid 1px;
+    background-color: white;
+    position: absolute;
+    right: 80px;
+    top: 35%;
+    font-size: 12px;
+  }
+  
+  #signUpButtonNav {
+    font-size: 12px;
+    color: white;
+    border: solid lightblue 1px;
+    position: absolute;
+    right: 10px;
+    top: 35%;
+  }
 
   .fadeOutHeader {
     color: white;
