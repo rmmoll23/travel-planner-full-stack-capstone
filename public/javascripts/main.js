@@ -643,8 +643,19 @@ function createTripPost(name, city, username, tripLength) {
       // console.log('signUp');
       $('.landing').addClass('hidden');
       $('#logIn-button').addClass('hidden');
+      $('#signUpButtonNav').addClass('hidden');
       $('.signUp').removeClass('hidden');
     });
+
+    $(document).on('click', '#signUpButtonNav', function(event) {
+      event.preventDefault();
+      console.log('signUp');
+      $('.landing').addClass('hidden');
+      $('#logIn-button').addClass('hidden');
+      $('#signUpButtonNav').addClass('hidden');
+      $('.signUp').removeClass('hidden');
+    });
+
 
     // Example Event Delegation for REACT*****
     $(document).on('click', '#logIn-button', function(event) {
@@ -652,6 +663,7 @@ function createTripPost(name, city, username, tripLength) {
       // console.log('logIn');
       $('.landing').addClass('hidden');
       $('#logIn-button').addClass('hidden');
+      $('#signUpButtonNav').addClass('hidden');
       $('.logIn').removeClass('hidden');
     });
 
@@ -662,6 +674,7 @@ function createTripPost(name, city, username, tripLength) {
       // console.log('signUp');
       $('.signUp').addClass('hidden');
       $('#logIn-button').removeClass('hidden');
+      $('#signUpButtonNav').removeClass('hidden');
       $('.landing').removeClass('hidden');
     });
 
@@ -679,6 +692,7 @@ function createTripPost(name, city, username, tripLength) {
       // console.log('signUp');
       $('.logIn').addClass('hidden');
       $('#logIn-button').removeClass('hidden');
+      $('#signUpButtonNav').removeClass('hidden');
       $('.landing').removeClass('hidden');
     });
 

@@ -54,11 +54,22 @@ a {
 }
 
 #logIn-button {
+  color: lightblue;
+  border: lightblue solid 1px;
+  background-color: white;
+  position: absolute;
+  right: 80px;
+  top: 35%;
+  font-size: 12px;
+}
+
+#signUpButtonNav {
+  font-size: 12px;
   color: white;
+  border: solid lightblue 1px;
   position: absolute;
   right: 10px;
   top: 35%;
-  font-size: 12px;
 }
 
 #signUp-button {
@@ -724,6 +735,20 @@ footer ul {
 } 
 
 @media only screen and (max-width: 350px) {
+
+#logIn-button {
+  color: lightblue;
+  border: lightblue solid 1px;
+  background-color: white;
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  font-size: 12px;
+}
+
+#signUpButtonNav {
+  display: none;
+}
 
 .restaurantContainer, .activityContainer, .hikeContainer {
   width: 90%;
