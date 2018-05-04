@@ -23,11 +23,9 @@ function getWeatherForecast(locationKey){
       // console.log(result);
       displayWeatherResults(result);
     })
-    .fail(function (jqXHR, error, errorThrown) {
-      console.log(jqXHR);
-      console.log(error);
-      console.log(errorThrown);
-      });
+    .fail(function(err){
+        // console.log(err)
+    });
 }
 
 function getLocationKey(city) {
@@ -53,11 +51,9 @@ function getLatLon(city){
     .done(function(result) {
       renderLatLon(result);
     })
-    .fail(function (jqXHR, error, errorThrown) {
-      console.log(jqXHR);
-      console.log(error);
-      console.log(errorThrown);
-      });
+    .fail(function(err){
+        // console.log(err)
+    });
   }
 
 
@@ -74,11 +70,9 @@ function getRestaurants(lat, lon, startNumber){
       displayRestaurantResults(result);
       displayDayDropDown()
     })
-    .fail(function (jqXHR, error, errorThrown) {
-      console.log(jqXHR);
-      console.log(error);
-      console.log(errorThrown);
-      });
+    .fail(function(err){
+        // console.log(err)
+    });
 }
 
 function getHikingTrails(lat, lon){
@@ -91,11 +85,9 @@ function getHikingTrails(lat, lon){
       // console.log(result);
       displayHikingTrailsResults(result);
     })
-    .fail(function (jqXHR, error, errorThrown) {
-      console.log(jqXHR);
-      console.log(error);
-      console.log(errorThrown);
-      });
+    .fail(function(err){
+        // console.log(err)
+    });
 }
 
 // Render and Display API results
@@ -131,15 +123,15 @@ function renderRestaurantResults(items, index) {
   const type = items.restaurant.cuisines;
   const rating = items.restaurant.user_rating.aggregate_rating;
 
-  let restaurantResults = '<div tabindex=1 class="restaurantResults">';
-  restaurantResults += `<p tabindex=1>Name: <span id="restaurantName"><a href="${restaurantURL}" target="_blank" tabindex=1>${restaurantName}</a></span></p>`;
-  restaurantResults += `<p tabindex=1>Rating: <span>${rating}/5</span></p>`;
-  restaurantResults += `<p tabindex=1>Type: <span>${type}</span></p>`;
-  restaurantResults += `<p tabindex=1>Address: <span id="restaurantAddress">${restaurantAddress}</span></p>`;
-  restaurantResults += '<select tabindex=1 class="dayDropDown" name="days">';
+  let restaurantResults = '<div class="restaurantResults">';
+  restaurantResults += `<p>Name: <span id="restaurantName"><a href="${restaurantURL}" target="_blank">${restaurantName}</a></span></p>`;
+  restaurantResults += `<p>Rating: <span>${rating}/5</span></p>`;
+  restaurantResults += `<p>Type: <span>${type}</span></p>`;
+  restaurantResults += `<p>Address: <span id="restaurantAddress">${restaurantAddress}</span></p>`;
+  restaurantResults += '<select class="dayDropDown" name="days">';
             
   restaurantResults += '</select>'
-  restaurantResults += '<button tabindex=1 id="addToPlanner"type="submit">Add to Planner</button>';
+  restaurantResults += '<button id="addToPlanner"type="submit">Add to Planner</button>';
   restaurantResults += '</div>';
 return restaurantResults;
 }
@@ -178,16 +170,16 @@ function renderHikingTrailsResults(trail, index) {
     difficulty = "moderately easy";
   }
 
-  let hikingTrailsResults = '<div tabindex=1 class="hikeResults">';
-  hikingTrailsResults += `<p tabindex=1>Name: <span id="trailName"><a href="${trailsURL}" target="_blank" tabindex=1>${trailsName}</a></span></p>`;
-  hikingTrailsResults += `<p tabindex=1>Length: <span>${length} miles</span></p>`;
-  hikingTrailsResults += `<p tabindex=1>Difficulty: <span>${difficulty}</span></p>`;
-  hikingTrailsResults += `<p tabindex=1>Rating: <span>${trailRating}/5</span></p>`;
-  hikingTrailsResults += `<p tabindex=1>Location: <span id="trailLocation">${trailLocation}</span></p>`;
-  hikingTrailsResults += '<select tabindex=1 class="dayDropDown" name="days">';
+  let hikingTrailsResults = '<div class="hikeResults">';
+  hikingTrailsResults += `<p>Name: <span id="trailName"><a href="${trailsURL}" target="_blank">${trailsName}</a></span></p>`;
+  hikingTrailsResults += `<p>Length: <span>${length} miles</span></p>`;
+  hikingTrailsResults += `<p>Difficulty: <span>${difficulty}</span></p>`;
+  hikingTrailsResults += `<p>Rating: <span>${trailRating}/5</span></p>`;
+  hikingTrailsResults += `<p>Location: <span id="trailLocation">${trailLocation}</span></p>`;
+  hikingTrailsResults += '<select class="dayDropDown" name="days">';
 
   hikingTrailsResults += '</select>';
-  hikingTrailsResults += '<button tabindex=1 id="addToPlanner" type="submit">Add to Planner</button>';       
+  hikingTrailsResults += '<button id="addToPlanner" type="submit">Add to Planner</button>';       
   hikingTrailsResults += '</div>';
 return hikingTrailsResults;
 }
@@ -212,10 +204,10 @@ function renderWeatherResults(forecast, index) {
   const currentDate = myDate.toLocaleString('en-US', options);
  
   const weatherResults = `<div class="weatherContainer">
-    <h3 tabindex=1>${currentDate}</h3>
+    <h3>${currentDate}</h3>
     <img src="https://developer.accuweather.com/sites/default/files/${weatherIcon}-s.png"/>
-    <p tabindex=1>High: <span>${high}</span></p>
-    <p tabindex=1>Low: <span>${low}</span></p>
+    <p>High: <span>${high}</span></p>
+    <p>Low: <span>${low}</span></p>
     </div>`;
 return weatherResults;
 }
@@ -235,8 +227,7 @@ function getFirstName(username) {
 
 // Trip Requests
 function createTripPost(name, city, username, tripLength) {
-
-  console.log(tripLength);
+  // console.log('tripToDatabase');
 
       const createTripObject = {
         username: username,
@@ -252,18 +243,17 @@ function createTripPost(name, city, username, tripLength) {
         data: JSON.stringify(createTripObject),
         contentType: 'application/json'
       })
-      .fail(function (jqXHR, error, errorThrown) {
-        console.log('not adding to db');
-        console.log(jqXHR);
-        console.log(error);
-        console.log(errorThrown);
-        })
+      .fail(function(error) {
+        // console.log(error)
+      })
       .done(function (result) {
-       console.log('tripCreated');
+        // console.log(result);
+        // console.log('tripCreated');
         $('#tripName').val('');
         $('#tripLocation').val('');
         $('#from').val('');
         $('to').val('');
+        $('#noTrips').addClass('hidden');
         $('#tripList').append(`<li><a href="#">${result.tripName}</a><div title="delete trip" class="deleteTrip"><i class="fa fa-close"></i></div></li>`);
         $('.newTrip').addClass('hidden');
         $('.activitySelection').removeClass('hidden');
@@ -280,7 +270,13 @@ function createTripPost(name, city, username, tripLength) {
               `<li><a href="#">${trip.tripName}</a><div title="delete trip" class="deleteTrip"><i class="fa fa-close"></i></div></li>`;
             return tripListTemplate;
           })
-          $('#tripList').append(tripList);
+          console.log(tripList);
+          if (tripList.length === 0) {
+            $('#noTrips').removeClass('hidden');
+          }
+          else {
+            $('#tripList').append(tripList);
+          }
         });
       }
 
@@ -288,10 +284,8 @@ function createTripPost(name, city, username, tripLength) {
     const username = localStorage.getItem("username");
     store.username = username;
     console.log(username);
-    console.log(tripName);
-    const name = tripName.replace(' ', '-');
     $.ajax({
-          url: serverBase + `/trips/${username}/${name}`,
+          url: serverBase + `/trips/${username}/${tripName}`,
           method: 'DELETE',
         })
         .done(function(data) {
@@ -330,11 +324,9 @@ function createTripPost(name, city, username, tripLength) {
       getActivities();
       getPackingListItems();
       })
-      .fail(function (jqXHR, error, errorThrown) {
-        console.log(jqXHR);
-        console.log(error);
-        console.log(errorThrown);
-        });
+      .fail(function(error) {
+        // console.log(error);
+      })
       $('.profile').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
       $('.navList-activity').removeClass('hidden');
@@ -361,11 +353,9 @@ function createTripPost(name, city, username, tripLength) {
             data: JSON.stringify(createActivityObject),
             contentType: 'application/json'
           })
-          .fail(function (jqXHR, error, errorThrown) {
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-            })
+          .fail(function(error) {
+            // console.log(error)
+          })
           .done(function (result) {
             // console.log('activityPosted');
           })
@@ -402,9 +392,9 @@ function createTripPost(name, city, username, tripLength) {
               // console.log('success');
             })
             .fail(function (jqXHR, error, errorThrown) {
-              console.log(jqXHR);
-              console.log(error);
-              console.log(errorThrown);
+              // console.log(jqXHR);
+              // console.log(error);
+              // console.log(errorThrown);
               const alertError = 'Error encountered in DELETE.';
               alertUser(alertError);
             })
@@ -445,11 +435,9 @@ function createTripPost(name, city, username, tripLength) {
             data: JSON.stringify(createItemObject),
             contentType: 'application/json'
           })
-          .fail(function (jqXHR, error, errorThrown) {
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-            })
+          .fail(function(error) {
+            // console.log(error)
+          })
           .done(function (result) {
             // console.log('itemPosted');
             // console.log(result);
@@ -465,22 +453,20 @@ function createTripPost(name, city, username, tripLength) {
         $.getJSON(packingListURL, function(items) {
           const itemList = items.map(function(item) {
             const newItem = 
-            `<div class="items"><label><input tabindex=1 type="checkbox" name="${item.itemName}">${item.itemName}</label> <div tabindex=1 aria-label="select to delete ${item.itemName} from list" class="delete"><i class="fa fa-close"></i></div><br></div>`;
+            `<div class="items"><label><input type="checkbox" name="${item.itemName}">${item.itemName}</label><div aria-label="select to delete ${item.itemName} from list" class="delete"><i class="fa fa-close"></i></div><br></div>`;
             const itemClass = `.${item.category}`;
             $(itemClass).append(newItem);
             if (item.checked === 'on') {
               // console.log(item.itemName);
-              $(`input[name='${item.itemName}']`).prop('checked', true);;
+              $(`input[name='${item.itemName}']`).prop('checked', true);
             }
           });
 
 
         })
-        .fail(function (jqXHR, error, errorThrown) {
-          console.log(jqXHR);
-          console.log(error);
-          console.log(errorThrown);
-          })
+        .fail(function(err) {
+          // console.log(error);
+        })
         .done(function(result) {
           // console.log('success');
         })
@@ -496,7 +482,7 @@ function createTripPost(name, city, username, tripLength) {
               method: 'DELETE',
             })
             .done(function(data) {
-              // console.log('success');
+              console.log('success deleted item');
             })
             .fail(function (jqXHR, error, errorThrown) {
               console.log(jqXHR);
@@ -508,6 +494,7 @@ function createTripPost(name, city, username, tripLength) {
       }
 
       function updatePackingListItem(itemName, category, checked) {
+        console.log(checked);
         const username = store.username;
         const tripName = store.tripName;
         const item = itemName.trim();
@@ -518,34 +505,35 @@ function createTripPost(name, city, username, tripLength) {
               data: `checked=${checked}`,
             })
             .done(function(data) {
-              // console.log('success');
+              console.log('success updated checked item');
             })
+            .fail(function (jqXHR, error, errorThrown) {
+              console.log(jqXHR);
+              console.log(error);
+              console.log(errorThrown);
+              const alertError = 'Error encountered in DELETE.';
+              alertUser(alertError);
+            })
+            
       }
 
   
 
   function dateDifference() {
     let date1 = $('#from').val();
-    console.log(date1);
     let date2 = $('#to').val();
-    console.log(date2);
     if (date1 === '') {
       alert('Must enter a start date');
     }
     if (date2 === '') {
       alert('Must enter an end date');
     }
-    date1 = date1.replace(/\b0/g, '');
-    const date1array = date1.split("/");
-    console.log(date1array);
-    date1 = new Date(date1array[0], date1array[1], date1array[2]);
-    date2 = date2.replace(/\b0/g, '');
-    const date2array = date2.split("/");
-    console.log(date2array);
-    date2 = new Date(date2array[0], date2array[1], date2array[2]);
-    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));  
-    console.log(diffDays);
+    date1 = '\"' + date1 + '\"';
+    date1 = new Date(date1);
+    date2 = '\"' + date2 + '\"';
+    date2 = new Date(date2);
+    var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
+    // console.log(diffDays);
     localStorage.setItem("tripLength", diffDays);
     store.tripLength = diffDays;
     
@@ -580,8 +568,8 @@ function createTripPost(name, city, username, tripLength) {
     let dayContainer = '';
     for (let i = 1; i <= days; i++) {
       dayContainer += `<div class="dayContainer plannerDay${i}">
-            <h3 tabindex=1 >Day ${i}</h3>
-            <p tabindex=1 >0 activities saved</p>
+            <h3 >Day ${i}</h3>
+            <p >0 activities saved</p>
         </div>`;
     }
     $('.plannerDays').html(dayContainer);
@@ -594,7 +582,7 @@ function createTripPost(name, city, username, tripLength) {
     const name = store.tripName;
     let dayView = '';
     for (let i = 1; i <= days; i++) {
-      dayView += `<div class="dayPage day${i} hidden"><h1 tabindex=1 class="dayHeader">${name} (Day ${i})</h1>
+      dayView += `<div class="dayPage day${i} hidden"><h1 class="dayHeader">${name} (Day ${i})</h1>
       <div class="activities">
         <h3 class="noActivities">No activities added to this day.  Go to Activity Selection Page to add activities.</h3>
       </div>
@@ -607,22 +595,22 @@ function createTripPost(name, city, username, tripLength) {
     let dayViewContent = '';
     if (url === undefined) {
       dayViewContent = `<div class="dayActivity">
-      <h2 tabindex=1>${name}</h2>
-      <p tabindex=1>${address}</p><br>
-      <button tabindex=1 class="button-delete" type="button">Delete</button>
-      <textarea tabindex=1 rows="4" cols="50" class="notesInput">${notes} 
+      <h2>${name}</h2>
+      <p>${address}</p><br>
+      <button class="button-delete" type="button">Delete</button>
+      <textarea rows="4" cols="50" class="notesInput">${notes} 
       </textarea>
-      <button tabindex=1 class="button-notes" type="button">Save Notes</button>
+      <button class="button-notes" type="button">Save Notes</button>
       </div>`
     }
     else {
       dayViewContent = `<div class="dayActivity">
-      <h2><a href="${url}" target="_blank" tabindex=1>${name}</a></h2>
-      <p tabindex=1>${address}</p><br>
-      <button tabindex=1 class="button-delete" type="button">Delete</button>
-      <textarea tabindex=1 rows="4" cols="50" class="notesInput">${notes} 
+      <h2><a href="${url}" target="_blank">${name}</a></h2>
+      <p>${address}</p><br>
+      <button class="button-delete" type="button">Delete</button>
+      <textarea rows="4" cols="50" class="notesInput">${notes} 
       </textarea>
-      <button tabindex=1 class="button-notes" type="button">Save Notes</button>
+      <button class="button-notes" type="button">Save Notes</button>
       </div>`
     }
 
@@ -650,13 +638,16 @@ function createTripPost(name, city, username, tripLength) {
 
     // landing listeners
 
-    $('#signUp-button').click(function() {
+    $(document).on('click', '#signUp-button', function(event) {
+      event.preventDefault();
       // console.log('signUp');
       $('.landing').addClass('hidden');
       $('.signUp').removeClass('hidden');
     });
 
-    $('#logIn-button').click(function() {
+    // Example Event Delegation for REACT*****
+    $(document).on('click', '#logIn-button', function(event) {
+      event.preventDefault();
       // console.log('logIn');
       $('.landing').addClass('hidden');
       $('.logIn').removeClass('hidden');
@@ -664,13 +655,15 @@ function createTripPost(name, city, username, tripLength) {
 
     // signUp listeners
 
-    $('#cancel').click(function() {
+    $(document).on('click', '#cancel', function(event) {
+      event.preventDefault();
       // console.log('signUp');
       $('.signUp').addClass('hidden');
       $('.landing').removeClass('hidden');
     });
 
-    $('#toLogIn').click(function() {
+    $(document).on('click', '#toLogIn', function(event) {
+      event.preventDefault();
       // console.log('signUp');
       $('.signUp').addClass('hidden');
       $('.logIn').removeClass('hidden');
@@ -678,13 +671,15 @@ function createTripPost(name, city, username, tripLength) {
 
     // logIn listeners
 
-    $('#cancelLogIn').click(function() {
+    $(document).on('click', '#cancelLogIn', function(event) {
+      event.preventDefault();
       // console.log('signUp');
       $('.logIn').addClass('hidden');
       $('.landing').removeClass('hidden');
     });
 
-    $('#toSignUp').click(function() {
+    $(document).on('click', '#toSignUp', function(event) {
+      event.preventDefault();
       // console.log('signUp');
       $('.logIn').addClass('hidden');
       $('.signUp').removeClass('hidden');
@@ -692,20 +687,22 @@ function createTripPost(name, city, username, tripLength) {
 
     // profile listeners
 
-    $('#newTrip').click(function() {
+    $(document).on('click', '#newTrip', function(event) {
+      event.preventDefault();
       // console.log('newTripForm');
       $('.profile').addClass('hidden');
       $('.newTrip').removeClass('hidden');
     });
 
-    $('#tripList').on('click', 'a', function(e) {
-      e.preventDefault();
+    $(document).on('click', '#tripList a', function(event) {
+      event.preventDefault();
       const name = $(this).text();
       // console.log(name);
       getTrip(name);
     })
 
-    $('#tripList').on('click', '.deleteTrip', function(event) {
+    $(document).on('click', '#tripList .deleteTrip', function(event) {
+      event.preventDefault();
       // console.log('delete');
       const tripName = $(this).parent('li').find('a').html();
       
@@ -716,10 +713,10 @@ function createTripPost(name, city, username, tripLength) {
 
     // newTrip listeners 
 
-    $('#createTrip').click(function(e) {
-      e.preventDefault();
-      const name = $('#tripName').val().trim();
-      const city = $('#tripLocation').val().trim();
+    $(document).on('click', '#createTrip', function(event) {
+      event.preventDefault();
+      const name = $('#tripName').val();
+      const city = $('#tripLocation').val();
       if (name === '') {
         alert('Must enter a trip name');
       }
@@ -733,7 +730,6 @@ function createTripPost(name, city, username, tripLength) {
       store.username = username;
       store.tripName = name;
 
-
       // console.log(city);
       getLatLon(city);
       getLocationKey(city);
@@ -743,14 +739,15 @@ function createTripPost(name, city, username, tripLength) {
       displayDayView();
       getPackingListItems();
       const tripLength = store.tripLength;
-      console.log(tripLength);
+
 
 
       createTripPost(name, city, username, tripLength);
       }
     });
 
-    $('#cancelTrip').click(function() {
+    $(document).on('click', '#cancelTrip', function(event) {
+      event.preventDefault();
       // console.log('signUp');
       $('.newTrip').addClass('hidden');
       $('.profile').removeClass('hidden');
@@ -758,7 +755,8 @@ function createTripPost(name, city, username, tripLength) {
 
     // activitySelection listeners
 
-    $('#viewPlanner').click(function() {
+    $(document).on('click', '#viewPlanner', function(event) {
+      event.preventDefault();
       // console.log('viewTravelPlanner');
       $('.activitySelection').addClass('hidden');
       $('.tripPlanner').removeClass('hidden');
@@ -766,7 +764,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-planner').removeClass('hidden');
     });
 
-    $('#createPackList').click(function() {
+    $(document).on('click', '#createPackList', function(event) {
+      event.preventDefault();
       // console.log('createPackingList');
       $('.activitySelection').addClass('hidden');
       $('.packingList').removeClass('hidden');
@@ -776,7 +775,8 @@ function createTripPost(name, city, username, tripLength) {
 
     // tripPlanner listeners
 
-    $('.tripPlanner').on('click', '.dayContainer', function() {
+    $(document).on('click', '.tripPlanner .dayContainer', function(event) {
+      event.preventDefault();
       // console.log('dayView');
       let element = $(this).attr('class');
       element = element.replace(/\D/g,'');
@@ -794,7 +794,9 @@ function createTripPost(name, city, username, tripLength) {
     // nav listeners
 
 // activity Nav
-    $('#profileNav-activity').click(function() {
+
+    $(document).on('click', '#profileNav-activity', function(event) {
+      event.preventDefault();
       // console.log('toProfile');
       $('.activitySelection').addClass('hidden');
       $('.navList-activity').addClass('hidden');
@@ -805,7 +807,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.hikeContainer').empty();
     });
 
-    $('#plannerNav-activity').click(function() {
+    $(document).on('click', '#plannerNav-activity', function(event) {
+      event.preventDefault();
       // console.log('toPlanner');
       $('.activitySelection').addClass('hidden');
       $('.navList-activity').addClass('hidden');
@@ -813,7 +816,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-planner').removeClass('hidden');
     });
 
-    $('#packingNav-activity').click(function() {
+    $(document).on('click', '#packingNav-activity', function(event) {
+      event.preventDefault();
       // console.log('toPacking');
       $('.activitySelection').addClass('hidden');
       $('.navList-activity').addClass('hidden');
@@ -823,7 +827,8 @@ function createTripPost(name, city, username, tripLength) {
 
     // planner Nav
 
-    $('#profileNav-planner').click(function() {
+    $(document).on('click', '#profileNav-planner', function(event) {
+      event.preventDefault();
       // console.log('toProfile');
       $('.tripPlanner').addClass('hidden');
       $('.navList-planner').addClass('hidden');
@@ -834,7 +839,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.hikeContainer').empty();
     });
 
-    $('#activityNav-planner').click(function() {
+    $(document).on('click', '#activityNav-planner', function(event) {
+      event.preventDefault();
       // console.log('toActivity');
       $('.tripPlanner').addClass('hidden');
       $('.navList-planner').addClass('hidden');
@@ -842,7 +848,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-activity').removeClass('hidden');
     });
 
-    $('#packingNav-planner').click(function() {
+    $(document).on('click', '#packingNav-planner', function(event) {
+      event.preventDefault();
       // console.log('toPacking');
       $('.tripPlanner').addClass('hidden');
       $('.navList-planner').addClass('hidden');
@@ -852,7 +859,8 @@ function createTripPost(name, city, username, tripLength) {
 
     // day Nav
 
-    $('#profileNav-day').click(function() {
+    $(document).on('click', '#profileNav-day', function(event) {
+      event.preventDefault();
       // console.log('toProfile');
       $('.dayView').addClass('hidden');
       $('.navList-day').addClass('hidden');
@@ -867,7 +875,8 @@ function createTripPost(name, city, username, tripLength) {
       }
     });
 
-    $('#activityNav-day').click(function() {
+    $(document).on('click', '#activityNav-day', function(event) {
+      event.preventDefault();
       // console.log('toActivity');
       $('.dayView').addClass('hidden');
       $('.navList-day').addClass('hidden');
@@ -879,7 +888,8 @@ function createTripPost(name, city, username, tripLength) {
       }
     });
 
-    $('#packingNav-day').click(function() {
+    $(document).on('click', '#packingNav-day', function(event) {
+      event.preventDefault();
       // console.log('toPacking');
       $('.dayView').addClass('hidden');
       $('.navList-day').addClass('hidden');
@@ -891,7 +901,8 @@ function createTripPost(name, city, username, tripLength) {
       }
     });
 
-    $('#plannerNav-day').click(function() {
+    $(document).on('click', '#plannerNav-day', function(event) {
+      event.preventDefault();
       // console.log('toPacking');
       $('.dayView').addClass('hidden');
       $('.navList-day').addClass('hidden');
@@ -905,7 +916,8 @@ function createTripPost(name, city, username, tripLength) {
 
     // packing Nav
 
-    $('#profileNav-packing').click(function() {
+    $(document).on('click', '#profileNav-packing', function(event) {
+      event.preventDefault();
       // console.log('toProfile');
       $('.packingList').addClass('hidden');
       $('.navList-packing').addClass('hidden');
@@ -916,7 +928,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.hikeContainer').empty();
     });
 
-    $('#activityNav-packing').click(function() {
+    $(document).on('click', '#activityNav-packing', function(event) {
+      event.preventDefault();
       // console.log('toActivity');
       $('.packingList').addClass('hidden');
       $('.navList-packing').addClass('hidden');
@@ -924,7 +937,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.navList-activity').removeClass('hidden');
     });
 
-    $('#plannerNav-packing').click(function() {
+    $(document).on('click', '#plannerNav-packing', function(event) {
+      event.preventDefault();
       // console.log('toPacking');
       $('.packingList').addClass('hidden');
       $('.navList-packing').addClass('hidden');
@@ -933,8 +947,8 @@ function createTripPost(name, city, username, tripLength) {
     });
 
     // activitySearchTriggers
-    $('.activityContainer').on('click', '#activitySearch-button', function(e) {
-      e.preventDefault();
+    $(document).on('click', '.activityContainer #activitySearch-button', function(event) {
+      event.preventDefault();
       const keyword = $('#activitySearch-input').val();
       const lat = +localStorage.getItem('lat');
       // const lat = +store.latitude;
@@ -949,8 +963,8 @@ function createTripPost(name, city, username, tripLength) {
     })
 
     // restaurants
-    $('.restaurantContainer').on('click', '#addToPlanner', function(e) {
-      e.preventDefault();
+    $(document).on('click', '.restaurantContainer #addToPlanner', function(event) {
+      event.preventDefault();
       let daySelected = $(this).parent('.restaurantResults').find('select').val();
       daySelected = daySelected.replace(/\D/g,'');
       daySelected = `.day${daySelected}`;
@@ -970,8 +984,8 @@ function createTripPost(name, city, username, tripLength) {
 
     // search
 
-    $('.activityResultsContainer').on('click', '#addToPlanner', function(e) {
-      e.preventDefault();
+    $(document).on('click', '.activityResultsContainer #addToPlanner', function(event) {
+      event.preventDefault();
       let daySelected = $(this).parent('.activityResults').find('select').val();
       daySelected = daySelected.replace(/\D/g,'');
       daySelected = `.day${daySelected}`;
@@ -992,8 +1006,8 @@ function createTripPost(name, city, username, tripLength) {
 
     // hiking
 
-    $('.hikeContainer').on('click', '#addToPlanner', function(e) {
-      e.preventDefault();
+    $(document).on('click', '.hikeContainer #addToPlanner', function(event) {
+      event.preventDefault();
       let daySelected = $(this).parent('.hikeResults').find('select').val();
       daySelected = daySelected.replace(/\D/g,'');
       daySelected = `.day${daySelected}`;
@@ -1016,8 +1030,8 @@ function createTripPost(name, city, username, tripLength) {
     // dayViewTriggers
 
     // deleteEvent
-    $('.dayView').on('click', '.button-delete', function(e) {
-      e.preventDefault();
+    $(document).on('click', '.dayView .button-delete', function(event) {
+      event.preventDefault();
       let day = $(this).parent('.dayActivity').parent('.activities').parent('.dayPage').find('.dayHeader').text();
       day = day = day.replace(/\D/g,'');
       const activityName = $(this).parent('.dayActivity').find('a').text();
@@ -1028,8 +1042,8 @@ function createTripPost(name, city, username, tripLength) {
       activityCount(`.day${day}`);
     })
 
-    $('.dayView').on('click', '.button-notes', function(e) {
-      e.preventDefault();
+    $(document).on('click', '.dayView .button-notes', function(event) {
+      event.preventDefault();
       let day = $(this).parent('.dayActivity').parent('.activities').parent('.dayPage').find('.dayHeader').text();
       day = day = day.replace(/\D/g,'');
       const activityName = $(this).parent('.dayActivity').find('a').text();
@@ -1045,8 +1059,9 @@ function createTripPost(name, city, username, tripLength) {
 
     // packingListTriggers
 
-    $('.itemList').on('click', '.delete', function(event) {
-      // console.log('delete');
+    $(document).on('click', '.itemList .delete', function(event) {
+      event.preventDefault();
+      console.log('delete');
       const itemName = $(this).parent('.items').text();
       let category = $(this).parent('.items').parent('.itemList').attr('class');
       category = category.replace('itemList ','');
@@ -1056,30 +1071,32 @@ function createTripPost(name, city, username, tripLength) {
       deletePackingListItem(itemName, category);
     });
 
-    $('.button-addItem').click(function() {
+    $(document).on('click', '.button-addItem', function(event) {
+      event.preventDefault();
       const itemAdded = $(this).parent('.listBox').find('.itemToAdd').val();
       if (itemAdded === '') {
         alert('Item input field cannot be blank');
       }
       else {
-        alert(`${itemAdded} added successfully`);
+        console.log(`${itemAdded} added successfully`);
         const category = $(this).parent('.listBox').parent('.packListContainer').find('.packListHeaders').text();
         // console.log(itemAdded);
-        const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label> <div class="delete"><i class="fa fa-close"></i></div><br></div>`;
+        const newItem = `<div class="items"><label><input type="checkbox">${itemAdded}</label><div class="delete"><i class="fa fa-close"></i></div><br></div>`;
         $(this).parent('.listBox').find('.itemList').prepend(newItem);
         $(this).parent('.listBox').find('.itemToAdd').val('');
         postItemToPackingList(itemAdded, category);
       }
     });
 
-    $('.itemList').on('click', 'input', function() {
+    $(document).on('click', '.itemList input', function() {
+      console.log('checkItem');
       let checked = $(this).parent('label').parent('.items').find('input');
       if (checked.is(":checked")) {
-            // console.log(true);
+            console.log(true);
             checked = 'on';
           }
       else {
-            // console.log(false);
+            console.log(false);
             checked = 'off';
           }
 
@@ -1095,13 +1112,15 @@ function createTripPost(name, city, username, tripLength) {
 
     // key listeners
 
-    $('.activityContainer').on('keyup', '#activitySearch-input', function(event) {
+    $(document).on('keyup', '.activityContainer #activitySearch-input', function(event) {
+      event.preventDefault();
       if (event.keyCode === 13) {
         $('#activitySearch-button').click();
       }
     });
 
-    $('.tripPlanner').on('keyup', '.dayContainer', function(event) {
+    $(document).on('keyup', '.tripPlanner .dayContainer', function(event) {
+      event.preventDefault();
       if (event.keyCode === 13) {
        
         // console.log('dayView');
@@ -1119,8 +1138,9 @@ function createTripPost(name, city, username, tripLength) {
       }
     });
 
-    $('.itemList').on('keyup', '.delete', function() {
-      // console.log('delete');
+    $(document).on('keyup', '.itemList .delete', function(event) {
+      event.preventDefault();
+      console.log('delete');
       if (event.keyCode === 13) {
         const itemName = $(this).parent('.items').text();
         let category = $(this).parent('.items').parent('.itemList').attr('class');
@@ -1137,6 +1157,6 @@ function createTripPost(name, city, username, tripLength) {
   
   $(function() {
     handleEventListeners();
-    $(".fadeOutHeader").fadeOut(15000);
+    $(".fadeOutHeader").fadeOut(18000);
     });
 

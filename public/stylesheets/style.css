@@ -1,14 +1,10 @@
 
 body {
-  /* background-image: url(../images/moraineLake2.jpeg); */
+  /* background-image: url(./images/moraineLake2.jpeg); */
   background-size: cover;
   font-family: 'Noto Sans', sans-serif;
   margin: 0;
   color: black;
-}
-
-button {
-  cursor: pointer;
 }
 
 .hidden {
@@ -46,7 +42,7 @@ button:hover {
 }
 
 a {
-  padding-left: 5px;
+  padding-right: 10px;
   color: lightseagreen;
 }
 
@@ -58,15 +54,20 @@ a {
 }
 
 .fadeOutHeader {
-  color: lightblue;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .landingTop {
   height: 400px;
-  background-image: url(../images/moraineLake2.jpeg);
+  background-image: url(./images/moraineLake2.jpeg);
   background-size: cover;
   color: lightseagreen;
   margin-top: 70px;
+  display: table;
+  width: 100%;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
 }
 
@@ -481,6 +482,10 @@ span {
   margin-left: 10px;
 }
 
+input[type='checkbox'] { 
+  cursor: pointer;
+}
+
 /* footer */
 
 footer {
@@ -505,7 +510,7 @@ footer ul {
   }
 
   .landingTop {
-    background-image: url(../images/river.jpg);
+    background-image: url(./images/river.jpg);
     background-size: cover;
   }
 
@@ -551,9 +556,6 @@ footer ul {
 } 
 
 @media only screen and (max-width: 450px) {
-  input {
-    font-size: 16px;
-  }
 
   .delete {
   right: 20px;
@@ -582,10 +584,6 @@ footer ul {
 
   .profile {
     padding-top: 150px;
-  }
-
-  .fadeOutHeader {
-    color: white;
   }
   
   .activitySelection h1 {
@@ -647,10 +645,6 @@ footer ul {
     display: block;
   }
 
-  .landingTop h2 {
-    padding: 70px;
-  }
-
   .landingBottom h2 {
     padding: 10px;
   }
@@ -687,6 +681,13 @@ footer ul {
   }
 
   .container input {
+    display: block;
+    position: static;
+    width: 95%;
+    margin-bottom: 15px
+  }
+
+  #signUpContainer input {
     display: block;
     position: static;
     width: 95%;
