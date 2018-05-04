@@ -521,19 +521,26 @@ function createTripPost(name, city, username, tripLength) {
 
   function dateDifference() {
     let date1 = $('#from').val();
+    console.log(date1);
     let date2 = $('#to').val();
+    console.log(date2);
     if (date1 === '') {
       alert('Must enter a start date');
     }
     if (date2 === '') {
       alert('Must enter an end date');
     }
-    date1 = '\"' + date1 + '\"';
-    date1 = new Date(date1);
-    date2 = '\"' + date2 + '\"';
-    date2 = new Date(date2);
-    var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)); 
-    // console.log(diffDays);
+    date1 = date1.replace(/\b0/g, '');
+    const date1array = date1.split("/");
+    console.log(date1array);
+    date1 = new Date(date1array[0], date1array[1], date1array[2]);
+    date2 = date2.replace(/\b0/g, '');
+    const date2array = date2.split("/");
+    console.log(date2array);
+    date2 = new Date(date2array[0], date2array[1], date2array[2]);
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));  
+    console.log(diffDays);
     localStorage.setItem("tripLength", diffDays);
     store.tripLength = diffDays;
     
