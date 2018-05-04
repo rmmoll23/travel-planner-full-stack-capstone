@@ -53,11 +53,25 @@ a {
   height: 100%;
 }
 
+#logIn-button {
+  color: white;
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  font-size: 12px;
+}
+
+#signUp-button {
+  font-size: 20px;
+  color: white;
+  padding: 10px 40px;
+  border: solid black 1px;
+}
+
 .fadeOutHeader {
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  display: table-cell;
-  vertical-align: middle;
+  margin: 15% auto 0;
 }
 
 .landingTop {
@@ -522,6 +536,13 @@ footer ul {
 
 
 @media only screen and (max-width: 600px) {
+
+  .fadeOutHeader {
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    display: table;
+    margin: 20% auto 0;
+  }
 
   .dayActivity {
     height: auto;

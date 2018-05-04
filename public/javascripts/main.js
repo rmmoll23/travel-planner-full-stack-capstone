@@ -131,7 +131,7 @@ function renderRestaurantResults(items, index) {
   restaurantResults += '<select class="dayDropDown" name="days">';
             
   restaurantResults += '</select>'
-  restaurantResults += '<button id="addToPlanner"type="submit">Add to Planner</button>';
+  restaurantResults += '<button id="addToPlanner" type="submit">Add to Planner</button>';
   restaurantResults += '</div>';
 return restaurantResults;
 }
@@ -642,6 +642,7 @@ function createTripPost(name, city, username, tripLength) {
       event.preventDefault();
       // console.log('signUp');
       $('.landing').addClass('hidden');
+      $('#logIn-button').addClass('hidden');
       $('.signUp').removeClass('hidden');
     });
 
@@ -650,6 +651,7 @@ function createTripPost(name, city, username, tripLength) {
       event.preventDefault();
       // console.log('logIn');
       $('.landing').addClass('hidden');
+      $('#logIn-button').addClass('hidden');
       $('.logIn').removeClass('hidden');
     });
 
@@ -659,6 +661,7 @@ function createTripPost(name, city, username, tripLength) {
       event.preventDefault();
       // console.log('signUp');
       $('.signUp').addClass('hidden');
+      $('#logIn-button').removeClass('hidden');
       $('.landing').removeClass('hidden');
     });
 
@@ -675,6 +678,7 @@ function createTripPost(name, city, username, tripLength) {
       event.preventDefault();
       // console.log('signUp');
       $('.logIn').addClass('hidden');
+      $('#logIn-button').removeClass('hidden');
       $('.landing').removeClass('hidden');
     });
 

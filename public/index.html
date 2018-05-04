@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-        <title>Travel-Planner</title>
+        <title>Travel Planner</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="../stylesheets/jquery-ui.css">        
@@ -110,6 +110,7 @@ function getPlaceUrl(placeId, callback) {
 <body>
  <nav role="navigation">
         <h1><img class="logo" src="../images/globe icon.png"/>&nbsp; &nbsp;Travel Planner</h1>
+        <button id="logIn-button" type="button">Log In</button>
         <ul tabindex=1 class="navList-activity hidden">
             <li><a id="profileNav-activity" href="#">Profile Page</a></li>
             <li><a id="packingNav-activity" href="#">Packing List</a></li>
@@ -132,22 +133,20 @@ function getPlaceUrl(placeId, callback) {
             <li><a id="activityNav-packing" href="#">Activity Selection Page</a></li>
         </ul>   
  </nav>
- <main role="main" class="landing">
-        <div class="landingTop">
-                <h2 aria-label="All of your traveling needs in one place" class="fadeOutHeader" tabindex=1>All of your traveling needs in one place</h1>
+ <main role="main" className="landing">
+        <div className="landingTop">
+                <h2 aria-label="All of your traveling needs in one place" className="fadeOutHeader">All of your traveling needs in one place</h2>
+                <button id="signUp-button" type="button">Sign Up</button>
         </div>
-        <div class="landingBottom">
+        <div className="landingBottom">
                 <h2>Features</h2>
-                <ul class="landingList">
-                        <li tabindex=1 aria-label="Search for things to do">Search for things to do</li>
-                        <li tabindex=1 aria-label="Add them to your Planner">Add them to your planner</li>
-                        <li tabindex=1 aria-label="Make a packing list">Make a packing list</li>
+                <ul className="landingList">
+                        <li aria-label="Search for things to do">Search for things to do</li>
+                        <li aria-label="Add them to your Planner">Add them to your planner</li>
+                        <li aria-label="Make a packing list">Make a packing list</li>
                 </ul>
-                <button id="signUp-button" class="button-left" type="button">Sign Up</button>
-                <button id="logIn-button" class="button-right" type="button">Log In</button>
         </div>
-   
- </main>
+</main>
  <main role="main" class="signUp hidden">
         <form id="signUpForm">
                 <div id="signUpContainer" class="container">
