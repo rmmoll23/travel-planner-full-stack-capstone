@@ -736,6 +736,10 @@ footer ul {
 
 @media only screen and (max-width: 350px) {
 
+/* input {
+  font-size: 16px;
+} */
+
 #logIn-button {
   color: lightblue;
   border: lightblue solid 1px;
