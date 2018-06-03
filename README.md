@@ -6,7 +6,7 @@ Travel-planner-full-stack-capstone is an interactive full-stack web app that all
 * with Node can be found here https://travel-planner-capstone.herokuapp.com/ and 
 * with React here https://rmmoll23.github.io/travel-planner-full-stack-capstone-react/build
 
-Screenshots:
+WireFrames:
 ![travel-planner-landing-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-landing-page.png)
 ![travel-planner-sign-up-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-sign-up-page.png)
 ![travel-planner-log-in-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-log-in-page.png)
@@ -18,6 +18,16 @@ Screenshots:
 ![travel-planner-packing-list-page](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-packing-list-page.png)
 ![travel-planner-footer-view](https://github.com/rmmoll23/travel-planner-full-stack-capstone/blob/master/github-images/travel-planner-footer-view.png)
 
+ScreenShots:
+<img width="1440" alt="landingpage" src="https://user-images.githubusercontent.com/33381445/40890954-9fee0db6-6743-11e8-8419-0b67733aeccf.png">
+<img width="1440" alt="signuppage" src="https://user-images.githubusercontent.com/33381445/40890959-ad04dd86-6743-11e8-9994-cbc4cded4c6b.png">
+<img width="1440" alt="loginpage" src="https://user-images.githubusercontent.com/33381445/40890961-aeee98bc-6743-11e8-8c34-072345b7e160.png">
+<img width="1440" alt="profilepage" src="https://user-images.githubusercontent.com/33381445/40890962-b24d1b8c-6743-11e8-9e5f-8c736d6079bc.png">
+<img width="1440" alt="createtrippage" src="https://user-images.githubusercontent.com/33381445/40890963-b3b89456-6743-11e8-81d0-8d345cbb6b5e.png">
+<img width="1440" alt="activityselectionpage" src="https://user-images.githubusercontent.com/33381445/40890964-b6b45d84-6743-11e8-93a6-ef19ac98db2f.png">
+<img width="1440" alt="travelplannerpage" src="https://user-images.githubusercontent.com/33381445/40890966-b8f2018c-6743-11e8-8ad2-2549016b0d00.png">
+<img width="1440" alt="dayactivitypage" src="https://user-images.githubusercontent.com/33381445/40890967-bb129850-6743-11e8-82b9-9aa43e735bfc.png">
+<img width="1440" alt="packinglistpage" src="https://user-images.githubusercontent.com/33381445/40890968-bd1ca186-6743-11e8-808b-f608068dc2aa.png">
 
 
 Summary: 
