@@ -15,6 +15,7 @@ function clearInputs() {
 function handleLoginSubmit() {
 	$('#enterApp').click(function(e) {
 		console.log ('submitLogIn');
+		$('body').loader('show');
 		e.preventDefault();
 		const uname = $('#logIn-username').val();
 		const pword = $('#logIn-password').val();
@@ -40,6 +41,7 @@ function handleLoginSubmit() {
 						getTripList(uname);
 						$('.logIn').addClass('hidden');
 						$('.profile').removeClass('hidden');
+						$('body').loader('hide');
 					} else {
 						clearInputs();
 						const alertInvalid = 'Please enter a valid username and/or password.';

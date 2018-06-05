@@ -17,6 +17,7 @@ function clearInputs() {
 function handleSignupClick() {
 	//TODO: Experiment with Google reCaptcha on this form
 	$('#signUpForm').submit((e) => {
+        $('body').loader('show');
         console.log('submit');
 		e.preventDefault();
 		const username = $('#signUp-username').val().trim();
@@ -48,6 +49,8 @@ function handleSignupClick() {
                             console.log('account created');
                             $('.signUp').addClass('hidden');
                             $('.logIn').removeClass('hidden');
+                            $('body').loader('hide');
+                            alert('Sign up successful');
                     } else {
                         clearInputs();
                         const alertInvalid = 'Please enter a valid username and/or password.';
