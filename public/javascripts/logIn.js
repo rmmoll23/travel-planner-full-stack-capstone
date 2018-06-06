@@ -17,8 +17,8 @@ function handleLoginSubmit() {
 		console.log ('submitLogIn');
 		$('body').loader('show');
 		e.preventDefault();
-		const uname = $('#logIn-username').val();
-		const pword = $('#logIn-password').val();
+		const uname = $('#logIn-username').val().trim();
+		const pword = $('#logIn-password').val().trim();
 
 		//Make sure no empty strings will be submitted, then 
 		if (uname != '' && pword != '') {
