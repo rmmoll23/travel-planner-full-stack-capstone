@@ -11,8 +11,8 @@ let store = {
 
 
   
-  // const serverBase = 'https://travel-planner-capstone.herokuapp.com';
-  const serverBase = '';
+  const serverBase = 'https://travel-planner-capstone.herokuapp.com';
+  // const serverBase = '';
   
   
   // API Calls
