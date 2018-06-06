@@ -11,8 +11,8 @@ let store = {
 
 
   
-  const serverBase = 'https://travel-planner-capstone.herokuapp.com';
-  // const serverBase = '';
+  // const serverBase = 'https://travel-planner-capstone.herokuapp.com';
+  const serverBase = '';
   
   
   // API Calls
@@ -258,7 +258,7 @@ function createTripPost(name, city, username, tripLength) {
         $('#tripList').append(`<li><a href="#">${result.tripName}</a><div title="delete trip" class="deleteTrip"><i class="fa fa-close"></i></div></li>`);
         $('.newTrip').addClass('hidden');
         $('.activitySelection').removeClass('hidden');
-        $('.navList-activity').removeClass('hidden');
+        $('.navList').removeClass('hidden');
         $('body').loader('hide');
       })
     }
@@ -333,7 +333,7 @@ function createTripPost(name, city, username, tripLength) {
       })
       $('.profile').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
-      $('.navList-activity').removeClass('hidden');
+      $('.navList').removeClass('hidden');
     }
 
     // Activity Requests
@@ -793,8 +793,8 @@ function createTripPost(name, city, username, tripLength) {
       // console.log('viewTravelPlanner');
       $('.activitySelection').addClass('hidden');
       $('.tripPlanner').removeClass('hidden');
-      $('.navList-activity').addClass('hidden');
-      $('.navList-planner').removeClass('hidden');
+      // $('.navList').addClass('hidden');
+      // $('.navList-planner').removeClass('hidden');
     });
 
     $(document).on('click', '#createPackList', function(event) {
@@ -802,8 +802,8 @@ function createTripPost(name, city, username, tripLength) {
       // console.log('createPackingList');
       $('.activitySelection').addClass('hidden');
       $('.packingList').removeClass('hidden');
-      $('.navList-activity').addClass('hidden');
-      $('.navList-packing').removeClass('hidden');
+      // $('.navList').addClass('hidden');
+      // $('.navList-packing').removeClass('hidden');
     });
 
     // tripPlanner listeners
@@ -820,19 +820,24 @@ function createTripPost(name, city, username, tripLength) {
       $('.tripPlanner').addClass('hidden');
       $('.dayView').removeClass('hidden');
       $(element).removeClass('hidden');
-      $('.navList-planner').addClass('hidden');
-      $('.navList-day').removeClass('hidden');
+      // $('.navList-planner').addClass('hidden');
+      // $('.navList-day').removeClass('hidden');
     });
 
     // nav listeners
 
-// activity Nav
-
-    $(document).on('click', '#profileNav-activity', function(event) {
+    $(document).on('click', '#profileNav', function(event) {
       event.preventDefault();
-      // console.log('toProfile');
+      console.log('toProfile');
       $('.activitySelection').addClass('hidden');
-      $('.navList-activity').addClass('hidden');
+      $('.tripPlanner').addClass('hidden');
+      $('.dayView').addClass('hidden');
+      $('.packingList').addClass('hidden');
+      const days = store.tripLength;
+      for (let i = 1; i <= days; i++) {
+        $(`.day${i}`).addClass('hidden');
+      }
+      $('.navList').addClass('hidden');
       $('.profile').removeClass('hidden');
       $('.itemList').empty();
       $('.activityResultsContainer').empty();
@@ -840,143 +845,43 @@ function createTripPost(name, city, username, tripLength) {
       $('.hikeContainer').empty();
     });
 
-    $(document).on('click', '#plannerNav-activity', function(event) {
+    $(document).on('click', '#plannerNav', function(event) {
       event.preventDefault();
-      // console.log('toPlanner');
+      console.log('toPlanner');
       $('.activitySelection').addClass('hidden');
-      $('.navList-activity').addClass('hidden');
+      $('.dayView').addClass('hidden');
+      $('.packingList').addClass('hidden');
+      const days = store.tripLength;
+      for (let i = 1; i <= days; i++) {
+        $(`.day${i}`).addClass('hidden');
+      }
       $('.tripPlanner').removeClass('hidden');
-      $('.navList-planner').removeClass('hidden');
     });
 
-    $(document).on('click', '#packingNav-activity', function(event) {
+    $(document).on('click', '#packingNav', function(event) {
       event.preventDefault();
-      // console.log('toPacking');
+      console.log('toPacking');
       $('.activitySelection').addClass('hidden');
-      $('.navList-activity').addClass('hidden');
-      $('.packingList').removeClass('hidden');
-      $('.navList-packing').removeClass('hidden');
-    });
-
-    // planner Nav
-
-    $(document).on('click', '#profileNav-planner', function(event) {
-      event.preventDefault();
-      // console.log('toProfile');
       $('.tripPlanner').addClass('hidden');
-      $('.navList-planner').addClass('hidden');
-      $('.profile').removeClass('hidden');
-      $('.itemList').empty();
-      $('.activityResultsContainer').empty();
-      $('.restaurantContainer').empty();
-      $('.hikeContainer').empty();
-    });
-
-    $(document).on('click', '#activityNav-planner', function(event) {
-      event.preventDefault();
-      // console.log('toActivity');
-      $('.tripPlanner').addClass('hidden');
-      $('.navList-planner').addClass('hidden');
-      $('.activitySelection').removeClass('hidden');
-      $('.navList-activity').removeClass('hidden');
-    });
-
-    $(document).on('click', '#packingNav-planner', function(event) {
-      event.preventDefault();
-      // console.log('toPacking');
-      $('.tripPlanner').addClass('hidden');
-      $('.navList-planner').addClass('hidden');
+      $('.dayView').addClass('hidden');
+      const days = store.tripLength;
+      for (let i = 1; i <= days; i++) {
+        $(`.day${i}`).addClass('hidden');
+      }
       $('.packingList').removeClass('hidden');
-      $('.navList-packing').removeClass('hidden');
     });
 
-    // day Nav
-
-    $(document).on('click', '#profileNav-day', function(event) {
+    $(document).on('click', '#activityNav', function(event) {
       event.preventDefault();
-      // console.log('toProfile');
+      console.log('toActivity');
+      $('.tripPlanner').addClass('hidden');
       $('.dayView').addClass('hidden');
-      $('.navList-day').addClass('hidden');
-      $('.profile').removeClass('hidden');
+      $('.packingList').addClass('hidden');
       const days = store.tripLength;
       for (let i = 1; i <= days; i++) {
         $(`.day${i}`).addClass('hidden');
-        $('.itemList').empty();
-        $('.activityResultsContainer').empty();
-        $('.restaurantContainer').empty();
-        $('.hikeContainer').empty();
       }
-    });
-
-    $(document).on('click', '#activityNav-day', function(event) {
-      event.preventDefault();
-      // console.log('toActivity');
-      $('.dayView').addClass('hidden');
-      $('.navList-day').addClass('hidden');
       $('.activitySelection').removeClass('hidden');
-      $('.navList-activity').removeClass('hidden');
-      const days = store.tripLength;
-      for (let i = 1; i <= days; i++) {
-        $(`.day${i}`).addClass('hidden');
-      }
-    });
-
-    $(document).on('click', '#packingNav-day', function(event) {
-      event.preventDefault();
-      // console.log('toPacking');
-      $('.dayView').addClass('hidden');
-      $('.navList-day').addClass('hidden');
-      $('.packingList').removeClass('hidden');
-      $('.navList-packing').removeClass('hidden');
-      const days = store.tripLength;
-      for (let i = 1; i <= days; i++) {
-        $(`.day${i}`).addClass('hidden');
-      }
-    });
-
-    $(document).on('click', '#plannerNav-day', function(event) {
-      event.preventDefault();
-      // console.log('toPacking');
-      $('.dayView').addClass('hidden');
-      $('.navList-day').addClass('hidden');
-      $('.tripPlanner').removeClass('hidden');
-      $('.navList-planner').removeClass('hidden');
-      const days = store.tripLength;
-      for (let i = 1; i <= days; i++) {
-        $(`.day${i}`).addClass('hidden');
-      }
-    });
-
-    // packing Nav
-
-    $(document).on('click', '#profileNav-packing', function(event) {
-      event.preventDefault();
-      // console.log('toProfile');
-      $('.packingList').addClass('hidden');
-      $('.navList-packing').addClass('hidden');
-      $('.profile').removeClass('hidden');
-      $('.itemList').empty();
-      $('.activityResultsContainer').empty();
-      $('.restaurantContainer').empty();
-      $('.hikeContainer').empty();
-    });
-
-    $(document).on('click', '#activityNav-packing', function(event) {
-      event.preventDefault();
-      // console.log('toActivity');
-      $('.packingList').addClass('hidden');
-      $('.navList-packing').addClass('hidden');
-      $('.activitySelection').removeClass('hidden');
-      $('.navList-activity').removeClass('hidden');
-    });
-
-    $(document).on('click', '#plannerNav-packing', function(event) {
-      event.preventDefault();
-      // console.log('toPacking');
-      $('.packingList').addClass('hidden');
-      $('.navList-packing').addClass('hidden');
-      $('.tripPlanner').removeClass('hidden');
-      $('.navList-planner').removeClass('hidden');
     });
 
     // activitySearchTriggers
@@ -1165,8 +1070,8 @@ function createTripPost(name, city, username, tripLength) {
       $('.tripPlanner').addClass('hidden');
       $('.dayView').removeClass('hidden');
       $(element).removeClass('hidden');
-      $('.navList-planner').addClass('hidden');
-      $('.navList-day').removeClass('hidden');
+      // $('.navList-planner').addClass('hidden');
+      // $('.navList-day').removeClass('hidden');
     
       }
     });
