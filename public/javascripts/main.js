@@ -734,10 +734,14 @@ function createTripPost(name, city, username, tripLength) {
       event.preventDefault();
       // console.log('delete');
       const tripName = $(this).parent('li').find('a').html();
-      
-      console.log(tripName);
-      $(this).parent('li').remove();
-      deleteTrip(tripName);
+
+      var result = confirm("Are you sure you want to delete this trip?");
+      if (result) {
+        //Logic to delete the item
+        console.log(tripName);
+        $(this).parent('li').remove();
+        deleteTrip(tripName);
+      }
     });
 
     // newTrip listeners 
