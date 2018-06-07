@@ -7,8 +7,8 @@ function alertUser(msg) {
 
 //Clears most important fields on a rejected attempt.
 function clearInputs() {
-	$('#logIn-username').val() = '';
-	$('#logIn-password').val() = '';
+	$('#logIn-username').val('');
+	$('#logIn-password').val('');
 }
 
 //Watches login form click, intercepts default post behavior, performs light validation, and sends data to validate the attempt. On success, writes the JWT token to local storage to validate future endpoint and page calls for the next seven days.
