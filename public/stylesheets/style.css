@@ -7,6 +7,10 @@ body {
   color: black;
 }
 
+.backgroundColor {
+  background-color: orange;
+}
+
 .hidden {
   display: none;
 }
@@ -146,6 +150,7 @@ nav h1 {
   margin: 15px;
   border: lightseagreen solid;
   padding: 10px;
+  cursor: pointer;
 }
 
 .landingList {
