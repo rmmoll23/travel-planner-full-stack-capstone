@@ -731,6 +731,39 @@ function createTripPost(name, city, username, tripLength) {
       }
     });
 
+    $(function(){
+      if ($(window).width() > 500) {
+          let videoFile = './images/activitySearchExample.mp4';
+          $('#searchSampleVideo').attr('src',videoFile);
+      }
+      else if ($(window).width() < 500) {
+          let videoFile = './images/searchExamplePhone.mp4';
+          $('#searchSampleVideo').attr('src',videoFile);
+      }
+  
+  });
+  $(function(){
+    if ($(window).width() > 500) {
+        let videoFile = './images/addItemExample.mp4';
+        $('#addToPlannerSampleVideo').attr('src',videoFile);
+    }
+    else if ($(window).width() < 500) {
+        let videoFile = './images/addItemToPlannerExamplePhone.mp4';
+        $('#addToPlannerSampleVideo').attr('src',videoFile);
+    }
+});
+
+$(function(){
+  if ($(window).width() > 500) {
+      let videoFile = './images/packingListExample.mp4';
+      $('#packingListSampleVideo').attr('src',videoFile);
+  }
+  else if ($(window).width() < 500) {
+      let videoFile = './images/packingListExamplePhone.mp4';
+      $('#packingListSampleVideo').attr('src',videoFile);
+  }
+});
+
     // signUp listeners
 
     $(document).on('click', '#cancel', function(event) {

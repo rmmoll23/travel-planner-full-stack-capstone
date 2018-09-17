@@ -11,6 +11,11 @@ body {
   background-color: orange;
 }
 
+video {
+  width: 900px;
+  height: 700px;
+}
+
 .hidden {
   display: none;
 }
@@ -636,6 +641,19 @@ footer ul {
 } 
 
 @media only screen and (max-width: 450px) {
+
+  video {
+    width: 300px;
+    height: 200px;
+  }
+
+  #packingListSample {
+    border-top: none;
+  }
+
+  #addToPlannerSample {
+    border-top: none;
+  }
 
   .delete {
   right: 20px;
