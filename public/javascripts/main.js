@@ -11,8 +11,8 @@ let store = {
 
 
   
-  // const serverBase = 'https://travel-planner-capstone.herokuapp.com';
-  const serverBase = '';
+  const serverBase = 'https://travel-planner-capstone.herokuapp.com';
+  // const serverBase = '';
   
   
   // API Calls
@@ -731,38 +731,19 @@ function createTripPost(name, city, username, tripLength) {
       }
     });
 
+    // change video sources based on window size
     $(function(){
       if ($(window).width() > 500) {
-          let videoFile = './images/activitySearchExample.mp4';
-          $('#searchSampleVideo').attr('src',videoFile);
+          $('#searchSampleVideo').attr('src','./images/activitySearchExample.mp4');
+          $('#addToPlannerSampleVideo').attr('src','./images/addItemExample.mp4');
+          $('#packingListSampleVideo').attr('src','./images/packingListExample.mp4');
       }
       else if ($(window).width() < 500) {
-          let videoFile = './images/searchExamplePhone.mp4';
-          $('#searchSampleVideo').attr('src',videoFile);
+          $('#searchSampleVideo').attr('src','./images/searchExamplePhone.mp4');
+          $('#addToPlannerSampleVideo').attr('src','./images/addItemToPlannerExamplePhone.mp4');
+          $('#packingListSampleVideo').attr('src','./images/packingListExamplePhone.mp4');
       }
-  
   });
-  $(function(){
-    if ($(window).width() > 500) {
-        let videoFile = './images/addItemExample.mp4';
-        $('#addToPlannerSampleVideo').attr('src',videoFile);
-    }
-    else if ($(window).width() < 500) {
-        let videoFile = './images/addItemToPlannerExamplePhone.mp4';
-        $('#addToPlannerSampleVideo').attr('src',videoFile);
-    }
-});
-
-$(function(){
-  if ($(window).width() > 500) {
-      let videoFile = './images/packingListExample.mp4';
-      $('#packingListSampleVideo').attr('src',videoFile);
-  }
-  else if ($(window).width() < 500) {
-      let videoFile = './images/packingListExamplePhone.mp4';
-      $('#packingListSampleVideo').attr('src',videoFile);
-  }
-});
 
     // signUp listeners
 
