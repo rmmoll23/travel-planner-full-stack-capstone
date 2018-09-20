@@ -608,11 +608,18 @@ function createTripPost(name, city, username, tripLength) {
 
   function displayDayViewContent(name, address, daySelected, url, notes) {
     let dayViewContent = '';
+    const days = store.tripLength;
+    let dropDown = '';
+    for (let i = 1; i <= days; i++) {
+      dropDown += `<option class="dropDownDay${i}" value="day${i}">Day ${i}</option>`;
+    }
     if (url === undefined) {
       dayViewContent = `<div class="dayActivity">
       <h2>${name}</h2>
       <p>${address}</p><br>
       <button class="button-delete" type="button">Delete</button>
+      <select class="dayActivityDropDown" name="days">${dropDown}</select>
+      <button id="changeActivityDay" type="submit">Move Activity</button>
       <textarea rows="4" cols="50" class="notesInput">${notes} 
       </textarea>
       <button class="button-notes" type="button">Save Notes</button>
@@ -623,12 +630,13 @@ function createTripPost(name, city, username, tripLength) {
       <h2><a href="${url}" target="_blank">${name}</a></h2>
       <p>${address}</p><br>
       <button class="button-delete" type="button">Delete</button>
+      <select class="dayActivityDropDown" name="days">${dropDown}</select>
+      <button id="changeActivityDay" type="submit">Move Activity</button>
       <textarea rows="4" cols="50" class="notesInput">${notes} 
       </textarea>
       <button class="button-notes" type="button">Save Notes</button>
       </div>`
     }
-
     $(`${daySelected}`).find('.activities').append(dayViewContent);
     $(`${daySelected}`).find('.activities').find('.noActivities').addClass('hidden');
     activityCount(daySelected);
@@ -1039,6 +1047,28 @@ function createTripPost(name, city, username, tripLength) {
 
 
     // dayViewTriggers
+
+    // moveEvent
+    $(document).on('click', '.dayView #changeActivityDay', function(event) {
+      event.preventDefault();
+      let daySelected = $(this).parent('.dayActivity').find('select').val();
+      daySelected = daySelected.replace(/\D/g,'');
+      daySelected = `.day${daySelected}`;
+      const name = $(this).parent('.dayActivity').find('a').text();
+      const location = $(this).parent('.dayActivity').find('p').text();
+      const url = $(this).parent('.dayActivity').find('a').attr('href');
+      let day = $(this).parent('.dayActivity').find('select').val();
+      day = day.replace(/\D/g,'');
+      const notes = $(this).parent('.dayActivity').find('textarea').text();;
+      console.log(name, location, url, day, daySelected, notes);
+      if (confirm(`Do you want to move ${name} to Day ${day}`)) {
+        // displayDayViewContent(name, location, daySelected, url, notes);
+        // postActivity(name, location, day, url);
+    } else {
+        // Do nothing!
+    }
+
+    });
 
     // deleteEvent
     $(document).on('click', '.dayView .button-delete', function(event) {
