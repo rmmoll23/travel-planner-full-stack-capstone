@@ -342,7 +342,7 @@ function createTripPost(name, city, username, tripLength) {
 
     // Activity Requests
     function postActivity(name, address, day, url) {
-      // console.log('activityToDatabase');
+      console.log('activityToDatabase');
     
           const createActivityObject = {
             tripName: store.tripName,
@@ -362,10 +362,10 @@ function createTripPost(name, city, username, tripLength) {
             contentType: 'application/json'
           })
           .fail(function(error) {
-            // console.log(error)
+            console.log(error);
           })
           .done(function (result) {
-            // console.log('activityPosted');
+            console.log('activityPostedSuccess');
           })
         }
 
@@ -390,19 +390,20 @@ function createTripPost(name, city, username, tripLength) {
       }
 
       function deleteActivity(tripName, activityName, day) {
-        // console.log(tripName, activityName, day);
+        console.log(tripName, activityName, day);
+        console.log('tobedeleted');
         const username = store.username;
         $.ajax({
               url: serverBase + `/activities/${username}/${tripName}/${activityName}/${day}`,
               method: 'DELETE',
             })
             .done(function(data) {
-              // console.log('success');
+              console.log('Deletesuccess');
             })
             .fail(function (jqXHR, error, errorThrown) {
-              // console.log(jqXHR);
-              // console.log(error);
-              // console.log(errorThrown);
+              console.log(jqXHR);
+              console.log(error);
+              console.log(errorThrown);
               const alertError = 'Error encountered in DELETE.';
               alertUser(alertError);
             })
@@ -619,7 +620,7 @@ function createTripPost(name, city, username, tripLength) {
       <p>${address}</p><br>
       <button class="button-delete" type="button">Delete</button>
       <select class="dayActivityDropDown" name="days">${dropDown}</select>
-      <button id="changeActivityDay" type="submit">Move Activity</button>
+      <button id="changeActivityDay" type="submit">Change Day</button>
       <textarea rows="4" cols="50" class="notesInput">${notes} 
       </textarea>
       <button class="button-notes" type="button">Save Notes</button>
@@ -631,7 +632,7 @@ function createTripPost(name, city, username, tripLength) {
       <p>${address}</p><br>
       <button class="button-delete" type="button">Delete</button>
       <select class="dayActivityDropDown" name="days">${dropDown}</select>
-      <button id="changeActivityDay" type="submit">Move Activity</button>
+      <button id="changeActivityDay" type="submit">Change Day</button>
       <textarea rows="4" cols="50" class="notesInput">${notes} 
       </textarea>
       <button class="button-notes" type="button">Save Notes</button>
@@ -1054,6 +1055,8 @@ function createTripPost(name, city, username, tripLength) {
       let daySelected = $(this).parent('.dayActivity').find('select').val();
       daySelected = daySelected.replace(/\D/g,'');
       daySelected = `.day${daySelected}`;
+      const previousDay = $(this).parent('.dayActivity').parent('.activities').parent('.dayPage').find('h1').text().replace(/\D/g,'');
+      const tripName = store.tripName;
       const name = $(this).parent('.dayActivity').find('a').text();
       const location = $(this).parent('.dayActivity').find('p').text();
       const url = $(this).parent('.dayActivity').find('a').attr('href');
@@ -1061,12 +1064,19 @@ function createTripPost(name, city, username, tripLength) {
       day = day.replace(/\D/g,'');
       const notes = $(this).parent('.dayActivity').find('textarea').text();;
       console.log(name, location, url, day, daySelected, notes);
+      console.log(`previousDay: ${previousDay}`);
       if (confirm(`Do you want to move ${name} to Day ${day}`)) {
-        // displayDayViewContent(name, location, daySelected, url, notes);
-        // postActivity(name, location, day, url);
-    } else {
-        // Do nothing!
-    }
+        displayDayViewContent(name, location, daySelected, url, notes);
+        deleteActivity(tripName, name, previousDay);
+        postActivity(name, location, day, url);
+        $(this).parent('.dayActivity').remove();
+        console.log(`previousday: ${previousDay}, newDay: ${day}`);
+        activityCount(`.day${previousDay}`);
+        activityCount(`.day${day}`);
+
+      } else {
+          // Do nothing!
+      }
 
     });
 

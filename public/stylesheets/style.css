@@ -452,6 +452,10 @@ span {
   height: 180px;
 }
 
+.dayActivityDropDown {
+  font-size: 16px;
+}
+
 .button-notes {
   position: absolute;
   right: 20px;
@@ -641,6 +645,10 @@ footer ul {
 } 
 
 @media only screen and (max-width: 450px) {
+
+  .dayActivityDropDown {
+    font-size: 11px;
+  }
 
   video {
     width: 300px;
