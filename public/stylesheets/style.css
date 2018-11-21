@@ -1,6 +1,6 @@
 
 body {
-  /* background-image: url(./images/moraineLake2.jpeg); */
+  /* background-image: url(./images/moraineLake2-min.jpeg); */
   background-size: cover;
   font-family: 'Noto Sans', sans-serif;
   margin: 0;
@@ -96,7 +96,7 @@ a {
 
 .landingTop {
   height: 600px;
-  background-image: url(../images/moraineLake2.jpeg);
+  background-image: url(../images/moraineLake2-min.jpeg);
   background-size: cover;
   color: lightseagreen;
   margin-top: 70px;
@@ -572,7 +572,7 @@ footer ul {
   }
 
   .landingTop {
-    background-image: url(../images/river.jpg);
+    background-image: url(../images/river-min.jpg);
     background-size: cover;
   }
 
